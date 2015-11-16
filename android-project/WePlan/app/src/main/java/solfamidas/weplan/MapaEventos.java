@@ -10,8 +10,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
+import io.socket.client.*;
+
 import java.net.URISyntaxException;
 
 public class MapaEventos extends FragmentActivity implements OnMapReadyCallback {
