@@ -10,17 +10,19 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import io.socket.client.*;
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 import java.net.URISyntaxException;
 
 public class MapaEventos extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Socket mSocket;
+    private Socket socket;
     {
         try {
-            mSocket = IO.socket(""); // declarar el socket del server
+            socket = IO.socket("http://localhost"); // declarar el socket del server
         } catch (URISyntaxException e) {}
     }
 
@@ -32,7 +34,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        mSocket.connect(); // conectamos con el socket
+        socket.connect(); // conectamos con el socket
     }
 
 
