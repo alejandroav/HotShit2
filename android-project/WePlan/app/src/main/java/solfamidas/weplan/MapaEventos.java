@@ -2,6 +2,7 @@ package solfamidas.weplan;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,6 +26,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback 
             socket = IO.socket("http://localhost"); // declarar el socket del server
         } catch (URISyntaxException e) {}
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,4 +58,6 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback 
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+
 }
