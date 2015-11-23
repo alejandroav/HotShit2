@@ -1,0 +1,34 @@
+<div class="card-content black-text">
+	<span class="card-title">WePlan</span>
+	<form id="login" action="operations.php?op=login" method="post"> 
+		<div class="input-field">
+			<input placeholder="Usuario o E-mail" id="username" name="username" type="text" class="validate" required/>
+		</div>
+		<div class="input-field">
+			<input placeholder="Contrase&ntilde;a" id="password" name="password" type="password" required/>
+		</div>
+		<a href="javascript:void(0)" onclick="changeLRLayer('recpass')" class="black-text">He olvidado mi contraseña</a>
+	</form>
+</div>
+<div class="card-action">
+	<a href="javascript:void(0)" onclick="sendLogin()" class="waves-effect waves-light btn black white-text">Entrar</a>
+</div>
+<script>
+	function sendLogin() {
+		$("#login").ajaxSubmit({
+			dataType: 'json',
+			type: 'POST',
+			success:function(res){
+				if (res.status == "OK"){
+					location.href="lobby.php";
+				} else {
+					Materialize.toast(res.msg, 3000);
+				}
+			},
+			error: function(res){
+				Materialize.toast('Se ha producido un error', 3000);
+				console.log(res);
+			}
+		}); 
+	}
+</script>

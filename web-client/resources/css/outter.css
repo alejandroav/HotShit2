@@ -1,0 +1,23 @@
+input::-webkit-input-placeholder {
+	color: grey !important;
+}
+input:-moz-placeholder { /* Firefox 18- */
+	color: grey !important;  
+}
+input::-moz-placeholder {  /* Firefox 19+ */
+	color: grey !important;  
+}
+input:-ms-input-placeholder {  
+	color: grey !important;  
+}
+body{
+	background: url('../img/fondo.jpg');
+}
+.lr-button{
+	position: fixed;
+	right: 10px;
+	top: 10px;
+}
+.lr-layer{
+	margin-top: 40%;
+}
