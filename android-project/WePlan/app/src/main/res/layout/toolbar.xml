@@ -2,16 +2,59 @@
 <android.support.v7.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="56dp"
     android:background="#795548">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
     <Button
         android:id="@+id/action_settings"
-        android:layout_width="51dp"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/ic_menu_black_24dp" />
 
+    <Button
+        android:id="@+id/action_map"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/ic_map_black_24dp"
+        />
 
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="20dp"
+        android:background="@mipmap/ic_launcher"
+        android:contentDescription="@string/logo"
+        android:baselineAlignBottom="true"
+        android:clickable="false"
+        android:layout_gravity="center_vertical" />
+
+        <Button
+            android:id="@+id/action_plan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/notepad30" />
+
+        <Button
+            android:id="@+id/action_challenge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/challenge"
+            />
+
+    </LinearLayout>
 
 
 

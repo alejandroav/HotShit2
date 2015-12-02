@@ -89,4 +89,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <!-- Strings puestos por mi -->
+    <string name="logo">logo</string>
 </resources>
