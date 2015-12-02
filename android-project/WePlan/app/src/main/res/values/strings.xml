@@ -92,4 +92,8 @@
 
     <!-- Strings puestos por mi -->
     <string name="logo">logo</string>
+    <string name="mapa">Mapa</string>
+    <string name="opciones">Opciones</string>
+    <string name="planes">planes</string>
+    <string name="retos">retos</string>
 </resources>
