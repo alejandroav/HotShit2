@@ -9,12 +9,14 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp">
     <ImageView
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:id="@+id/imageView2"
         android:background="@drawable/imagen_circular"
         android:src="@mipmap/ic_launcher"
-        android:scaleType="center" />
+        android:scaleType="center"
+        android:layout_marginLeft="8dp"
+        android:layout_gravity="center" />
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
