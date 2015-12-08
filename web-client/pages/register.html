@@ -1,17 +1,17 @@
 <div class="card-content black-text">
-	<span class="card-title">WePlan</span>
+	<span class="card-title">Crea un usuario</span>
 	<form id="register" action="operations.php?op=register" method="post"> 
 		<div class="input-field">
-			<input placeholder="Usuario" id="username" name="username" type="text" class="validate">
+			<input placeholder="Usuario" id="username" name="username" type="text" class="validate" maxlength="50" required />
 		</div>
 		<div class="input-field">
-			<input placeholder="E-mail" id="email" name="email" type="text" class="validate">
+			<input placeholder="E-mail" id="email" name="email" type="text" class="validate" maxlength="100" required />
 		</div>
 		<div class="input-field">
-			<input placeholder="Contrase&ntilde;a" id="password" name="password" type="password">
+			<input placeholder="Contrase&ntilde;a" id="password" name="password" type="password" required />
 		</div>
 		<div class="input-field">
-			<input placeholder="Confirma tu contrase&ntilde;a" id="repassword" name="repassword" type="password">
+			<input placeholder="Confirma tu contrase&ntilde;a" id="repassword" name="repassword" type="password" required />
 		</div>
 	</form>
 </div>

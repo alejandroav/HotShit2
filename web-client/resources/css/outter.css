@@ -11,7 +11,6 @@ input:-ms-input-placeholder {
 	color: grey !important;  
 }
 body{
-	background: url('../img/fondo.jpg');
 }
 .lr-button{
 	position: fixed;

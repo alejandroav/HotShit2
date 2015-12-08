@@ -29,7 +29,9 @@ switch ($_GET["op"]){
 								$mail->addAddress($_POST["email"]); 
 								$mail->isHTML(true);
 								$mail->Subject = $mail_registersubject;
-								$mail->Body = printf($mail_registerbody, $_POST['username'], $_POST['email']);
+								$body = "";
+								sprintf($body, $mail_registerbody, $_POST['username'], $_POST['email']);
+								$mail->Body = $body;
 								$mail->send();
 								die(json_encode(array("status" => "OK")));
 							} else die(json_encode(array("status" => "ERROR", "msg" => "Este usuario o email ya esta registrado")));
@@ -57,6 +59,8 @@ switch ($_GET["op"]){
 	break;
 	case "logout":
 		session_unset();
+		header("location: index.php");
+		exit;
 	break;
 	default:
 		die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
