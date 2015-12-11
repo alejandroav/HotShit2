@@ -3,6 +3,7 @@ include(dirname(__FILE__)."/db.mysql.class.php");
 class User {
 	var $db;
 	var $uid;
+	var $usid;
 	var $userdata;
 	function User($uid = 0){
 		$this->db = new DB();
@@ -20,7 +21,10 @@ class User {
 		$row = $this->db->getRow("SELECT id, username, email FROM users WHERE (username = '".$username."' OR email = '".$username."') AND password = '".hash("sha512", $password)."'");
 		if (count($row)){
 			$this->uid = $row["id"];
+			$this->usid = session_id();
 			$this->userdata = $row;
+			$_SESSION["uid"] = $user->getUID();
+			$this->db->query("UPDATE users SET session_id = ".$usid." WHERE id = ".$this->uid);
 			return true;
 		} else return false;
 	}
@@ -44,6 +48,9 @@ class User {
 	}
 	function getUID(){
 		return $this->uid;
+	}
+	function getSessionID(){
+		return $this->usid;
 	}
 	function getUserData(){
 		return $this->userdata;

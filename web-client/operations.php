@@ -11,8 +11,7 @@ switch ($_GET["op"]){
 		if ($user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
 		if ((isset($_POST["username"]) && isset($_POST["password"])) && ($_POST["username"] != "" && $_POST["password"] != "")){
 			if ($user->doLogin(htmlspecialchars($_POST["username"], ENT_QUOTES, 'UTF-8'), htmlspecialchars($_POST["password"], ENT_QUOTES, 'UTF-8'))){
-				$_SESSION["uid"] = $user->getUID();
-				die(json_encode(array("status" => "OK")));
+				die(json_encode(array("status" => "OK", "data" => array("userid" => $user->getUID(), "sessionid" => $user->getSessionID()))));
 			}else die(json_encode(array("status" => "ERROR", "msg" => "El usuario/email o la contrase&ntilde;a no coinciden")));
 		}else die(json_encode(array("status" => "ERROR", "msg" => "El usuario/email y la contrase&ntilde;a no pueden estar en blanco")));
 	break;

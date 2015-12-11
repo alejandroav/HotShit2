@@ -14,7 +14,8 @@ CREATE TABLE `usuarios` (
 	`password` VARCHAR(130) NOT NULL,
 	`imagen` VARCHAR(255) NOT NULL,
 	`nivelorganizador` DECIMAL(12, 2) NOT NULL,
-	`nivelparticipante` DECIMAL(12, 2) NOT NULL
+	`nivelparticipante` DECIMAL(12, 2) NOT NULL,
+	`session_id` INT(11) NOT NULL
 );
 
 CREATE TABLE `fases` (
