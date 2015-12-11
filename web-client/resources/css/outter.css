@@ -20,3 +20,17 @@ body{
 .lr-layer{
 	margin-top: 40%;
 }
+#lr-layer{
+    animation-name: dropHeader;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.8s;
+}
+@keyframes dropHeader {
+    0% {
+        transform: translateX(-1000px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

@@ -16,6 +16,7 @@
 			<div class="col s8 m6 l4 offset-s2 offset-m3 offset-l4">
 				<div class="card blue-white lr-layer" id="lr-layer">
 					<?php include("pages/login.html"); ?>
+					<p class="z-depth-2"></p>
 				</div>
 			</div>
 		</div>
