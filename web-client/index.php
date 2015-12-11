@@ -23,7 +23,19 @@
 		<div class="slider fullscreen" style="z-index: -3; position: absolute;">
 			<ul class="slides">
 				<li>
-					<img src="resources/img/fondo.jpg">
+					<img src="resources/img/fondo1.jpg">
+				</li>
+				<li>
+					<img src="resources/img/fondo2.jpg">
+				</li>
+				<li>
+					<img src="resources/img/fondo3.jpg">
+				</li>
+				<li>
+					<img src="resources/img/fondo4.jpg">
+				</li>
+				<li>
+					<img src="resources/img/fondo5.jpg">
 				</li>
 			</ul>
 		</div>
@@ -33,7 +45,7 @@
 		<script type="text/javascript" src="resources/js/functions.js"></script>
 		<script>
 			$(document).ready(function(){
-				$('.slider').slider({full_width: true, indicators:false});
+				$('.slider').slider({full_width: true, indicators:false, transition:2000});
 			});
 		</script>
 	</body>

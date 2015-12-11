@@ -19,7 +19,10 @@ body{
 }
 .lr-layer{
 	margin-top: 40%;
+	border-radius:20px;
+	background-color:
 }
+
 #lr-layer{
     animation-name: dropHeader;
     animation-iteration-count: 1;
@@ -30,7 +33,10 @@ body{
     0% {
         transform: translateX(-1000px);
     }
-    100% {
+    90% {
+        transform: translateX(30px);
+    }
+	100% {
         transform: translateX(0);
     }
 }
