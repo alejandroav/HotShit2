@@ -14,40 +14,72 @@
 			<div class="nav-wrapper">
 				<a href="#" class="brand-logo center">Logo</a>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="pages/perfil.html">Inicio</a></li>
-					<li><a href="pages/mapa.html">Mapa</a></li>
+					<li><a href="javaScript:void(0)" id="inicio-but">Inicio</a></li>
+					<li><a href="javaScript:void(0)" id="mapa-but">Mapa</a></li>
 				</ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a href="pages/planes.html">Planes</a></li>
-					<li><a href="pages/retos.html">Retos</a></li>
-					<li><a href="pages/imagen_perfil.html">imagen_perfil</a></li>
+					<li><a href="javaScript:void(0)" id="planes-but">Planes</a></li>
+					<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>
+					<li><a href="javaScript:void(0)">imagen_perfil</a></li>
 					<li>buscador</li>
 				</ul>
 			</div>
 		</nav>
+		
 	</div>
+	<div id="formcontent">
+	</div>
+	<script type="text/javascript" src="resources/js/jquery.min.js"></script>
+	<script type="text/javascript" src="resources/js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="resources/js/materialize.min.js"></script>
+	<script type="text/javascript" src="resources/js/functions.js"></script>
 	<script>
 		$(document).ready(function(){
 			var page = "perfil";
 			$.ajax({
+				url: "pages/perfil.html",
+				success: function(res) {
+					$("#formcontent").html(res);
+				}
+			});
+			$('#inicio-but').click(function(){
+				if (page != "perfil"){
+					page = "perfil";
+					$.ajax({
 						url: "pages/perfil.html",
 						success: function(res) {
 							$("#formcontent").html(res);
 						}
 					});
-			$('#chg_button').click(function(){
-				if (page == "login"){
-					page = "register";
+				}
+			});
+			$('#mapa-but').click(function(){
+				if (page != "mapa"){
+					page = "mapa";
 					$.ajax({
-						url: "pages/register.php",
+						url: "pages/mapa.html",
 						success: function(res) {
 							$("#formcontent").html(res);
 						}
 					});
-				} else if (page == "register"){
-					page = "login";
+				}
+			});
+			$('#planes-but').click(function(){
+				if (page != "planes"){
+					page = "planes";
 					$.ajax({
-						url: "pages/login.php",
+						url: "pages/planes.html",
+						success: function(res) {
+							$("#formcontent").html(res);
+						}
+					});
+				}
+			});
+			$('#retos-but').click(function(){
+				if (page != "retos"){
+					page = "retos";
+					$.ajax({
+						url: "pages/retos.html",
 						success: function(res) {
 							$("#formcontent").html(res);
 						}

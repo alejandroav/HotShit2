@@ -1,3 +1,6 @@
 .nav-wrapper{  
  background: linear-gradient(orange, brown);
 }
+.inicio-title{
+	text-align:center;
+}
