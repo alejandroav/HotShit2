@@ -10,10 +10,13 @@
 	</head>
 	<body>
 		<div class="lr-button" id="lr-button">
-			<a href="javascript:void(0)" onclick="changeLRLayer('register')" class="waves-effect waves-light btn black white-text"><i class="material-icons left">add_box</i>Registrate!</a>
+			<a href="javascript:void(0)" onclick="changeLRLayer('register')" class="waves-effect waves-light btn orange white-text"><i class="material-icons left">add_box</i>Registrate!</a>
 		</div>
 		<div class="row center-align">
 			<div class="col s8 m6 l4 offset-s2 offset-m3 offset-l4">
+				<div id="logo-index">
+					<img src="resources/img/logo.png" id="logo-foto">
+				</div>
 				<div class="card blue-white lr-layer" id="lr-layer">
 					<?php include("pages/login.html"); ?>
 					<p class="z-depth-2"></p>

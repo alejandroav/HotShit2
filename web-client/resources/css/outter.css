@@ -12,22 +12,55 @@ input:-ms-input-placeholder {
 }
 body{
 }
+#logo-foto{
+	height:100px;
+	width:100px;
+	
+	border-radius:100%;
+	border: 3px solid orange;
+}
+#logo-index{
+	z-index:-2;
+	height:100px;
+	width:100px;
+	
+	margin-bottom:-25%;
+	margin-top:25%;
+	margin-left:50%;
+	left:-50px;
+	position:relative;
+	
+	border-radius:100%;
+
+    animation-name: dropLogo;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.8s;
+}
 .lr-button{
 	position: fixed;
 	right: 10px;
 	top: 10px;
 }
-.lr-layer{
-	margin-top: 40%;
-	border-radius:20px;
-	background-color:
-}
 
 #lr-layer{
+	z-index:0;
+	margin-top: 40%;
+	border-radius:20px;
+	position:relative;
+	
     animation-name: dropHeader;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: 0.8s;
+}
+#lr-titulo{
+	padding:2px;
+	
+	border-bottom-width:2px;
+	border-bottom-color:orange;
+	border-width:3px 1px 1px 0px;
+	border-radius:3px;
 }
 @keyframes dropHeader {
     0% {
@@ -38,5 +71,17 @@ body{
     }
 	100% {
         transform: translateX(0);
+    }
+}
+
+@keyframes dropLogo {
+    0% {
+        transform: translateY(-500px);
+    }
+    90% {
+        transform: translateY(30px);
+    }
+	100% {
+        transform: translateY(0);
     }
 }
