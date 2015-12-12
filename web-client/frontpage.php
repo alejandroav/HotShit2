@@ -22,6 +22,7 @@
 					<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>
 					<li><a href="javaScript:void(0)">imagen_perfil</a></li>
 					<li>buscador</li>
+					<li>Crear</li>
 				</ul>
 			</div>
 		</nav>
