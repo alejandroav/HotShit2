@@ -49,15 +49,15 @@ function changeLayer(layer, page, action, callback){
 function changeLRLayer(type){
 	if (type == "register"){
 		changeLayer('#lr-layer', 'pages/register.html', 'change', function() {
-			$("#lr-button").html('<a href="javascript:void(0)" onclick="changeLRLayer(\'login\')" class="waves-effect waves-light btn black white-text"><i class="material-icons left">account_box</i>Entra</a>');
+			$("#lr-button").html('<a href="javascript:void(0)" onclick="changeLRLayer(\'login\')" class="waves-effect waves-light btn orange white-text"><i class="material-icons left">account_box</i>Entra</a>');
 		});
 	} else if (type == "login"){
 		changeLayer('#lr-layer', 'pages/login.html', 'change', function() {
-			$("#lr-button").html('<a href="javascript:void(0)" onclick="changeLRLayer(\'register\')" class="waves-effect waves-light btn black white-text"><i class="material-icons left">add_box</i>Registrate!</a>');
+			$("#lr-button").html('<a href="javascript:void(0)" onclick="changeLRLayer(\'register\')" class="waves-effect waves-light btn orange white-text"><i class="material-icons left">add_box</i>Registrate!</a>');
 		});
 	} else if (type == "recpass"){
 		changeLayer('#lr-layer', 'pages/recpass.html', 'change', function() {
-			$("#lr-button").html('<a href="javascript:void(0)" onclick="changeLRLayer(\'login\')" class="waves-effect waves-light btn black white-text"><i class="material-icons left">account_box</i>Entra</a>');
+			$("#lr-button").html('<a href="javascript:void(0)" onclick="changeLRLayer(\'login\')" class="waves-effect waves-light btn orange white-text"><i class="material-icons left">account_box</i>Entra</a>');
 		});
 	} else Materialize.toast('No tienes permitido hacer eso', 3000);
 }
