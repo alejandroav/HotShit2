@@ -21,7 +21,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback 
     private Socket socket;
     {
         try {
-            socket = IO.socket("http://grizzly.com"); // declarar el socket del server
+            socket = IO.socket("http://grizz.ly"); // declarar el socket del server
         } catch (URISyntaxException e) {}
     }
 
