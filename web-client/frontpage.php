@@ -21,9 +21,16 @@
 					<li><a href="javaScript:void(0)" id="planes-but">Planes</a></li>
 					<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>
 					<li><a href="javaScript:void(0)">imagen_perfil</a></li>
-					<li>buscador</li>
-					<li>Crear</li>
+					<li class="buscador">
+						<form style="height:62px;">
+							<input type="text" value="Buscar..." onfocus="if (this.value == 'Buscar...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Buscar...';}" />
+						</form>
+					</li>
+					<li class="boton-crear"><a href="javaScript:void(0)"></a>
+					</li>
 				</ul>
+				
+					<div class="boton-crear"><a href="javaScript:void(0)" class="waves-effect waves-light btn orange white-text">Crear</a></div>
 			</div>
 		</nav>
 		

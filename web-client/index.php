@@ -14,7 +14,17 @@
 		</div>
 		<div class="row center-align">
 			<div class="col s8 m6 l4 offset-s2 offset-m3 offset-l4">
+
 				<div id="logo-index">
+					<div id="logo-index-fondo">
+						<div id="logo-index-fondo2">
+							<div id="logo-index-fondo3">
+								<div id="logo-index-fondo4">
+								</div>	
+							</div>	
+						</div>
+					</div>
+
 					<img src="resources/img/logo.png" id="logo-foto">
 				</div>
 				<div class="card blue-white lr-layer" id="lr-layer">
