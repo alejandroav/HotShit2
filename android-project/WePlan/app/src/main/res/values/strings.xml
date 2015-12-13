@@ -96,4 +96,9 @@
     <string name="opciones">Opciones</string>
     <string name="planes">planes</string>
     <string name="retos">retos</string>
+    <string name="title_activity_pantalla_principal">PantallaPrincipal</string>
+    <string name="drawer_open">Abrir cajón navegación</string>
+    <string name="drawer_close">Cerrar cajón navegación</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
 </resources>

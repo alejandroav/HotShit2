@@ -1,8 +1,7 @@
 package solfamidas.weplan;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,11 +10,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.net.URISyntaxException;
+
 import io.socket.client.IO;
 import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
-
-import java.net.URISyntaxException;
 
 public class MapaEventos extends FragmentActivity implements OnMapReadyCallback {
 

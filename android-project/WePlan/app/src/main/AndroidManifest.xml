@@ -37,35 +37,15 @@
         <activity
             android:name=".MapaEventos"
             android:label="@string/title_activity_mapa_eventos" >
+        </activity>
+        <activity
+            android:name=".PantallaPrincipal"
+            android:label="@string/title_activity_pantalla_principal"
+            android:theme="@style/AppTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".ListaEventos"
-            android:label="@string/title_activity_lista_eventos" >
-        </activity>
-        <activity
-            android:name=".UserDrawer"
-            android:label="@string/title_activity_user_drawer" >
-        </activity>
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" >
-        </activity>
-        <activity
-            android:name=".DetalleUsuario"
-            android:label="@string/title_activity_detalle_usuario" >
-        </activity>
-        <activity
-            android:name=".DetalleEvento"
-            android:label="@string/title_activity_detalle_evento" >
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
         </activity>
     </application>
 
