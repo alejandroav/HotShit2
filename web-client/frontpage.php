@@ -18,7 +18,7 @@
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper">
-				<a href="#" class="brand-logo center">Logo</a>
+				<a href="#" class="brand-logo center"><img class="logo-central" src="resources/img/logo-2-negativo.png"></a>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
 					<li><a href="javaScript:void(0)" id="inicio-but">Inicio</a></li>
 					<li><a href="javaScript:void(0)" id="mapa-but">Mapa</a></li>
