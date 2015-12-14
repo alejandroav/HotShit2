@@ -1,4 +1,4 @@
-<?php session_start(); if (isset($_SESSION["uid"])) {header("location: lobby.php"); exit;} ?>
+<?php session_start(); if (!isset($_SESSION["uid"])) {header("location: index.php"); exit;} ?>
 <!DOCTYPE html>
 <html>
 	<head>
