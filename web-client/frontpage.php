@@ -27,7 +27,7 @@
 					<li><a href="javaScript:void(0)" id="planes-but">Planes</a></li>
 					<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>
 					
-					<li><a class='dropdown-button' href="#." data-beloworigin="true"  data-activates='dropdown1'><img class="foto-perfil" src="resources/img/usuario-provisional.jpg"></img></a></li>
+					<li><a style="height:64px;" class='dropdown-button' href="#." data-beloworigin="true"  data-activates='dropdown1'><img class="foto-perfil" src="resources/img/usuario-provisional.jpg"></img></a></li>
 					<li class="buscador">
 						<form style="height:62px;">
 							<input type="text" value="Buscar..." onfocus="if (this.value == 'Buscar...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Buscar...';}" />
@@ -108,7 +108,7 @@
 			inDuration: 300,
 			outDuration: 225,
 			constrain_width: false, 
-			hover: true, 
+			hover: false, 
 			gutter: 0, 
 			belowOrigin: true, 
 			alignment: 'left' 
