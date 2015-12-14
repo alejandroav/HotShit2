@@ -121,6 +121,17 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	transform: rotateZ(90deg);
 }
 #data-perfil{
-	font-family: thin, bold;
-	font-size:100%;
+	font-family: 'Roboto', sans-serif;
+	font-size:120%;
+	font-weight:bold;
+	color:#FFCC55;
+}
+.data-inside{
+	border-right:2px solid #DDDDDD;
+	border-left:2px solid #DDDDDD;
+}
+@media only screen and (min-width: 993px) {
+	#data-large{
+		margin-left:18.55%;
+	}
 }
