@@ -6,9 +6,15 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="resources/css/materialize.min.css"	media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="resources/css/frontpage.css"	media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="resources/css/circle.css"	media="screen,projection"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
+	<ul id="dropdown1" class="dropdown-content">
+	  <li><a href="#!">Configuraci&oacute;n</a></li>
+	  <li class="divider"></li>
+	  <li><a href="#!">Cerrar sesi&oacute;n</a></li>
+	</ul>
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper">
@@ -20,7 +26,8 @@
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="javaScript:void(0)" id="planes-but">Planes</a></li>
 					<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>
-					<li><a href="javaScript:void(0)">imagen_perfil</a></li>
+					
+					<li><a class='dropdown-button' href="#." data-beloworigin="true"  data-activates='dropdown1'><img class="foto-perfil" src="resources/img/usuario-provisional.jpg"></img></a></li>
 					<li class="buscador">
 						<form style="height:62px;">
 							<input type="text" value="Buscar..." onfocus="if (this.value == 'Buscar...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Buscar...';}" />
@@ -95,6 +102,18 @@
 				}
 			});
 		});
+		</script>
+		<script>
+		$('.dropdown-button').dropdown({
+			inDuration: 300,
+			outDuration: 225,
+			constrain_width: false, 
+			hover: true, 
+			gutter: 0, 
+			belowOrigin: true, 
+			alignment: 'left' 
+			}
+		);
 		</script>
 	</body>
 </html>
