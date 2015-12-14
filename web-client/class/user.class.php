@@ -23,7 +23,7 @@ class User {
 			$this->uid = $row["id"];
 			$this->usid = session_id();
 			$this->userdata = $row;
-			$_SESSION["uid"] = $user->getUID();
+			$_SESSION["uid"] = $this->getUID();
 			$this->db->query("UPDATE users SET session_id = ".$usid." WHERE id = ".$this->uid);
 			return true;
 		} else return false;

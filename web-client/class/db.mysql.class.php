@@ -11,11 +11,11 @@ class DB {
 	}
 	function getRow($query){
 		$res = $this->db->query($query);
-		return $res->fetch_assoc();
+		if ($res) return $res->fetch_assoc();
 	}
 	function getField($query, $field){
 		$res = $this->db->query($query);
-		$row = $res->fetch_assoc();
+		if ($res) $row = $res->fetch_assoc();
 		if (isset($row[$field])) return $row[$field];
 		else return "";
 	}
