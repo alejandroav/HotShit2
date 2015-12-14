@@ -6,7 +6,6 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="resources/css/materialize.min.css"	media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="resources/css/frontpage.css"	media="screen,projection"/>
-		<link type="text/css" rel="stylesheet" href="resources/css/circle.css"	media="screen,projection"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
@@ -27,7 +26,7 @@
 					<li><a href="javaScript:void(0)" id="planes-but">Planes</a></li>
 					<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>
 					
-					<li><a style="height:64px;" class='dropdown-button' href="#." data-beloworigin="true"  data-activates='dropdown1'><img class="foto-perfil" src="resources/img/usuario-provisional.jpg"></img></a></li>
+					<li><a style="height:64px;" class='dropdown-button' href="javascript:void(0)" data-beloworigin="true"  data-activates='dropdown1'><img class="foto-perfil" src="resources/img/usuario-provisional.jpg"></img></a></li>
 					<li class="buscador">
 						<form style="height:62px;">
 							<input type="text" value="Buscar..." onfocus="if (this.value == 'Buscar...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Buscar...';}" />
@@ -108,7 +107,7 @@
 			inDuration: 300,
 			outDuration: 225,
 			constrain_width: false, 
-			hover: false, 
+			hover: true, 
 			gutter: 0, 
 			belowOrigin: true, 
 			alignment: 'left' 
