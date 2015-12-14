@@ -21,10 +21,11 @@
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
 					<li><a href="javaScript:void(0)" id="inicio-but">Inicio</a></li>
 					<li><a href="javaScript:void(0)" id="mapa-but">Mapa</a></li>
-				</ul>
-				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="javaScript:void(0)" id="planes-but">Planes</a></li>
 					<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>
+					
+				</ul>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					
 					<li><a style="height:64px;" class='dropdown-button' href="javascript:void(0)" data-beloworigin="true"  data-activates='dropdown1'><img class="foto-perfil" src="resources/img/usuario-provisional.jpg"></img></a></li>
 					<li class="buscador">
