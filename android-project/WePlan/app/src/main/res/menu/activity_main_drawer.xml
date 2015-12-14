@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_map" android:icon="@android:drawable/ic_menu_camera"
-            android:title="Mapa" />
-        <item android:id="@+id/nav_list" android:icon="@android:drawable/ic_menu_gallery"
-            android:title="Lista de eventos" />
-        <item android:id="@+id/nav_login" android:icon="@android:drawable/ic_menu_slideshow"
-            android:title="Login" />
+        <item android:id="@+id/nav_perfil"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="Pefil"/>
+        <item android:id="@+id/nav_suscripciones"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Suscripciones" />
+        <item android:id="@+id/nav_planes"
+            android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="Planes" />
+        <item android:id="@+id/nav_retos"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="Retos" />
+        <item android:id="@+id/nav_configuracion"
+            android:icon="@android:drawable/ic_menu_crop"
+            android:title="Configuracion" />
+        <item android:id="@+id/nav_salir"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="Salir" />
     </group>
 
 </menu>
