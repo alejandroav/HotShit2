@@ -11,6 +11,8 @@
 		<link type="text/css" rel="stylesheet" href="resources/css/nouislider.tooltips.css"	media="screen,projection"/>		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<script type="text/javascript" src="resources/js/jquery.min.js"></script>
+		<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+		<script>tinymce.init({ selector:'.wysiwyg' });</script>
 	</head>
 	<body>
 	<ul id="dropdown1" class="dropdown-content">
