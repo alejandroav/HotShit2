@@ -30,3 +30,4 @@ $(document).ready(function() {
 	inputNumber6.addEventListener('change', function(){
 		precioSlider2.noUiSlider.set([null, this.valor2]);
 });
+})

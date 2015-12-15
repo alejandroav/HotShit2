@@ -196,6 +196,9 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	#precio{
 		margin-top:15%;
 	}
+	#precio2{
+		margin-top:15%;
+	}	
 	#fecha-fin{
 		margin-top:20%;
 		width:200%;
@@ -245,6 +248,9 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	#precio{
 		margin-top:5%;
 	}
+	#precio2{
+		margin-top:5%;
+	}	
 	#fecha-fin{
 		margin-top:20%;
 	}
@@ -289,6 +295,9 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		margin-top:13%;
 	}
 	#precio{
+		margin-top:13%;
+	}
+	#precio2{
 		margin-top:13%;
 	}
 	#fecha-fin{
