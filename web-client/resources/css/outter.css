@@ -10,7 +10,8 @@ input::-moz-placeholder {  /* Firefox 19+ */
 input:-ms-input-placeholder {  
 	color: grey !important;  
 }
-body{
+.slider{
+	 position:fixed !important;
 }
 #logo-foto{
 	height:100px;

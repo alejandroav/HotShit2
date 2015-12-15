@@ -16,7 +16,7 @@
 	<ul id="dropdown1" class="dropdown-content">
 	  <li><a href="#!">Configuraci&oacute;n</a></li>
 	  <li class="divider"></li>
-	  <li><a href="#!">Cerrar sesi&oacute;n</a></li>
+	  <li><a href="operations.php?op=logout">Cerrar sesi&oacute;n</a></li>
 	</ul>
 	<div class="navbar-fixed">
 		<nav>
@@ -33,7 +33,7 @@
 				<li><a href="javaScript:changeContent('retos')">Retos</a></li>
 				<li><hr></li>
 				<li><a href="#!">Configuraci&oacute;n</a></li>
-				<li><a href="#!">Cerrar sesi&oacute;n</a></li>
+				<li><a href="operations.php?op=logout">Cerrar sesi&oacute;n</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 			<div class="nav-wrapper">
@@ -43,7 +43,6 @@
 					<li><a href="javaScript:void(0)" id="mapa-but">Mapa</a></li>
 					<li><a href="javaScript:void(0)" id="planes-but">Planes</a></li>
 					<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>
-					
 				</ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					
@@ -56,11 +55,9 @@
 					<li class="boton-crear"><a href="javaScript:void(0)"></a>
 					</li>
 				</ul>
-				
-					<div class="boton-crear"><a href="javaScript:void(0)" class="waves-effect waves-light btn orange white-text">Crear</a></div>
+				<div class="boton-crear"><a href="javaScript:void(0)" class="waves-effect waves-light btn orange white-text">Crear</a></div>
 			</div>
 		</nav>
-		
 	</div>
 	<div id="formcontent">
 	</div>
@@ -68,7 +65,6 @@
 	<script type="text/javascript" src="resources/js/materialize.min.js"></script>
 	<script type="text/javascript" src="resources/js/functions.js"></script>
 	<script type="text/javascript" src="resources/js/nouislider.min.js"></script>
-	
 	<script>
 		function changeContent(page){
 			$.ajax({

@@ -13,7 +13,7 @@
 		<div class="lr-button" id="lr-button">
 			<a href="javascript:void(0)" onclick="changeLRLayer('register')" class="waves-effect waves-light btn orange white-text"><i class="material-icons left">add_box</i>Registrate!</a>
 		</div>
-		<div class="row center-align">
+		<div class="row center-align" style="margin: 0px;">
 			<div class="col s8 m6 l4 offset-s2 offset-m3 offset-l4">
 
 				<div id="logo-index">
@@ -34,7 +34,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="slider fullscreen" style="z-index: -3; position:fixed;">
+		<div class="slider fullscreen" style="z-index: -3;">
 			<ul class="slides">
 				<li>
 					<img src="resources/img/fondo1.jpg">
