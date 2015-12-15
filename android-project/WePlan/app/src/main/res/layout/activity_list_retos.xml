@@ -19,18 +19,13 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:orientation="vertical">
-            <ImageView
-                android:layout_marginTop="16dp"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:src="@mipmap/ic_launcher"
-                android:layout_gravity="center" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp">
                 <AutoCompleteTextView android:id="@+id/email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,20 +43,20 @@
                     android:src="@drawable/ic_search_black_24dp"
                     android:layout_gravity="bottom"/>
             </LinearLayout>
-            <include layout="@layout/planes"
-                android:layout_marginBottom="1dp"
+            <include layout="@layout/retos"
+                android:layout_marginBottom="8dp"
                 android:layout_height="72dp"
                 android:layout_width="match_parent"/>
-            <include layout="@layout/planes"
-                android:layout_marginBottom="1dp"
+            <include layout="@layout/retos"
+                android:layout_marginBottom="8dp"
                 android:layout_height="72dp"
                 android:layout_width="match_parent"/>
-            <include layout="@layout/planes"
-                android:layout_marginBottom="1dp"
+            <include layout="@layout/retos"
+                android:layout_marginBottom="8dp"
                 android:layout_height="72dp"
                 android:layout_width="match_parent"/>
-            <include layout="@layout/planes"
-                android:layout_marginBottom="1dp"
+            <include layout="@layout/retos"
+                android:layout_marginBottom="8dp"
                 android:layout_height="72dp"
                 android:layout_width="match_parent"/>
         </LinearLayout>
