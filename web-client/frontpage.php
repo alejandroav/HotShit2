@@ -55,7 +55,7 @@
 					<li class="boton-crear"><a href="javaScript:void(0)"></a>
 					</li>
 				</ul>
-				<div class="boton-crear"><a href="javaScript:void(0)" class="waves-effect waves-light btn orange white-text">Crear</a></div>
+				<div class="boton-crear"><a href="javaScript:void(0)" id="crear-but" class="waves-effect waves-light btn orange white-text">Crear</a></div>
 			</div>
 		</nav>
 	</div>
@@ -145,6 +145,17 @@
 					page = "retos";
 					$.ajax({
 						url: "pages/retos.html",
+						success: function(res) {
+							$("#formcontent").html(res);
+						}
+					});
+				}
+			});
+			$('#crear-but').click(function(){
+				if (page != "crear"){
+					page = "crear";
+					$.ajax({
+						url: "pages/crear.html",
 						success: function(res) {
 							$("#formcontent").html(res);
 						}
