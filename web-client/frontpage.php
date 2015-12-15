@@ -8,7 +8,7 @@
 		<link type="text/css" rel="stylesheet" href="resources/css/frontpage.css"	media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="resources/css/nouislider.min.css"	media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="resources/css/nouislider.pips.css"	media="screen,projection"/>
-		<link type="text/css" rel="stylesheet" href="resources/css/nouislider.tooltips.css"	media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="resources/css/nouislider.tooltips.css"	media="screen,projection"/>		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<script type="text/javascript" src="resources/js/jquery.min.js"></script>
 	</head>
@@ -67,7 +67,8 @@
 	<script type="text/javascript" src="resources/js/jquery.form.min.js"></script>
 	<script type="text/javascript" src="resources/js/materialize.min.js"></script>
 	<script type="text/javascript" src="resources/js/functions.js"></script>
-		<script type="text/javascript" src="resources/js/nouislider.min.js"></script>
+	<script type="text/javascript" src="resources/js/nouislider.min.js"></script>
+	
 	<script>
 		function changeContent(page){
 			$.ajax({

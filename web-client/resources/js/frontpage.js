@@ -43,56 +43,36 @@ $(document).ready(function() {
 		html5Slider.noUiSlider.set([null, this.value]);
 	});
 	
-	function timestamp(str){
-		return new Date(str).getTime();   
-	}
-	
-	var dateSlider = document.getElementById('slider-date');
+	var precioSlider = document.getElementById('precio');
+	var inputNumber3 = document.getElementById('input-number3');
+	var inputNumber4 = document.getElementById('input-number4');
 
-	noUiSlider.create(dateSlider, {
+	noUiSlider.create(precioSlider, {
+		start: [ 0, 20 ],
+		connect: true,
 		range: {
-			min: timestamp('2015'),
-			max: timestamp('2020')
-		},
-		step: 7 * 24 * 60 * 60 * 1000,
-		start: [ timestamp('2015'), timestamp('2018') ],
-
-		format: wNumb({
-			decimals: 0
-		})
-	})
-	var dateValues = [
-		document.getElementById('event-start'),
-		document.getElementById('event-end')
-	];
-
-	dateSlider.noUiSlider.on('update', function( values, handle ) {
-		dateValues[handle].innerHTML = formatDate(new Date(+values[handle]));
+			'min': 0,
+			'max': 100
+		}
 	});
-	var
-		weekdays = [
-			"Domingo", "Lunes", "Martes",
-			"Miércoles", "Jueves", "Viernes",
-			"Sábado"
-		],
-		months = [
-			"Enero", "Febrero", "Marzo",
-			"Abril", "Mayo", "Junio", "Julio",
-			"Augosto", "Septiembre", "Octubre",
-			"Noviembre", "Diciembre"
-		];
 
-	// Append a suffix to dates.
-	// Example: 23 => 23rd, 1 => 1st.
+	precioSlider.noUiSlider.on('update', function( values, handle ) {
+
+		var valor = values[handle];
+
+		if ( handle ) {
+			inputNumber3.value = valor;
+		} else {
+			inputNumber4.value = Math.round(valor);
+		}
+	});
+
+	inputNumber3.addEventListener('change', function(){
+		precioSlider.noUiSlider.set([this.valor, null]);
+	});
+
+	inputNumber4.addEventListener('change', function(){
+		precioSlider.noUiSlider.set([null, this.valor]);
+	});
 	
-
-	// Create a string representation of the date.
-	function formatDate ( date ) {
-		return weekdays[date.getDay()] + ", " +
-			date.getDate()+ " " +
-			months[date.getMonth()] + " " +
-			date.getFullYear();
-	}
 });
-
-	
