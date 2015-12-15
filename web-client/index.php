@@ -34,7 +34,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="slider fullscreen" style="z-index: -3; position: absolute;">
+		<div class="slider fullscreen" style="z-index: -3; position:fixed;">
 			<ul class="slides">
 				<li>
 					<img src="resources/img/fondo1.jpg">
