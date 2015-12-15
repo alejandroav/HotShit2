@@ -1,18 +1,25 @@
 
 <div class="inicio-title"> Creador de eventos</div>
 
+<div class="inicio-title-3">Mapa del lugar</div>
+<iframe width="600" height="450" frameborder="0" style="border:0"
+src="https://maps.googleapis.com/maps/api/staticmap?center=63.259591,-144.667969&zoom=6&size=400x400\
+&markers=color:blue%7Clabel:S%7C62.107733,-145.541936&markers=size:tiny%7Ccolor:green%7CDelta+Junction,AK\
+&markers=size:mid%7Ccolor:0xFFFF00%7Clabel:C%7CTok,AK&key=AIzaSyDokBSxpgb4N1c_rtrskqMnAPW8qqF3vAU" allowfullscreen>
+</iframe>
 <div class="inicio-title-3">Descripci&oacute;n</div>
 <textarea id="wysiwyg"></textarea>
 <div class="row">
 	<div class="input-field col s3 m3 l2 ">
           <i class="material-icons prefix">payment</i>
-          <input id="cost" type="number" class="validate">
-          <label for="icon_payment">Coste apr&oacute;x.</label>
+          <input id="cost" type="number" class="validate" placeholder="Coste apr&oacute;x.">
     </div>
-	<div class="input-field col s3 m3 l2 offset-s3 offset-m2 offset-l1">
+	<div class="input-field col s3 m3 l2 offset-m2 offset-l1">
           <i class="material-icons prefix">perm_identity</i>
-          <input id="people" type="number" class="validate">
-          <label for="icon_perm_identity">N&ordm m&aacute;x de asistentes</label>
+          <input id="people" type="number" class="validate" placeholder="Nº m&aacute;x de asistentes">
     </div>
+	<div class="col s5 m3 l2 offset-s1 offset-m1 offset-l5">
+		<a class="waves-effect waves-light orange btn-large" id="add-etapa"><i class="material-icons left">add</i>Etapas</a>
+	</div>
 </div>
 <script>tinymce.init({ selector:'#wysiwyg' });</script>
