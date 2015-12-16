@@ -6,11 +6,11 @@
 <div class="row center-align">
 	<div class="col s12 m12 l9 offset-s1 offset-m3 offset-l3" id="data-large">
 	  <ul class="center-align" id="data-perfil">
-        <li class="col s2 m2 l2 hide-on-med-and-down">Eventos creados<br> 2</li>
-        <li class="col s3 m2 l2 data-inside">Eventos asistidos<br> 3</li>
-        <li class="col s3 m2 l2 data-inside">Suscriptores<br><br> 5</li>
-        <li class="col s3 m2 l2 data-inside">Retos cumplidos<br> 100</li>
-        <li class="col s2 m2 l2 hide-on-med-and-down">Retos creados<br><br> 3</li>
+        <li class="col s2 m2 l2 hide-on-med-and-down" id="event-created">Eventos creados<br> 2</li>
+        <li class="col s3 m2 l2 data-inside" id="event-assisted">Eventos asistidos<br> 3</li>
+        <li class="col s3 m2 l2 data-inside" id="suscribers">Suscriptores<br><br> 5</li>
+        <li class="col s3 m2 l2 data-inside" id="goals-done">Retos cumplidos<br> 100</li>
+        <li class="col s2 m2 l2 hide-on-med-and-down" id="goals-created">Retos creados<br><br> 3</li>
       </ul>
 	</div>
 </div>
@@ -23,11 +23,17 @@
       </ul>
     </div>
     <div id="test1" class="col s12 m12 l6 offset-l3">a</div>
-    <div id="test2" class="col s12 m12 l6 offset-l3">b</div>
+    <div id="test2" class="col s12 m12 l6 offset-l3"></div>
     <div id="test3" class="col s12 m12 l6 offset-l3">c</div>
   </div>
   <script>
 	$(document).ready(function(){
 		$('#tabla2').tabs();
+		$.ajax({
+			url: "pages/detalle.html",
+			success: function(res) {
+				$("#test2").html(res);
+			}
+		});
 	});
   </script>

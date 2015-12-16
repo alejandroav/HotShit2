@@ -155,7 +155,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	}
 }
 
-/* ----------------- PLANES Y RETOS ------------*/
+/* ----------------- PLANES Y RETOS Y MEDIA-QUERIES DE TODOS ------------*/
 
 @media only screen and (min-width: 993px) {
 	.inicio-title{
@@ -214,6 +214,27 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		margin-top:20%;
 		width:200%;
 	}
+	#map{
+		width:100%;
+		height:50%;
+	}
+	.user-pic-detail{
+		width:120px;
+		height:120px;
+	}
+	.user-pic-zone{
+		width:120px;
+		height:120px;
+		float:left;
+		margin-left:-11px;
+	}
+	.info-detail{
+		width:120px;
+		height:120px;
+		
+		background-image: url(resources/img/go-boton.png);
+		float:right;
+	}
 }
 @media only screen and (max-width: 993px) and (min-width:603px) {
 	.inicio-title{
@@ -271,6 +292,27 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	#fecha-ini{
 		margin-top:20%;
 	}
+	#map{
+		width:100%;
+		height:50%;
+	}
+	.user-pic-detail{
+		width:120px;
+		height:120px;
+	}
+	.user-pic-zone{
+		width:120px;
+		height:120px;
+		float:left;
+		margin-left:-10px;
+	}
+	.info-detail{
+		width:120px;
+		height:120px;
+		
+		background-image: url(resources/img/go-boton.png);
+		float:right;
+	}
 }
 @media only screen and (max-width: 603px) {
 	.inicio-title{
@@ -327,9 +369,38 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	#fecha-ini{
 		margin-top:20%;
 	}
+	#map{
+		width:100%;
+		height:50%;
+	}
+	.user-pic-detail{
+		width:100px;
+		height:100px;
+	}
+	.user-pic-zone{
+		width:100px;
+		height:100px;
+		float:left;
+		margin-left:-11px;
+	}
+	.info-detail{
+		width:100px;
+		height:100px;
+		
+		background-image: url(resources/img/go-boton.png);
+		float:right;
+	}
 }
 /* Creador de eventitooooooooos*/
-/* incorpora lo de inicio-title eh*/
+/* incorpora lo de inicio-title Y lo de map en los media-queries anteriores eh*/
 #add-etapa{
 	margin-top:3%;
+}
+
+/* ------------ DETALLE ---------------*/
+
+.detalle-fondo{
+	background-color:#FFc400;
+	
+	margin:5px;
 }
