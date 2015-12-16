@@ -33,9 +33,9 @@ io.on('connection', function (socket) {
 	socket.on('c-event-list', function (data)) {
 		if (socket.valid){
 			if (('loc_long' in data && !isNaN(data.loc_long)) && ('loc_lat' in data && !isNaN(data.loc_lat)) && ('radio' in data && !isNaN(data.radio))){
-				/*TODO calcular long-lat minima y maxima*/
-				connection.query('SELECT id, title, description, loc_long, loc_lat, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, '+
-					'creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name FROM events WHERE /*TODO*/', function(err, rows, fields) {
+				connection.query("SELECT id, title, description, geom, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, "+
+					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name FROM events "+
+					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) < "+data.radio*1000, function(err, rows, fields) {
 					if (err) socket.emit('s-event-list', {status: 'ERROR', msg: err});
 					socket.emit('s-event-list', {status: 'OK', data: rows});
 				});
@@ -46,8 +46,7 @@ io.on('connection', function (socket) {
 	socket.on('c-event-map', function (data)) {
 		if (socket.valid){
 			if (('loc_long' in data && !isNaN(data.loc_long)) && ('loc_lat' in data && !isNaN(data.loc_lat)) && ('radio' in data && !isNaN(data.radio))){
-				/*TODO calcular long-lat minima y maxima*/
-				connection.query('SELECT id, title, description, loc_long, loc_lat, date FROM events WHERE /*TODO*/', function(err, rows, fields) {
+				connection.query("SELECT id, title, description, geom, date FROM events WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) < "+data.radio*1000, function(err, rows, fields) {
 					if (err) socket.emit('s-event-map', {status: 'ERROR', msg: err});
 					socket.emit('s-event-map', {status: 'OK', data: rows});
 				});
@@ -60,8 +59,8 @@ io.on('connection', function (socket) {
 			if (('title' in data && typeof data.title == "string") && ('description' in data && typeof data.description == "string") && ('loc_long' in data && !isNaN(data.loc_long)) 
 				&& ('loc_lat' in data && !isNaN(data.loc_lat)) && ('date' in data && typeof data.date == "string") && ('cost' in data && !isNaN(data.cost)) 
 				&& ('capacity' in data && !isNaN(data.capacity))){
-				connection.query("INSERT INTO events (title, description, loc_long, loc_lat, date, cost, capacity, creator_id) VALUES"+
-					" ('"+data.title+"', '"+data.description+"', "+data.loc_long+", "+data.loc_lat+", '"+data.date+"', "+data.cost+", "+data.capacity+", "+socket.uid+")", function(err, result) {
+				connection.query("INSERT INTO events (title, description, geom, date, cost, capacity, creator_id) VALUES"+
+					" ('"+data.title+"', '"+data.description+"', ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), '"+data.date+"', "+data.cost+", "+data.capacity+", "+socket.uid+")", function(err, result) {
 					if (err) socket.emit('s-event-create', {status: 'ERROR', msg: err});
 					socket.emit('s-event-create', {status: 'OK', data: {id:result.insertId}});
 				});
@@ -74,7 +73,7 @@ io.on('connection', function (socket) {
 			if (('event_id' in data && !isNaN(data.event_id)) && ('title' in data.data && typeof data.data.title == "string") && ('description' in data.data && typeof data.data.description == "string") 
 				&& ('loc_long' in data.data && !isNaN(data.data.loc_long)) && ('loc_lat' in data.data && !isNaN(data.data.loc_lat)) 
 				&& ('date' in data.data && typeof data.data.date == "string") && ('cost' in data.data && !isNaN(data.data.cost)) && ('capacity' in data.data && !isNaN(data.data.capacity))){
-				connection.query("UPDATE events SET title='"+data.data.title+"', description='"+data.data.description+"', log_long="+data.data.loc_long+", loc_lat="+data.data.loc_lat+
+				connection.query("UPDATE events SET title='"+data.data.title+"', description='"+data.data.description+"', ST_GeomFromText('POINT("+data.data.loc_lat+" "+data.data.loc_long+")')"+
 					", date='"+data.data.date+"', cost="+data.data.cost+" WHERE id="+data.event_id+" AND creator_id="+socket.uid, function(err, rows, fields) {
 					if (err) socket.emit('s-event-edit', {status: 'ERROR', msg: err});
 					socket.emit('s-event-edit', {status: 'OK'});
@@ -97,7 +96,7 @@ io.on('connection', function (socket) {
 	socket.on('c-event-details', function (data)) {
 		if (socket.valid){
 			if ('event_id' in data && !isNaN(data.event_id)){
-				connection.query('SELECT id, title, description, loc_long, loc_lat, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, '+
+				connection.query('SELECT id, title, description, geom, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, '+
 					'creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name FROM events WHERE id='+data.event_id, function(err, rows, fields) {
 					if (err) socket.emit('s-event-details', {status: 'ERROR', msg: err});
 					socket.emit('s-event-details', {status: 'OK', data: rows[0]});
