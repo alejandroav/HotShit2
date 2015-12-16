@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:background="@drawable/side_nav_bar"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <ImageView android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:src="@android:mipmap/sym_def_app_icon"
+        android:id="@+id/imagenPerfil" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_marginBottom="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Creado por EMILIANO ZAPATAS"
+            android:textColor="#404040"
+            android:id="@+id/textView13"
+            android:layout_gravity="left|bottom" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:orientation="vertical"
+            android:layout_gravity="left|center_vertical">
+
+            <TextView
+                android:layout_marginStart="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ASALTO ZOMBIE"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#000"
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="left|center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A las 21:30 19/12/15"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginLeft="16dp"
+                android:textColor="#464646"
+                android:layout_gravity="left|bottom" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A 3km"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginLeft="16dp"
+                android:textColor="#464646"
+                android:layout_gravity="left|top"
+                android:id="@+id/textView12" />
+        </FrameLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>
