@@ -2,11 +2,7 @@
 <div class="inicio-title"> Creador de eventos</div>
 
 <div class="inicio-title-3">Mapa del lugar</div>
-<iframe width="600" height="450" frameborder="0" style="border:0"
-src="https://maps.googleapis.com/maps/api/staticmap?center=63.259591,-144.667969&zoom=6&size=400x400\
-&markers=color:blue%7Clabel:S%7C62.107733,-145.541936&markers=size:tiny%7Ccolor:green%7CDelta+Junction,AK\
-&markers=size:mid%7Ccolor:0xFFFF00%7Clabel:C%7CTok,AK&key=AIzaSyDokBSxpgb4N1c_rtrskqMnAPW8qqF3vAU" allowfullscreen>
-</iframe>
+<div id="map" style="width:500px; height:400px;"></div>
 <div class="inicio-title-3">Descripci&oacute;n</div>
 <textarea id="wysiwyg"></textarea>
 <div class="row">
@@ -23,3 +19,12 @@ src="https://maps.googleapis.com/maps/api/staticmap?center=63.259591,-144.667969
 	</div>
 </div>
 <script>tinymce.init({ selector:'#wysiwyg' });</script>
+<script>
+    var mapCanvas = document.getElementById('map');
+    var mapOptions = {
+      center: new google.maps.LatLng(44.5403, -78.5463),
+      zoom: 8,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+</script>

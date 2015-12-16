@@ -12,6 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<script type="text/javascript" src="resources/js/jquery.min.js"></script>
 		<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
 	</head>
 	<body>
 	<ul id="dropdown1" class="dropdown-content">
