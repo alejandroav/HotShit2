@@ -156,8 +156,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 }
 
 /* ----------------- PLANES Y RETOS Y MEDIA-QUERIES DE TODOS ------------*/
-
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width:1420px) {
 	.inicio-title{
 		font-family: 'Roboto',sans-serif;
 		font-size:2.5vw;
@@ -267,12 +266,166 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		float:left;
 		font-family: 'Roboto',sans-serif;
 		color:black;
+		text-align:justify;
 		
 		overflow: hidden;
 	    text-overflow: ellipsis;
+		word-wrap:break-word;
 		
-		width:70%;
+		width:30vw;
 		height:120px;
+		margin-left:1%;
+	}
+	.detail-icon{
+		width:15px;
+		height:15px;
+		float:right;
+		margin-left:2px;
+		margin-right:-5px
+	}
+	#user-dist{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+	}
+	#user-price{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+		
+		overflow: hidden;
+		text-overflow: ellipsis;
+	    white-space: nowrap;
+	}
+	#user-time{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+	}
+	#user-assist{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+		
+		overflow: hidden;
+		text-overflow: ellipsis;
+	    white-space: nowrap;
+	}
+}
+@media only screen and  (max-width: 1420px) and (min-width:993px) {
+	.inicio-title{
+		font-family: 'Roboto',sans-serif;
+		font-size:2.5vw;
+		font-weight:bold;
+		color:#FFB400;
+		border-bottom:2px solid #DDDDDD;
+	}
+	.inicio-title-2{
+		font-family: 'Roboto',sans-serif;
+		font-size:2.5vw;
+		font-weight:bold;
+		color:#FFB400;
+		margin-top:9%;
+	}
+	.inicio-title-3{
+		font-family: 'Roboto',sans-serif;
+		font-size:2.5vw;
+		font-weight:bold;
+		color:#FFB400;
+		margin-top:2%;
+	}
+	.select-text{
+		font-family: 'Roboto',sans-serif;
+		font-size:2vw;
+		text-align:center;
+		font-weight:bold;
+		color:#FFB444;
+		
+		margin-top:5%;
+		margin-bottom:-5%;
+	}
+	.opciones{
+		height:100%;
+		margin-top:5%;
+		
+		padding-right:20%;
+		border-right:2px solid #FFCC55;
+	}
+
+	#distancia{
+		margin-top:15%;
+	}
+	#precio{
+		margin-top:15%;
+	}
+	#precio2{
+		margin-top:15%;
+	}	
+	#fecha-fin{
+		margin-top:20%;
+		width:200%;
+	}
+	#fecha-ini{
+		margin-top:20%;
+		width:200%;
+	}
+	#map{
+		width:100%;
+		height:50%;
+	}
+	.detalle-fondo{
+		height:110px;
+		background: linear-gradient(#ffe0b2, #ff6d00 );
+		margin:5px;
+	}
+	.user-pic-detail{
+		height:110px;
+	}
+	.user-pic-zone{
+		height:110px;
+		float:left;
+	}
+	.info-detail{
+		height:110px;
+		padding-left:30px;
+		padding-right:30px;
+		margin-right:-10px;
+
+		text-align:right;
+		font-family: 'Roboto',sans-serif;
+		font-size:12px;
+		text-align:right;
+		color:black;
+		font-weight:bold;
+		
+		float:right;
+		background-image:url('../img/go-boton-1.png');
+		background-size:110px,110px,auto;
+	}
+	.info-detail:hover{
+		background-image:url('../img/go-boton.png');
+		background-size:110px,110px,auto;
+	}
+	.my-card-title{
+		float:left;
+		font-family: 'Roboto',sans-serif;
+		font-size:1.2vw;
+		color:#e65100;
+		font-weight:bold;
+		overflow: hidden;
+	    text-overflow: ellipsis;
+		
+		height:25px;
+		margin-left:1%;
+	}
+	.description{
+		float:left;
+		font-family: 'Roboto',sans-serif;
+		color:black;
+		text-align:justify;
+		
+		overflow: hidden;
+	    text-overflow: ellipsis;
+		word-wrap:break-word;
+		
+		width:23vw;
+		height:110px;
 		margin-left:1%;
 	}
 	.detail-icon{
@@ -369,41 +522,93 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	}
 	.detalle-fondo{
 		height:100px;
-		background-color:#ffe0b2;
+		background: linear-gradient(#ffe0b2, #ff6d00 );
 		margin:5px;
 	}
 	.user-pic-detail{
-		width:120px;
-		height:120px;
+		height:100px;
 	}
 	.user-pic-zone{
-		width:120px;
-		height:120px;
+		height:100px;
 		float:left;
-		margin-left:-10px;
 	}
 	.info-detail{
-		width:120px;
-		height:120px;
-		
+		height:100px;
+		padding-left:25px;
+		padding-right:25px;
+		margin-right:-10px;
+
 		text-align:right;
 		font-family: 'Roboto',sans-serif;
-		font-size:10px;
+		font-size:11px;
 		text-align:right;
 		color:black;
-		background-image: url(resources/img/go-boton.png);
+		font-weight:bold;
+		
 		float:right;
+		background-image:url('../img/go-boton-1.png');
+		background-size:110px,110px,auto;
+	}
+	.info-detail:hover{
+		background-image:url('../img/go-boton.png');
+		background-size:110px,110px,auto;
 	}
 	.my-card-title{
 		float:left;
 		font-family: 'Roboto',sans-serif;
-		color:brown;
+		font-size:1.8vw;
+		color:#e65100;
 		font-weight:bold;
+		overflow: hidden;
+	    text-overflow: ellipsis;
+		
+		height:30px;
+		margin-left:1%;
 	}
 	.description{
-				float:left;
+		float:left;
 		font-family: 'Roboto',sans-serif;
 		color:black;
+		text-align:justify;
+		
+		overflow: hidden;
+	    text-overflow: ellipsis;
+		word-wrap:break-word;
+		
+		width:58vw;
+		height:100px;
+		margin-left:1%;
+	}
+	.detail-icon{
+		width:15px;
+		height:15px;
+		float:right;
+		margin-left:2px;
+		margin-right:-5px
+	}
+	#user-dist{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+	}
+	#user-price{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+		
+		overflow: hidden;
+		text-overflow: ellipsis;
+	    white-space: nowrap;
+	}
+	#user-time{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+	}
+	#user-assist{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+		
+		overflow: hidden;
+		text-overflow: ellipsis;
+	    white-space: nowrap;
 	}
 }
 @media only screen and (max-width: 603px) {
@@ -466,42 +671,94 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		height:50%;
 	}
 	.detalle-fondo{
-		height:100px;
-		background-color:#ffe0b2;
+		height:90px;
+		background: linear-gradient(#ffe0b2, #ff6d00 );
 		margin:5px;
 	}
 	.user-pic-detail{
-		width:100px;
-		height:100px;
+		height:90px;
 	}
 	.user-pic-zone{
-		width:100px;
-		height:100px;
+		height:90px;
 		float:left;
-		margin-left:-11px;
 	}
 	.info-detail{
-		width:100px;
-		height:100px;
-		
+		height:90px;
+		padding-left:15px;
+		padding-right:15px;
+		margin-right:-10px;
+
 		text-align:right;
 		font-family: 'Roboto',sans-serif;
-		font-size:10px;
+		font-size:10.2px;
 		text-align:right;
-		color:black
-		background-image: url(resources/img/go-boton.png);
+		color:black;
+		font-weight:bold;
+		
 		float:right;
+		background-image:url('../img/go-boton-1.png');
+		background-size:100px,100px,auto;
+	}
+	.info-detail:hover{
+		background-image:url('../img/go-boton.png');
+		background-size:100px,100px,auto;
 	}
 	.my-card-title{
 		float:left;
 		font-family: 'Roboto',sans-serif;
-		color:brown;
+		font-size:3.2vw;
+		color:#e65100;
 		font-weight:bold;
+		overflow: hidden;
+	    text-overflow: ellipsis;
+		
+		height:20px;
+		margin-left:1%;
 	}
 	.description{
-				float:left;
+		float:left;
 		font-family: 'Roboto',sans-serif;
 		color:black;
+		text-align:justify;
+		
+		overflow: hidden;
+	    text-overflow: ellipsis;
+		word-wrap:break-word;
+		
+		width:58vw;
+		height:90px;
+		margin-left:1%;
+	}
+	.detail-icon{
+		width:10px;
+		height:10px;
+		float:right;
+		margin-left:2px;
+		margin-right:-5px
+	}
+	#user-dist{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+	}
+	#user-price{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+		
+		overflow: hidden;
+		text-overflow: ellipsis;
+	    white-space: nowrap;
+	}
+	#user-time{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+	}
+	#user-assist{
+		border-bottom:2px solid #ffd180;
+		line-height:97.5%;
+		
+		overflow: hidden;
+		text-overflow: ellipsis;
+	    white-space: nowrap;
 	}
 }
 /* Creador de eventitooooooooos*/
@@ -511,7 +768,3 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 }
 
 /* ------------ DETALLE ---------------*/
-
-.detalle-fondo{
-
-}
