@@ -13,6 +13,22 @@
 		<script type="text/javascript" src="resources/js/jquery.min.js"></script>
 		<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+		<script>
+			var socket = io.connect('http://grizzly.pw:8080');
+			socket.on('connect', function (data) {
+				console.log(data);
+				socket.emit('c-login', {user_id: <?php echo $_SESSION["uid"]; ?>, session_id: '<?php echo session_id(); ?>' });
+			});
+			socket.on('s-login', function(data){
+				console.log(data);
+				socket.emit('c-event-list', {user_id: <?php echo $_SESSION["uid"]; ?>, session_id: '<?php echo session_id(); ?>' });
+				
+			})
+			socket.on('s-event-list', function(data) {
+				console.log(data);
+			});
+		</script>
 	</head>
 	<body>
 	<ul id="dropdown1" class="dropdown-content">
