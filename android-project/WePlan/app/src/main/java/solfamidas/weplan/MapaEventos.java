@@ -2,7 +2,6 @@ package solfamidas.weplan;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
@@ -61,7 +60,6 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
 
 
     // variables para prueba stackoverflow
-    Intent intentThatCalled;
     public double latitude;
     public double longitude;
     public Criteria criteria;
@@ -72,13 +70,6 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
 
     // socket para comunicar con servidor
     private Socket socket;
-    {
-        try {
-            socket = IO.socket("http://grizzly.pw"); // declarar el socket del server
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,18 +82,13 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
                 .addApi(LocationServices.API)
                 .build();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.INTERNET}, MY_PERMISSIONS_REQUEST_INTERNET);
-                return;
-            }
+        try {
+            socket = IO.socket("grizzly.pw:8080"); // declarar el socket del server
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
-
         socket.on("s-event-map", listenerMapa);
         socket.connect(); // conectamos con el socket
-        text = "Se ha conectado al servidor.";
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -119,7 +105,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
                     try {
                         msg = data.getString("status");
                         events = data.getJSONArray("data");
-                        recuperarEventos();
+                        recuperarEventos(msg,events);
                     } catch (JSONException e) {
                         e.printStackTrace();
                         return;
@@ -137,16 +123,18 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
             solicitud.put("loc_lat", new Double(currentLatitude).toString());
             solicitud.put("radio", new Double(radioMapa).toString());
             socket.emit("c-event-map", solicitud);
+            Toast.makeText(context, "Buscando eventos...", duration).show();
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(context, "Error al solicitar eventos", duration).show();
         }
     }
 
-    public void recuperarEventos() {
+    public void recuperarEventos(String msg, JSONArray events) {
         if (currentLatitude != 0 || currentLongitude != 0) {
             try {
                 if (msg == "OK") {
+                    Toast.makeText(context, "El servidor ha respondido", duration).show();
                     // recorremos los datos y vamos colocando los marcadores
                     for (int i = 0; i < events.length(); i++) {
                         int id = events.getJSONObject(i).getInt("id");
@@ -247,7 +235,6 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
                 //This is what you need:
                 locationManager.requestLocationUpdates(bestProvider, 1000, 0, this);
             }
-            Toast.makeText(context, "Buscando eventos...", duration).show();
             solicitarEventos();
         }
 
