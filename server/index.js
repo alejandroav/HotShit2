@@ -1,12 +1,16 @@
-var io = require('socket.io')(80);
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'weplan'
-});
+var express  = require('express')
+    , app    = express()
+    , server = require('http').createServer(app)
+	, io = require('socket.io').listen(server)
+	, mysql = require('mysql')
+	, connection = mysql.createConnection({
+		host     : 'localhost',
+		user     : 'grizzly',
+		password : 'weplan',
+		database : 'weplan'
+	});
 connection.connect();
+server.listen(8080, "127.0.0.1");
 
 var rooms = [];
 
@@ -30,7 +34,7 @@ io.on('connection', function (socket) {
 		} else socket.emit('s-login', {status: 'ERROR', msg: 'Error en el objeto JSON'});
 	});
 	/*Evento para listas de eventos*/
-	socket.on('c-event-list', function (data)) {
+	socket.on('c-event-list', function (data) {
 		if (socket.valid){
 			if (('loc_long' in data && !isNaN(data.loc_long)) && ('loc_lat' in data && !isNaN(data.loc_lat)) && ('radio' in data && !isNaN(data.radio))){
 				connection.query("SELECT id, title, description, geom, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, "+
@@ -43,7 +47,7 @@ io.on('connection', function (socket) {
 		} else socket.emit('s-event-list', {status: 'ERROR', msg: 'Usuario no valido'});
 	});
 	/*Evento para mapa de eventos*/
-	socket.on('c-event-map', function (data)) {
+	socket.on('c-event-map', function (data) {
 		if (socket.valid){
 			if (('loc_long' in data && !isNaN(data.loc_long)) && ('loc_lat' in data && !isNaN(data.loc_lat)) && ('radio' in data && !isNaN(data.radio))){
 				connection.query("SELECT id, title, description, geom, date FROM events WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) < "+data.radio*1000, function(err, rows, fields) {
@@ -54,7 +58,7 @@ io.on('connection', function (socket) {
 		} else socket.emit('s-event-map', {status: 'ERROR', msg: 'Usuario no valido'});
 	});
 	/*Evento para crear eventos*/
-	socket.on('c-event-create', function (data)) {
+	socket.on('c-event-create', function (data) {
 		if (socket.valid){
 			if (('title' in data && typeof data.title == "string") && ('description' in data && typeof data.description == "string") && ('loc_long' in data && !isNaN(data.loc_long)) 
 				&& ('loc_lat' in data && !isNaN(data.loc_lat)) && ('date' in data && typeof data.date == "string") && ('cost' in data && !isNaN(data.cost)) 
@@ -68,7 +72,7 @@ io.on('connection', function (socket) {
 		} else socket.emit('s-event-create', {status: 'ERROR', msg: 'Usuario no valido'});
 	});
 	/*Evento para editar eventos*/
-	socket.on('c-event-edit', function (data)) {
+	socket.on('c-event-edit', function (data) {
 		if (socket.valid){
 			if (('event_id' in data && !isNaN(data.event_id)) && ('title' in data.data && typeof data.data.title == "string") && ('description' in data.data && typeof data.data.description == "string") 
 				&& ('loc_long' in data.data && !isNaN(data.data.loc_long)) && ('loc_lat' in data.data && !isNaN(data.data.loc_lat)) 
@@ -82,7 +86,7 @@ io.on('connection', function (socket) {
 		} else socket.emit('s-event-edit', {status: 'ERROR', msg: 'Usuario no valido'});
 	});
 	/*Evento para borrar eventos*/
-	socket.on('c-event-delete', function (data)) {
+	socket.on('c-event-delete', function (data) {
 		if (socket.valid){
 			if ('event_id' in data && !isNaN(data.event_id)){
 				connection.query('DELETE FROM events WHERE id='+data.event_id+" AND creator_id="+socket.uid, function(err, rows, fields) {
@@ -93,7 +97,7 @@ io.on('connection', function (socket) {
 		} else socket.emit('s-event-delete', {status: 'ERROR', msg: 'Usuario no valido'});
 	});
 	/*Evento para obtener detalles de eventos*/
-	socket.on('c-event-details', function (data)) {
+	socket.on('c-event-details', function (data) {
 		if (socket.valid){
 			if ('event_id' in data && !isNaN(data.event_id)){
 				connection.query('SELECT id, title, description, geom, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, '+
@@ -105,7 +109,7 @@ io.on('connection', function (socket) {
 		} else socket.emit('s-event-details', {status: 'ERROR', msg: 'Usuario no valido'});
 	});
 	/*Evento para suscribirse a eventos*/
-	socket.on('c-event-subscribe', function (data)) {
+	socket.on('c-event-subscribe', function (data) {
 		if (socket.valid){
 			if ('event_id' in data && !isNaN(data.event_id)){
 				connection.query('INSERT INTO attendance VALUES ('+socket.uid+', '+data.event_id+')', function(err, rows, fields) {
@@ -116,7 +120,7 @@ io.on('connection', function (socket) {
 		} else socket.emit('s-event-subscribe', {status: 'ERROR', msg: 'Usuario no valido'});
 	});
 	/*Evento para desuscribirse de eventos*/
-	socket.on('c-event-subscribe', function (data)) {
+	socket.on('c-event-subscribe', function (data) {
 		if (socket.valid){
 			if ('event_id' in data && !isNaN(data.event_id)){
 				connection.query('DELETE FROM attendance WHERE user_id='+socket.uid+' AND event_id='+data.event_id, function(err, rows, fields) {
