@@ -58,7 +58,6 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
     private double radioMapa = 50;
     private android.location.LocationListener locationListener;
 
-
     // variables para prueba stackoverflow
     public double latitude;
     public double longitude;
@@ -76,6 +75,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa_eventos);
         context = getApplicationContext();
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -83,7 +83,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
                 .build();
 
         try {
-            socket = IO.socket("grizzly.pw:8080"); // declarar el socket del server
+            socket = IO.socket("http://grizzly.pw:8080"); // declarar el socket del server
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -101,12 +101,14 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
         public void call(final Object[] args) {
             MapaEventos.this.runOnUiThread(new Runnable() {
                 public void run() {
+                    Toast.makeText(context, "Ha saltado el listener", duration).show();
                     JSONObject data = (JSONObject) args[0];
                     try {
                         msg = data.getString("status");
                         events = data.getJSONArray("data");
                         recuperarEventos(msg,events);
                     } catch (JSONException e) {
+                        Toast.makeText(context, "Error JSON", duration).show();
                         e.printStackTrace();
                         return;
                     }
@@ -157,6 +159,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                Toast.makeText(context, "Error parseando JSON", duration).show();
             }
         } else {
             text = "Error al recuperar la ubicación";
@@ -196,7 +199,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
         //open the map:
         currentLatitude = location.getLatitude();
         currentLongitude = location.getLongitude();
-        Toast.makeText(MapaEventos.this, "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MapaEventos.this, "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(currentLatitude, currentLongitude)));
         //mMap.clear();
     }
@@ -205,18 +208,19 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
         return true;
     }
 
-    public void getCurrentLocation() {
+    public LatLng getCurrentLocation() {
         /*mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         currentLatitude = mLastLocation.getLatitude();
         currentLongitude = mLastLocation.getLongitude();
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(currentLatitude,currentLongitude)));*/
+        LatLng latlng;
 
         if (isLocationEnabled(MapaEventos.this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
                     requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);
-                    return;
+                    return null;
                 }
             }
 
@@ -230,16 +234,21 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
                 Log.e("TAG", "GPS is on");
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
-                Toast.makeText(MapaEventos.this, "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MapaEventos.this, "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
+                latlng = new LatLng(currentLatitude, currentLongitude);
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
+                solicitarEventos();
+                return latlng;
             } else {
                 //This is what you need:
                 locationManager.requestLocationUpdates(bestProvider, 1000, 0, this);
+                return null;
             }
-            solicitarEventos();
         }
 
         else {
             Toast.makeText(MapaEventos.this, "Por favor, activa el GPS", Toast.LENGTH_SHORT).show();
+            return null;
         }
     }
 

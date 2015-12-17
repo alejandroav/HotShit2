@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Grizz.ly</string>
+    <string name="app_name">Grizzly</string>
     <string name="title_activity_mapa_eventos">Mapa de eventos</string>
-    <string name="title_activity_lista_eventos">ListaEventos</string>
+    <string name="title_activity_lista_eventos">Grizzly</string>
     <string name="title_activity_user_drawer">UserDrawer</string>
 
     <string name="title_section1">Section 1</string>
