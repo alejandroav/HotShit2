@@ -10,7 +10,7 @@ var express  = require('express')
 		database : 'weplan'
 	});
 connection.connect();
-server.listen(8080, "127.0.0.1");
+server.listen(8080);
 
 var rooms = [];
 
@@ -114,6 +114,8 @@ io.on('connection', function (socket) {
 			if ('event_id' in data && !isNaN(data.event_id)){
 				connection.query('INSERT INTO attendance VALUES ('+socket.uid+', '+data.event_id+')', function(err, rows, fields) {
 					if (err) socket.emit('s-event-subscribe', {status: 'ERROR', msg: err});
+					socket.join("room_"+data.event_id);
+					io.to("room_"+data.event_id).emit('s-event-useradd');
 					socket.emit('s-event-subscribe', {status: 'OK'});
 				});
 			} else socket.emit('s-event-subscribe', {status: 'ERROR', msg: 'Error en el objeto JSON'});
@@ -125,6 +127,8 @@ io.on('connection', function (socket) {
 			if ('event_id' in data && !isNaN(data.event_id)){
 				connection.query('DELETE FROM attendance WHERE user_id='+socket.uid+' AND event_id='+data.event_id, function(err, rows, fields) {
 					if (err) socket.emit('s-event-desubscribe', {status: 'ERROR', msg: err});
+					socket.leave("room_"+data.event_id);
+					io.to("room_"+data.event_id).emit('s-event-userdel');
 					socket.emit('s-event-desubscribe', {status: 'OK'});
 				});
 			} else socket.emit('s-event-desubscribe', {status: 'ERROR', msg: 'Error en el objeto JSON'});
