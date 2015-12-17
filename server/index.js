@@ -65,7 +65,8 @@ io.on('connection', function (socket) {
 				&& ('loc_lat' in data && !isNaN(data.loc_lat)) && ('date' in data && typeof data.date == "string") && ('cost' in data && !isNaN(data.cost)) 
 				&& ('capacity' in data && !isNaN(data.capacity))){
 				connection.query("INSERT INTO events (title, description, geom, date, cost, capacity, creator_id) VALUES"+
-					" ('"+mysql.escape(xss(data.title))+"', '"+mysql.escape(xss(data.description))+"', ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), '"+mysql.escape(data.date)+"', "+data.cost+", "+data.capacity+", "+socket.uid+")", function(err, result) {
+					" ('"+mysql.escape(xss(data.title))+"', '"+mysql.escape(xss(data.description))+"', ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), "+
+					"'"+mysql.escape(data.date)+"', "+data.cost+", "+data.capacity+", "+socket.uid+")", function(err, result) {
 					if (err) socket.emit('s-event-create', {status: 'ERROR', msg: err});
 					socket.emit('s-event-create', {status: 'OK', data: {id:result.insertId}});
 				});
