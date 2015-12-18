@@ -395,12 +395,6 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		font-weight:bold;
 		
 		float:right;
-		background-image:url('../img/go-boton-1.png');
-		background-size:110px,110px,auto;
-	}
-	.info-detail:hover{
-		background-image:url('../img/go-boton.png');
-		background-size:110px,110px,auto;
 	}
 	.my-card-title{
 		float:left;
@@ -434,6 +428,9 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		float:right;
 		margin-left:2px;
 		margin-right:-5px
+	}
+	.boton-go{
+		
 	}
 	#user-dist{
 		border-bottom:2px solid #ffd180;
