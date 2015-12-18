@@ -32,6 +32,7 @@ class DB {
 		return $this->db->insert_id;
 	}
 	function query($query){
-		$this->db->query($query);
+		$res = $this->db->query($query);
+		if (!$res) die($this->db->error);
 	}
 }

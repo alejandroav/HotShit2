@@ -23,7 +23,20 @@
       </ul>
     </div>
     <div id="test1" class="col s12 m12 l6 offset-l3">a</div>
-    <div id="test2" class="col s12 m12 l6 offset-l3"></div>
+    <div id="test2" class="col s12 m12 l6 offset-l3">
+		<div class="preloader-wrapper big active" style="margin-top: 20px;">
+		<div class="spinner-layer spinner-blue">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
     <div id="test3" class="col s12 m12 l6 offset-l3">c</div>
   </div>
   <script>
@@ -31,6 +44,8 @@
 		socket.emit('c-event-list', {loc_long: 0, loc_lat: 0, radio: 1000});
 		socket.on('s-event-list', function(data) {
 			if (data.status == "OK"){
+				console.log("EY");
+				var container = $(document.createElement("div"));
 				for (var i = 0; i<data.data.length; i++){
 					var obj = data.data[i];
 					$.ajax({
@@ -47,11 +62,12 @@
 							res.find(".user-price").html(obj.cost);
 							res.find(".user-time").html(day+"/"+month+"/"+year);
 							res.find(".user-assist").html(obj.current+"/"+obj.capacity);
-							$("#test2").append(res);
+							container.append(res);
 						}
 					});
 				}
-			}
+				$("#test2").html(container);
+			} else Materialize.toast("Error: "+data.msg, 3000);
 		});
 		$('#tabla2').tabs();
 	});

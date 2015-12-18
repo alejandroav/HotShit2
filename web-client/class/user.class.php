@@ -21,10 +21,10 @@ class User {
 		$row = $this->db->getRow("SELECT id, username, email FROM users WHERE (username = '".$username."' OR email = '".$username."') AND password = '".hash("sha512", $password)."'");
 		if (count($row)){
 			$this->uid = $row["id"];
-			$this->usid = session_id();
 			$this->userdata = $row;
 			$_SESSION["uid"] = $this->getUID();
-			$this->db->query("UPDATE users SET session_id = ".$this->usid." WHERE id = ".$this->uid);
+			$this->usid = session_id();
+			$this->db->query("UPDATE users SET session_id = '".$this->usid."' WHERE id = ".$this->uid);
 			return true;
 		} else return false;
 	}

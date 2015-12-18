@@ -20,7 +20,7 @@
 				socket.emit('c-login', {user_id: <?php echo $_SESSION["uid"]; ?>, session_id: '<?php echo session_id(); ?>' });
 			});
 			socket.on('s-login', function(data){
-				
+				if (data.status == "ERROR") Materialize.toast("Error: "+data.msg);
 			})
 		</script>
 	</head>
