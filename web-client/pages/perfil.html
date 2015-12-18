@@ -28,13 +28,31 @@
   </div>
   <script>
 	$(document).ready(function(){
-		$('#tabla2').tabs();
-		$.ajax({
-			url: "pages/detalle.html",
-			success: function(res) {
-				$("#test2").html(res);
-				$("#test2").append(res);
+		socket.emit('c-event-list', {loc_long: 0, loc_lat: 0, radio: 1000});
+		socket.on('s-event-list', function(data) {
+			if (data.status == "OK"){
+				for (var i = 0; i<data.data.length; i++){
+					var obj = data.data[i];
+					$.ajax({
+						url: "pages/detalle.html",
+						success: function(res) {
+							res = $(res);
+							date = obj.date.split("-");
+							year = date[0];
+							month = date[1];
+							day = date[2].split("T")[0];
+							res.find(".titulotarjeta").html(obj.title);
+							res.find(".descripciontarjeta").html(obj.description);
+							res.find(".user-dist").html(Math.round(obj.distance)+"km");
+							res.find(".user-price").html(obj.cost);
+							res.find(".user-time").html(day+"/"+month+"/"+year);
+							res.find(".user-assist").html(obj.current+"/"+obj.capacity);
+							$("#test2").append(res);
+						}
+					});
+				}
 			}
 		});
+		$('#tabla2').tabs();
 	});
   </script>

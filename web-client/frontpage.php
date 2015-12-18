@@ -17,17 +17,11 @@
 		<script>
 			var socket = io.connect('http://grizzly.pw:8080');
 			socket.on('connect', function (data) {
-				console.log(data);
 				socket.emit('c-login', {user_id: <?php echo $_SESSION["uid"]; ?>, session_id: '<?php echo session_id(); ?>' });
 			});
 			socket.on('s-login', function(data){
-				console.log(data);
-				socket.emit('c-event-list', {user_id: <?php echo $_SESSION["uid"]; ?>, session_id: '<?php echo session_id(); ?>' });
 				
 			})
-			socket.on('s-event-list', function(data) {
-				console.log(data);
-			});
 		</script>
 	</head>
 	<body>

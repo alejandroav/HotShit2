@@ -22,8 +22,8 @@ io.on('connection', function (socket) {
 		/*Comprobamos que se nos pasen los datos correctos*/
 		if (('user_id' in data && !isNaN(data.user_id)) && ('session_id' in data && typeof data.session_id == "string")){
 			/*consulta a la bd*/
-			connection.query("SELECT count(*) AS cuantos FROM users WHERE id="+data.user_id+" AND session_id='"+mysql.escape(data.session_id)+"'", function(err, rows, fields) {
-				if (err) socket.emit('s-login', {status: 'ERROR', msg: err}); //ERROR en la consulta
+			connection.query("SELECT count(*) AS cuantos FROM users WHERE id="+data.user_id+" AND session_id="+mysql.escape(data.session_id), function(err, rows, fields) {
+				if (err) socket.emit('s-login', {status: 'ERROR', query: "SELECT count(*) AS cuantos FROM users WHERE id="+data.user_id+" AND session_id='"+mysql.escape(data.session_id)+"'", msg: err}); //ERROR en la consulta
 				else { //Exito
 					if (rows[0].cuantos > 0) {
 						socket.uid = data.user_id;
