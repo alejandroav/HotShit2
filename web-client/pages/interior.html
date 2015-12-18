@@ -15,3 +15,57 @@
 		</div>
 	</div>
 </div>
+<div class="row">
+	<div class="col s12 m10 l8 offset-m1 offset-l2">
+		<div class="select-text" style="border-bottom:2px solid #ffd180;">
+		</div>
+		<div class="descripcion-interior">
+		</div>
+		<div class="boton-interior">
+		</div>
+	</div>
+</div>
+<script>
+    var mapCanvas = document.getElementById('mapa');
+	if (navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(function(objPosition){
+			mapCanvas.innerHTML="";
+			var lat = objPosition.coords.latitude;
+			var lon = objPosition.coords.longitude;
+			var mapOptions = {
+				center: new google.maps.LatLng(lat, lon),
+				zoom: 13,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+			var map = new google.maps.Map(mapCanvas, mapOptions);
+			var marker = new google.maps.Marker({
+				position: {lat: lat, lng: lon},
+				map: map,
+				title: 'Tu localizacion'
+			});
+		}, 
+		function(objPositionError) {
+			switch (objPositionError.code) {
+				case objPositionError.PERMISSION_DENIED:
+					Materialize.toast("No se ha permitido el acceso a la posici&oacute;n del usuario.", 5000);
+				break;
+				case objPositionError.POSITION_UNAVAILABLE:
+					Materialize.toast("No se ha podido acceder a la informaci&oacute;n de su posici&oacute;n.", 5000);
+				break;
+				case objPositionError.TIMEOUT:
+					Materialize.toast("El servicio ha tardado demasiado tiempo en responder.", 5000);
+				break;
+				default:
+					Materialize.toast("Error desconocido.", 5000);
+				break;
+			}
+		}, 
+		{
+			maximumAge: 75000,
+			timeout: 15000
+		});
+	} else {
+		Materialize.toast("Su navegador no soporta la API de geolocalizaci&oacute;n.", 5000);
+	}
+</script>
+</script>

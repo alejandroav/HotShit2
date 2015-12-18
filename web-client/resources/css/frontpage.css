@@ -323,6 +323,24 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		text-overflow: ellipsis;
 	    white-space: nowrap;
 	}
+	.descripcion-interior{
+		height:60%;
+	}
+	.boton-interior{
+		height:60%;
+		float:right;
+		background-image: url('../img/go-boton-large.png');
+		background-size: cover;
+		background-position: 0% 50%; 
+		background-repeat: no-repeat;
+	}
+	.boton-interior:hover{
+
+		background-image: url('../img/go-boton-large-1.png');
+		background-size: cover;
+		background-position: 0% 50%; 
+		background-repeat: no-repeat;
+	}
 }
 /* ----------------- --------------------------------------- ------------*/
 /* ----------------- --------------------------------------- ------------*/
