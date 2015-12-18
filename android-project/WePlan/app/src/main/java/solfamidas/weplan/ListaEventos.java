@@ -1,8 +1,11 @@
 package solfamidas.weplan;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +21,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
@@ -30,22 +37,15 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
     private JSONArray events;
     private double radioMapa = 50;
     private String error;
+    private String LOGIN_URL = "http://grizzly.pw/operations.php?op=login";
+
+    String user;
+    String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_planes);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         // comprobar permisos
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -53,6 +53,25 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0001);
                 requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0002);
             }
+        }
+
+        SharedPreferences settings = getSharedPreferences("login", 0);
+        user = settings.getString("user", "unset");
+        pass = settings.getString("password", "unset");
+
+        if (user.equals("unset")) {
+            Intent intent = new Intent(this, PantallaRegistro.class);
+            startActivity(intent);
+        }
+
+        try {
+            login(user, pass);
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        } catch (ExecutionException e1) {
+            e1.printStackTrace();
+        } catch (TimeoutException e1) {
+            e1.printStackTrace();
         }
 
         // acceder a la api
@@ -66,8 +85,24 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
         LatLng latlng = Localizador.getCurrentLocation(this);
         currentLatitude = latlng.latitude;
         currentLongitude = latlng.longitude;
+    }
+
+    public void continuar(JSONObject logeo) {
+        try {
+            if (!logeo.getString("status").equals("ERROR")) {
+                logeo = logeo.getJSONObject("data");
+                String sesion = logeo.getString("sessionid");
+                Toast.makeText(this, "Usuario " + user + " con sesión " + sesion, Toast.LENGTH_LONG).show();
+                // logeamos contra node
+                JSONObject solicitud = new JSONObject();
+                //solicitud.put();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         // abrir socket, asignar listener
+
     }
 
     // escuchar para recibir el mapa de eventos
@@ -122,7 +157,7 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
                         String nombreEvento = item.getString("title");
                         String descEvento = item.getString("description");
                         double coste = item.getDouble("coste");
-
+                        double distancia = item.getDouble("distance");
                     }
 
                     Toast.makeText(this, "Lista recuperada", Toast.LENGTH_SHORT).show();
@@ -181,5 +216,50 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
+    }
+
+    private void login(final String name, final String password) throws ExecutionException, InterruptedException, TimeoutException {
+        class Login extends AsyncTask<String, Void, String> {
+            ProgressDialog loading;
+            RegisterUserAux ruc = new RegisterUserAux();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(ListaEventos.this, "Please Wait", null, true, true);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                if (!s.equals("Error Registering")) {
+                    try {
+                        JSONObject res = new JSONObject(s);
+                        if (res.getString("status").equals("OK")) {
+                            // exito
+                            System.out.println(res);
+                            continuar(res);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                HashMap<String, String> data = new HashMap<String,String>();
+                data.put("username",params[0]);
+                data.put("password", params[1]);
+
+                String result = ruc.sendPostRequest(LOGIN_URL,data);
+                return  result;
+            }
+        }
+
+        Login ru = new Login();
+        ru.execute(name, password).get();
     }
 }

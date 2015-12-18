@@ -5,9 +5,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="solfamidas.weplan.LoginActivity"
+    tools:context="solfamidas.weplan.PantallaRegistro"
     android:weightSum="1"
-    android:background="#795548">
+    android:background="#fb8c00">
 
     <!-- Login progress -->
 
@@ -19,8 +19,8 @@
         android:visibility="gone" />
 
     <ImageView
-        android:layout_width="177dp"
-        android:layout_height="177dp"
+        android:layout_width="102dp"
+        android:layout_height="102dp"
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/logo" />
@@ -35,18 +35,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="5dp"
-            android:background="#4E342E"
+            android:background="@color/colorPrimaryDark"
             style="@style/caja_login">
 
-            <EditText android:id="@+id/email"
+            <EditText android:id="@+id/user"
                 android:layout_marginTop="20dp"
                 android:hint="@string/prompt_user"
-                android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:allowUndo="true"
                 style="@style/login"
-                />
+                android:inputType="textPersonName"
+                android:visibility="visible"
+                android:textColor="#000000" />
 
             <EditText android:id="@+id/password"
                 android:hint="@string/prompt_password"
@@ -54,7 +55,8 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:layout_marginTop="12dp"
-                style="@style/login" />
+                style="@style/login"
+                android:textColor="#000000" />
 
             <EditText android:id="@+id/password2"
                 android:hint="Repeat Password:"
@@ -62,15 +64,17 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:layout_marginTop="12dp"
-                style="@style/login" />
+                style="@style/login"
+                android:textColor="#000000" />
 
             <EditText android:id="@+id/correo"
                 android:hint="@string/prompt_email"
-                android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:layout_marginTop="12dp"
-                style="@style/login"/>
+                style="@style/login"
+                android:inputType="textEmailAddress"
+                android:textColor="#000000" />
 
             <Button android:id="@+id/email_sign_in_button"
                 android:layout_width="match_parent"
@@ -80,8 +84,9 @@
                 android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="#616161"
-                android:layout_marginBottom="20dp"/>
+                android:background="#a33400"
+                android:layout_marginBottom="20dp"
+                android:onClick="validarRegistro" />
 
             <TextView
                 android:layout_width="wrap_content"

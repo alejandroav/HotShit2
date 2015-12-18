@@ -45,8 +45,18 @@
             android:theme="@style/AppTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".PantallaLogin"
+            android:label="@string/title_activity_pantalla_login" >
+        </activity>
+        <activity
+            android:name=".PantallaRegistro"
+            android:label="@string/title_activity_pantalla_registro"
+            android:theme="@style/AppTheme" >
         </activity>
     </application>
 

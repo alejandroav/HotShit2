@@ -55,7 +55,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
     private Location mLastLocation;
     private double currentLatitude = 0;
     private double currentLongitude = 0;
-    private double radioMapa = 50;
+    private double radioMapa = 500000;
     private android.location.LocationListener locationListener;
 
     // variables para prueba stackoverflow
