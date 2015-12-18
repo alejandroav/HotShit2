@@ -17,17 +17,11 @@
 		<script>
 			var socket = io.connect('http://grizzly.pw:8080');
 			socket.on('connect', function (data) {
-				console.log(data);
 				socket.emit('c-login', {user_id: <?php echo $_SESSION["uid"]; ?>, session_id: '<?php echo session_id(); ?>' });
 			});
 			socket.on('s-login', function(data){
-				console.log(data);
-				socket.emit('c-event-list', {user_id: <?php echo $_SESSION["uid"]; ?>, session_id: '<?php echo session_id(); ?>' });
 				
 			})
-			socket.on('s-event-list', function(data) {
-				console.log(data);
-			});
 		</script>
 	</head>
 	<body>
@@ -48,7 +42,7 @@
 				<li><a href="javaScript:changeContent('perfil')">Inicio</a></li>
 				<li><a href="javaScript:changeContent('mapa')">Mapa</a></li>
 				<li><a href="javaScript:changeContent('planes')">Planes</a></li>
-				<li><a href="javaScript:changeContent('retos')">Retos</a></li>
+				<!--<li><a href="javaScript:changeContent('retos')">Retos</a></li>-->
 				<li><hr></li>
 				<li><a href="#!">Configuraci&oacute;n</a></li>
 				<li><a href="operations.php?op=logout">Cerrar sesi&oacute;n</a></li>
@@ -57,10 +51,10 @@
 			<div class="nav-wrapper">
 				<a href="#" class="brand-logo center"><img class="logo-central" src="resources/img/logo-2-negativo.png"></a>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="javaScript:void(0)" id="inicio-but">Inicio</a></li>
+					<li class="active"><a href="javaScript:void(0)" id="perfil-but">Inicio</a></li>
 					<li><a href="javaScript:void(0)" id="mapa-but">Mapa</a></li>
 					<li><a href="javaScript:void(0)" id="planes-but">Planes</a></li>
-					<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>
+					<!--<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>-->
 				</ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					
@@ -84,13 +78,19 @@
 	<script type="text/javascript" src="resources/js/functions.js"></script>
 	<script type="text/javascript" src="resources/js/nouislider.min.js"></script>
 	<script>
+		var prevPage = "";
 		function changeContent(page){
-			$.ajax({
-				url: "pages/"+page+".html",
-				success: function(res) {
-					$("#formcontent").html(res);
-				}
-			});
+			if (prevPage != page){
+				$.ajax({
+					url: "pages/"+page+".html",
+					success: function(res) {
+						$("#"+prevPage+"-but").parent().removeClass("active");
+						$("#"+page+"-but").parent().addClass("active");
+						prevPage = page;
+						$("#formcontent").html(res);
+					}
+				});
+			}
 		}
 		$(document).ready(function(){
 			  $('.button-collapse').sideNav({
@@ -118,67 +118,24 @@
 					$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 				}
 			});
-			var page = "perfil";
-			$.ajax({
-				url: "pages/perfil.html",
-				success: function(res) {
-					$("#formcontent").html(res);
-				}
-			});
-			$('#inicio-but').click(function(){
-				if (page != "perfil"){
-					page = "perfil";
-					$.ajax({
-						url: "pages/perfil.html",
-						success: function(res) {
-							$("#formcontent").html(res);
-						}
-					});
-				}
+			changeContent("perfil");
+			$('#perfil-but').click(function(){
+				changeContent("perfil");
 			});
 			$('#mapa-but').click(function(){
-				if (page != "mapa"){
-					page = "mapa";
-					$.ajax({
-						url: "pages/mapa.html",
-						success: function(res) {
-							$("#formcontent").html(res);
-						}
-					});
-				}
+				changeContent("mapa");
 			});
 			$('#planes-but').click(function(){
-				if (page != "planes"){
-					page = "planes";
-					$.ajax({
-						url: "pages/planes.html",
-						success: function(res) {
-							$("#formcontent").html(res);
-						}
-					});
-				}
+				changeContent("planes");
 			});
 			$('#retos-but').click(function(){
-				if (page != "retos"){
-					page = "retos";
-					$.ajax({
-						url: "pages/retos.html",
-						success: function(res) {
-							$("#formcontent").html(res);
-						}
-					});
-				}
+				changeContent("retos");
 			});
 			$('#crear-but').click(function(){
-				if (page != "crear"){
-					page = "crear";
-					$.ajax({
-						url: "pages/crear.html",
-						success: function(res) {
-							$("#formcontent").html(res);
-						}
-					});
-				}
+				changeContent("crear");
+			});
+			$('#interior-but').click(function(){
+				changeContent("interior");
 			});
 		});
 		</script>

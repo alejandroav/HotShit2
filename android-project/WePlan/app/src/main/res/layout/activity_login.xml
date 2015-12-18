@@ -9,7 +9,6 @@
     android:weightSum="1"
     android:background="#795548">
 
-    <!-- Login progress -->
 
     <ProgressBar android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"

@@ -3,6 +3,7 @@ var express  = require('express')
     , server = require('http').createServer(app)
 	, io = require('socket.io').listen(server)
 	, mysql = require('mysql')
+	, xss = require('xss')
 	, connection = mysql.createConnection({
 		host     : 'localhost',
 		user     : 'grizzly',
@@ -21,8 +22,8 @@ io.on('connection', function (socket) {
 		/*Comprobamos que se nos pasen los datos correctos*/
 		if (('user_id' in data && !isNaN(data.user_id)) && ('session_id' in data && typeof data.session_id == "string")){
 			/*consulta a la bd*/
-			connection.query("SELECT count(*) AS cuantos FROM users WHERE id="+data.user_id+" AND session_id='"+data.session_id+"'", function(err, rows, fields) {
-				if (err) socket.emit('s-login', {status: 'ERROR', msg: err}); //ERROR en al consulta
+			connection.query("SELECT count(*) AS cuantos FROM users WHERE id="+data.user_id+" AND session_id="+mysql.escape(data.session_id), function(err, rows, fields) {
+				if (err) socket.emit('s-login', {status: 'ERROR', query: "SELECT count(*) AS cuantos FROM users WHERE id="+data.user_id+" AND session_id='"+mysql.escape(data.session_id)+"'", msg: err}); //ERROR en la consulta
 				else { //Exito
 					if (rows[0].cuantos > 0) {
 						socket.uid = data.user_id;
@@ -38,8 +39,8 @@ io.on('connection', function (socket) {
 		if (socket.valid){
 			if (('loc_long' in data && !isNaN(data.loc_long)) && ('loc_lat' in data && !isNaN(data.loc_lat)) && ('radio' in data && !isNaN(data.radio))){
 				connection.query("SELECT id, title, description, geom, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, "+
-					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name FROM events "+
-					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) < "+data.radio*1000, function(err, rows, fields) {
+					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name, ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom)/1000 as distance FROM events "+
+					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) < "+data.radio*1000+" ORDER BY distance ASC LIMIT 30", function(err, rows, fields) {
 					if (err) socket.emit('s-event-list', {status: 'ERROR', msg: err});
 					socket.emit('s-event-list', {status: 'OK', data: rows});
 				});
@@ -64,7 +65,8 @@ io.on('connection', function (socket) {
 				&& ('loc_lat' in data && !isNaN(data.loc_lat)) && ('date' in data && typeof data.date == "string") && ('cost' in data && !isNaN(data.cost)) 
 				&& ('capacity' in data && !isNaN(data.capacity))){
 				connection.query("INSERT INTO events (title, description, geom, date, cost, capacity, creator_id) VALUES"+
-					" ('"+data.title+"', '"+data.description+"', ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), '"+data.date+"', "+data.cost+", "+data.capacity+", "+socket.uid+")", function(err, result) {
+					" ('"+mysql.escape(xss(data.title))+"', '"+mysql.escape(xss(data.description))+"', ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), "+
+					"'"+mysql.escape(data.date)+"', "+data.cost+", "+data.capacity+", "+socket.uid+")", function(err, result) {
 					if (err) socket.emit('s-event-create', {status: 'ERROR', msg: err});
 					socket.emit('s-event-create', {status: 'OK', data: {id:result.insertId}});
 				});
@@ -77,8 +79,8 @@ io.on('connection', function (socket) {
 			if (('event_id' in data && !isNaN(data.event_id)) && ('title' in data.data && typeof data.data.title == "string") && ('description' in data.data && typeof data.data.description == "string") 
 				&& ('loc_long' in data.data && !isNaN(data.data.loc_long)) && ('loc_lat' in data.data && !isNaN(data.data.loc_lat)) 
 				&& ('date' in data.data && typeof data.data.date == "string") && ('cost' in data.data && !isNaN(data.data.cost)) && ('capacity' in data.data && !isNaN(data.data.capacity))){
-				connection.query("UPDATE events SET title='"+data.data.title+"', description='"+data.data.description+"', ST_GeomFromText('POINT("+data.data.loc_lat+" "+data.data.loc_long+")')"+
-					", date='"+data.data.date+"', cost="+data.data.cost+" WHERE id="+data.event_id+" AND creator_id="+socket.uid, function(err, rows, fields) {
+				connection.query("UPDATE events SET title='"+mysql.escape(xss(data.data.title))+"', description='"+mysql.escape(xss(data.data.description))+"', ST_GeomFromText('POINT("+data.data.loc_lat+" "+data.data.loc_long+")')"+
+					", date='"+mysql.escape(data.data.date)+"', cost="+data.data.cost+" WHERE id="+data.event_id+" AND creator_id="+socket.uid, function(err, rows, fields) {
 					if (err) socket.emit('s-event-edit', {status: 'ERROR', msg: err});
 					socket.emit('s-event-edit', {status: 'OK'});
 				});

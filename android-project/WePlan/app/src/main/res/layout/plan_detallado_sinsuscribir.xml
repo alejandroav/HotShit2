@@ -25,14 +25,25 @@
                 android:orientation="horizontal"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="240p"
-                    android:textColor="#000"
-                    android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:gravity="center">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="240"
+                       android:textColor="#000"
+                       android:textAlignment="center"
+                       android:textAppearance="?android:attr/textAppearanceMedium"/>
+                   <ImageView
+                       android:layout_width="22dp"
+                       android:layout_height="22dp"
+                       android:layout_marginLeft="6dp"
+                       android:src="@drawable/person"
+                       android:layout_gravity="bottom" />
+               </LinearLayout>
 
                 <TextView android:id="@+id/email"
                     android:layout_width="0dp"
@@ -44,14 +55,25 @@
                     android:background="@drawable/buscador"
                     android:backgroundTint="#acacac"
                     android:textAppearance="?android:attr/textAppearanceMedium"/>
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="2h"
-                    android:textColor="#000"
-                    android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 km"
+                        android:textColor="#000"
+                        android:textAlignment="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="6dp"
+                        android:src="@drawable/carretera"
+                        android:layout_gravity="bottom" />
+                </LinearLayout>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -85,14 +107,5 @@
         </LinearLayout>
 
     </ScrollView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email"
-        app:backgroundTint="#795548" />
 
 </android.support.design.widget.CoordinatorLayout>
