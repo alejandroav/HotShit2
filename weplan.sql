@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-12-2015 a las 15:09:51
+-- Tiempo de generación: 18-12-2015 a las 03:25:17
 -- Versión del servidor: 5.7.10
 -- Versión de PHP: 5.6.13-0+deb8u1
 
@@ -93,11 +93,15 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(130) NOT NULL,
-  `imagen` varchar(255) NOT NULL,
-  `nivelorganizador` decimal(12,2) NOT NULL,
-  `nivelparticipante` decimal(12,2) NOT NULL,
-  `session_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `imagen` varchar(255) NOT NULL DEFAULT '',
+  `nivelorganizador` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `nivelparticipante` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `session_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Índices para tablas volcadas
+--
 
 --
 -- Indices de la tabla `attendance`
