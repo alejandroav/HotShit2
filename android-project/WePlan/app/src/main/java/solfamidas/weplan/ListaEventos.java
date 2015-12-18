@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,10 +22,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
+import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
@@ -53,7 +56,16 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0001);
                 requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0002);
             }
-        } //
+        }
+
+        try {
+            socket = IO.socket("http://grizzly.pw:8080"); // declarar el socket del server
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        socket.on("s-login", listenerLogin);
+        socket.on("s-event-list", listenerLista);
+        socket.connect(); // conectamos con el socket
 
         SharedPreferences settings = getSharedPreferences("login", 0);
         user = settings.getString("user", "unset");
@@ -62,6 +74,9 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
         if (user.equals("unset")) {
             Intent intent = new Intent(this, PantallaRegistro.class);
             startActivity(intent);
+
+            user = settings.getString("user", "unset");
+            pass = settings.getString("password", "unset");
         }
 
         try {
@@ -87,23 +102,47 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
         currentLongitude = latlng.longitude;
     }
 
-    public void continuar(JSONObject logeo) {
+    public void postLogin(JSONObject logeo) {
         try {
             if (!logeo.getString("status").equals("ERROR")) {
                 logeo = logeo.getJSONObject("data");
-                String sesion = logeo.getString("sessionid");
-                Toast.makeText(this, "Usuario " + user + " con sesión " + sesion, Toast.LENGTH_LONG).show();
                 // logeamos contra node
+                Toast.makeText(this, "Intentando logear al usuario " + user + ", con id " +
+                        logeo.getString("userid"),Toast.LENGTH_SHORT).show();
                 JSONObject solicitud = new JSONObject();
-                //solicitud.put();
+                solicitud.put("user_id",logeo.getString("userid"));
+                solicitud.put("session_id",logeo.getString("sessionid"));
+                System.out.println("JSON LOGIN: " + solicitud.toString());
+                socket.emit("c-login", solicitud);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        // abrir socket, asignar listener
-
     }
+
+    // escuchar para recibir el mapa de eventos
+    private Emitter.Listener listenerLogin = new Emitter.Listener() {
+        public void call(final Object[] args) {
+            ListaEventos.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    Toast.makeText(ListaEventos.this, "Ha saltado el listener de login", Toast.LENGTH_SHORT).show();
+                    JSONObject data = (JSONObject) args[0];
+                    try {
+                        msg = data.getString("status");
+                        Toast.makeText(ListaEventos.this, "JSON: " + data, Toast.LENGTH_SHORT).show();
+                        if (msg.equals("OK")) {
+                            // exito con login
+                            Toast.makeText(ListaEventos.this, "Bienvenido",Toast.LENGTH_LONG).show();
+                            solicitarEventos();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        return;
+                    }
+                }
+            });
+        }
+    };
 
     // escuchar para recibir el mapa de eventos
     private Emitter.Listener listenerLista = new Emitter.Listener() {
@@ -128,7 +167,6 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
     };
 
     public void solicitarEventos() {
-        // solicitamos mapa eventos al servidor
         try {
             JSONObject solicitud = new JSONObject();
             solicitud.put("loc_long", new Double(currentLongitude).toString());
@@ -159,7 +197,6 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
                         double coste = item.getDouble("coste");
                         double distancia = item.getDouble("distance");
                     }
-
                     Toast.makeText(this, "Lista recuperada", Toast.LENGTH_SHORT).show();
                 }
 
@@ -239,7 +276,7 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
                         if (res.getString("status").equals("OK")) {
                             // exito
                             System.out.println(res);
-                            continuar(res);
+                            postLogin(res);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
