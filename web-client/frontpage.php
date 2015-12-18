@@ -141,6 +141,9 @@
 			$('#crear-but').click(function(){
 				changeContent("crear");
 			});
+			$('#interior-but').click(function(){
+				changeContent("interior");
+			});
 		});
 		</script>
 		
