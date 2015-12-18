@@ -299,11 +299,11 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		background-position: 0% 50%; 
 		background-repeat: no-repeat;
 	}
-	#user-dist{
+	.user-dist{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 	}
-	#user-price{
+	.user-price{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 		
@@ -311,20 +311,49 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		text-overflow: ellipsis;
 	    white-space: nowrap;
 	}
-	#user-time{
+	.user-time{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 	}
-	#user-assist{
+	.user-assist{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 		
 		overflow: hidden;
 		text-overflow: ellipsis;
 	    white-space: nowrap;
+	}
+	.imagen-perfil-interior{
+		width:150px;
+		height:150px;
+		margin:1%;
+		
+		border:6px solid orange;
+		border-radius:100%;
+		border-style:double;
+	}
+	.nombre-evento{
+		font-family: 'Roboto',sans-serif;
+		font-size:3vw;
+		text-align:center;
+		font-weight:bold;
+		color:#FFB444;
+		
+		float:left;
+		margin-top:2%;
+	}
+	.select-text-interior{
+		font-family: 'Roboto',sans-serif;
+		font-size:2vw;
+		text-align:center;
+		font-weight:bold;
+		color:#FFB444;
 	}
 	.descripcion-interior{
 		height:60%;
+		font-family: 'Roboto',sans-serif;
+		font-size:1vw;
+		text-align:justify;
 	}
 	.boton-interior{
 		height:60%;
@@ -492,11 +521,11 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		background-position: 0% 50%; 
 		background-repeat: no-repeat;
 	}
-	#user-dist{
+	.user-dist{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 	}
-	#user-price{
+	.user-price{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 		
@@ -504,11 +533,11 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		text-overflow: ellipsis;
 	    white-space: nowrap;
 	}
-	#user-time{
+	.user-time{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 	}
-	#user-assist{
+	.user-assist{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 		
@@ -666,11 +695,11 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		background-position: 0% 50%; 
 		background-repeat: no-repeat;
 	}
-	#user-dist{
+	.user-dist{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 	}
-	#user-price{
+	.user-price{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 		
@@ -678,11 +707,11 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		text-overflow: ellipsis;
 	    white-space: nowrap;
 	}
-	#user-time{
+	.user-time{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 	}
-	#user-assist{
+	.user-assist{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 		
@@ -839,11 +868,11 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		background-position: 0% 50%; 
 		background-repeat: no-repeat;
 	}
-	#user-dist{
+	.user-dist{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 	}
-	#user-price{
+	.user-price{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 		
@@ -851,11 +880,11 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		text-overflow: ellipsis;
 	    white-space: nowrap;
 	}
-	#user-time{
+	.user-time{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 	}
-	#user-assist{
+	.user-assist{
 		border-bottom:2px solid #ffd180;
 		line-height:97.5%;
 		
@@ -1013,21 +1042,21 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		background-position: 0% 50%; 
 		background-repeat: no-repeat;
 	}
-	#user-dist{
+	.user-dist{
 
 		line-height:80%;
 	}
-	#user-price{
+	.user-price{
 		line-height:80%;
 		
 		overflow: hidden;
 		text-overflow: ellipsis;
 	    white-space: nowrap;
 	}
-	#user-time{
+	.user-time{
 		line-height:80%;
 	}
-	#user-assist{
+	.user-assist{
 		line-height:80%;
 		
 		overflow: hidden;
