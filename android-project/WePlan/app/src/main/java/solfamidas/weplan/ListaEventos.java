@@ -53,7 +53,7 @@ public class ListaEventos extends AppCompatActivity implements GoogleApiClient.C
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0001);
                 requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0002);
             }
-        }
+        } //
 
         SharedPreferences settings = getSharedPreferences("login", 0);
         user = settings.getString("user", "unset");
