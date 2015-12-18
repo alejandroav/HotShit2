@@ -39,8 +39,8 @@ io.on('connection', function (socket) {
 		if (socket.valid){
 			if (('loc_long' in data && !isNaN(data.loc_long)) && ('loc_lat' in data && !isNaN(data.loc_lat)) && ('radio' in data && !isNaN(data.radio))){
 				connection.query("SELECT id, title, description, geom, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, "+
-					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name FROM events "+
-					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) < "+data.radio*1000, function(err, rows, fields) {
+					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name, ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom)/1000 as distance FROM events "+
+					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) < "+data.radio*1000+" ORDER BY distance ASC LIMIT 30", function(err, rows, fields) {
 					if (err) socket.emit('s-event-list', {status: 'ERROR', msg: err});
 					socket.emit('s-event-list', {status: 'OK', data: rows});
 				});
