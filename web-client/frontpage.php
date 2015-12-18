@@ -80,7 +80,6 @@
 	<script>
 		var prevPage = "";
 		function changeContent(page){
-			console.log(prevPage);
 			if (prevPage != page){
 				$.ajax({
 					url: "pages/"+page+".html",
