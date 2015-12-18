@@ -30,7 +30,8 @@
         android:background="#d4d4d4"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
-        app:itemTextColor="#434343" />
+        app:itemTextColor="#434343"
+        app:itemIconTint="#000"/>
 
 </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

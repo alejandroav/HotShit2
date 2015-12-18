@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_perfil"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/ic_face_black_24dp"
             android:title="Pefil"/>
         <item android:id="@+id/nav_suscripciones"
-            android:icon="@android:drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_supervisor_account_black_24dp"
             android:title="Suscripciones" />
         <item android:id="@+id/nav_planes"
-            android:icon="@android:drawable/ic_menu_slideshow"
+            android:icon="@drawable/notepad30"
             android:title="Planes" />
         <item android:id="@+id/nav_retos"
-            android:icon="@android:drawable/ic_menu_compass"
+            android:icon="@drawable/challenge"
             android:title="Retos" />
         <item android:id="@+id/nav_configuracion"
-            android:icon="@android:drawable/ic_menu_crop"
+            android:icon="@drawable/ic_settings_black_24dp"
             android:title="Configuracion" />
         <item android:id="@+id/nav_salir"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/ic_exit_to_app_black_48dp"
             android:title="Salir" />
     </group>
 
