@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Grizz.ly - frontpage</title>
+		<title>Grizzly.pw</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="resources/css/materialize.min.css"	media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="resources/css/frontpage.css"	media="screen,projection"/>
