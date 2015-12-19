@@ -1,4 +1,4 @@
-<?php session_start(); if (!isset($_SESSION["uid"])) {header("location: index.php"); exit;} ?>
+<?php session_start(); if (!isset($_SESSION["uid"])) {header("location: index.php"); exit;} else { include("class/user.class.php"); $user = new User($_SESSION["uid"]); } ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,7 +21,8 @@
 			});
 			socket.on('s-login', function(data){
 				if (data.status == "ERROR") Materialize.toast("Error: "+data.msg);
-			})
+			});
+			var username = '<?php echo $user->getUserData()["username"]; ?>';
 		</script>
 	</head>
 	<body>

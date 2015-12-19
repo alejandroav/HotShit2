@@ -25,48 +25,83 @@
 			<div class="col s6 m6 l6"><div id="precio"></div></div>
 			<div class="col s3 m1 l3"><input id="input-number3" type="number"/> </div>
 		</div>
-		
+		<div class="row">
+			<div class="col s6 m6 l6 offset-m3 offset-l3 offset-s3">
+				<button class="btn waves-effect blue" onclick="obtenerLista()">Filtrar</button>
+			</div>
+		</div>
   </div>
   <div class="col s12 m12 l7 offset-l1">
-	<div class="inicio-title-2" id="tabla2">Planes
-		<a class="active" href="#test2"></a>
-	</div>
+	<div class="inicio-title-2" id="planes-contenido"></div>
   </div>
 </div>
 <script type="text/javascript" src="resources/js/frontpage.js"></script>
 <script>
-	$(document).ready(function(){
-		$('#tabla2').tabs();
-		socket.emit('c-event-list', {loc_long: 0, loc_lat: 0, radio: 1000, type: 0});
-		socket.on('s-event-list', function(data) {
-			if (data.status == "OK"){
-				var container = $(document.createElement("div"));
-				if ('data' in data && data.data.length > 0){
-					$.ajax({
-						url: "pages/detalle.html",
-						success: function(res) {
-							for (var i = 0; i<data.data.length; i++){
-								var obj = data.data[i];
-								var res2 = $(res);
-								date = obj.date.split("-");
-								year = date[0];
-								month = date[1];
-								day = date[2].split("T")[0];
-								res2.find(".titulotarjeta").html(obj.title);
-								res2.find(".descripciontarjeta").html(obj.description);
-								res2.find(".user-dist").html(Math.round(obj.distance)+"km");
-								res2.find(".user-price").html(obj.cost);
-								res2.find(".user-time").html(day+"/"+month+"/"+year);
-								res2.find(".user-assist").html(obj.current+"/"+obj.capacity);
-								container.append(res2);
-							}
-						}
-					});
-				//console.log(container);
-				} else container.html("No hay eventos disponibles");
-							if (data.type == 0) $("#test2").html(container);
-			} else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
-			else console.log(data.msg);
+var lat=0, lon=0;
+	function obtenerLista(){
+		socket.emit('c-event-list', 
+			{loc_long: lon, loc_lat: lat, radio: $("#input-number3").val(), type: 0, min_cost:$("#input-number2").val(), max_cost: $("#input-number1").val(), 
+			min_date: $("#fecha-ini").val(), max_date: $("#fecha-fin").val(), min_radio: $("#input-number4").val()});
+	}
+	if (navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(function(objPosition){
+			lat = objPosition.coords.latitude;
+			lon = objPosition.coords.longitude;
+			obtenerLista();
+		}, 
+		function(objPositionError) {
+			switch (objPositionError.code) {
+				case objPositionError.PERMISSION_DENIED:
+					Materialize.toast("No se ha permitido el acceso a la posici&oacute;n del usuario.", 5000);
+				break;
+				case objPositionError.POSITION_UNAVAILABLE:
+					Materialize.toast("No se ha podido acceder a la informaci&oacute;n de su posici&oacute;n.", 5000);
+				break;
+				case objPositionError.TIMEOUT:
+					Materialize.toast("El servicio ha tardado demasiado tiempo en responder.", 5000);
+				break;
+				default:
+					Materialize.toast("Error desconocido.", 5000);
+				break;
+			}
+		}, 
+		{
+			maximumAge: 75000,
+			timeout: 15000
 		});
+	} else {
+		Materialize.toast("Su navegador no soporta la API de geolocalizaci&oacute;n.", 5000);
+	}
+	socket.on('s-event-list', function(data) {
+		if (data.status == "OK"){
+			var container = $(document.createElement("div"));
+			if ('data' in data && data.data.length > 0){
+				$.ajax({
+					url: "pages/detalle.html",
+					success: function(res) {
+						for (var i = 0; i<data.data.length; i++){
+							var obj = data.data[i];
+							var res2 = $(res);
+							date = obj.date.split("-");
+							year = date[0];
+							month = date[1];
+							day = date[2].split("T")[0];
+							res2.find(".titulotarjeta").html(obj.title);
+							res2.find(".descripciontarjeta").html(obj.description);
+							res2.find(".nombre-usuario").html(obj.creator_name);
+							res2.find(".suscribir-button").attr('id', obj.creator_id);
+							res2.find(".user-dist").html(Math.round(obj.distance)+"km");
+							res2.find(".user-price").html(obj.cost);
+							res2.find(".user-time").html(day+"/"+month+"/"+year);
+							res2.find(".user-assist").html(obj.current+"/"+obj.capacity);
+							container.append(res2);
+						}
+					}
+				});
+			//console.log(container);
+			} else container.html("No hay eventos disponibles");
+			if (data.type == 0) $("#planes-contenido").html(container);
+		} else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
+		else console.log(data.msg);
 	});
   </script>

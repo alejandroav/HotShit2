@@ -16,7 +16,7 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			}
 			var map = new google.maps.Map(mapCanvas, mapOptions);
-			socket.emit('c-event-map', {loc_long: 0, loc_lat: 0, radio: 1000});
+			socket.emit('c-event-map', {loc_long: lon, loc_lat: lat, radio: 1000});
 			var marker = new google.maps.Marker({
 				position: {lat: lat, lng: lon},
 				map: map,

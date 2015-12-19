@@ -1,9 +1,7 @@
-
-
 <div class="row center-align">
 	<div class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 zona-imagen">
 		<div class="chip chip-usuario-front">
-			<span class="nombre-usuario">AAAAAAAAAAA</span>
+			<span id="nombre-usuario"></span>
 		</div>
 	</div>
 	<div class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 zona-imagen">
@@ -70,12 +68,40 @@
 		</div>
 	</div>
   <script>
-	$(document).ready(function(){
+		$("#nombre-usuario").html(username);
 		$('#tabla2').tabs();
-		socket.emit('c-event-statistics');
-		socket.emit('c-event-list', {loc_long: 0, loc_lat: 0, radio: 1000, type: 0});
-		socket.emit('c-event-list', {loc_long: 0, loc_lat: 0, radio: 1000, type: 1});
-		socket.emit('c-event-list', {loc_long: 0, loc_lat: 0, radio: 1000, type: 2});
+		socket.emit('c-event-statistics');	
+		if (navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(function(objPosition){
+				var lat = objPosition.coords.latitude;
+				var lon = objPosition.coords.longitude;
+				socket.emit('c-event-list', {loc_long: lon, loc_lat: lat, radio: 1000, type: 0});
+				socket.emit('c-event-list', {loc_long: lon, loc_lat: lat, radio: 1000, type: 1});
+				socket.emit('c-event-list', {loc_long: lon, loc_lat: lat, radio: 1000, type: 2});
+			}, 
+			function(objPositionError) {
+				switch (objPositionError.code) {
+					case objPositionError.PERMISSION_DENIED:
+						Materialize.toast("No se ha permitido el acceso a la posici&oacute;n del usuario.", 5000);
+					break;
+					case objPositionError.POSITION_UNAVAILABLE:
+						Materialize.toast("No se ha podido acceder a la informaci&oacute;n de su posici&oacute;n.", 5000);
+					break;
+					case objPositionError.TIMEOUT:
+						Materialize.toast("El servicio ha tardado demasiado tiempo en responder.", 5000);
+					break;
+					default:
+						Materialize.toast("Error desconocido.", 5000);
+					break;
+				}
+			}, 
+			{
+				maximumAge: 75000,
+				timeout: 15000
+			});
+		} else {
+			Materialize.toast("Su navegador no soporta la API de geolocalizaci&oacute;n.", 5000);
+		}
 		socket.on('s-event-statistics', function (data){
 			if (data.status == "OK");
 			$("#event-assisted").html(data.data.goevents);
@@ -100,6 +126,8 @@
 								res2.find(".titulotarjeta").html(obj.title);
 								res2.find(".descripciontarjeta").html(obj.description);
 								res2.find(".user-dist").html(Math.round(obj.distance)+"km");
+								res2.find(".nombre-usuario").html(obj.creator_name);
+								res2.find(".suscribir-button").attr('id', obj.creator_id)
 								res2.find(".user-price").html(obj.cost);
 								res2.find(".user-time").html(day+"/"+month+"/"+year);
 								res2.find(".user-assist").html(obj.current+"/"+obj.capacity);
@@ -115,5 +143,4 @@
 			} else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
 			else console.log(data.msg);
 		});
-	});
   </script>
