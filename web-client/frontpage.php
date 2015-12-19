@@ -26,7 +26,7 @@
 	</head>
 	<body>
 	<ul id="dropdown1" class="dropdown-content">
-	  <li><a href="#!">Configuraci&oacute;n</a></li>
+	  <li><a href="javaScript:changeContent('configuracion_perfil')">Configuraci&oacute;n</a></li>
 	  <li class="divider"></li>
 	  <li><a href="operations.php?op=logout">Cerrar sesi&oacute;n</a></li>
 	</ul>
@@ -44,7 +44,7 @@
 				<li><a href="javaScript:changeContent('planes')">Planes</a></li>
 				<!--<li><a href="javaScript:changeContent('retos')">Retos</a></li>-->
 				<li><hr></li>
-				<li><a href="#!">Configuraci&oacute;n</a></li>
+				<li><a href="javaScript:changeContent('configuracion_perfil')">Configuraci&oacute;n</a></li>
 				<li><a href="operations.php?op=logout">Cerrar sesi&oacute;n</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
