@@ -98,13 +98,13 @@
 								res2.find(".user-assist").html(obj.current+"/"+obj.capacity);
 								container.append(res2);
 							}
-							if (data.type == 0) $("#test2").html(container);
-							else if (data.type == 1) $("#test1").html(container);
-							else if (data.type == 2) $("#test3").html(container);
 						}
 					});
 				//console.log(container);
 				} else container.html("No hay eventos disponibles");
+							if (data.type == 0) $("#test2").html(container);
+							else if (data.type == 1) $("#test1").html(container);
+							else if (data.type == 2) $("#test3").html(container);
 			} else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
 			else console.log(data.msg);
 		});
