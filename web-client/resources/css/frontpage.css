@@ -139,6 +139,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	margin-bottom:-15px;
 	background-color:#ffc107;
 }
+
 @media only screen and (min-width: 993px) {
 	#data-large{
 		margin-left:18.55%;
