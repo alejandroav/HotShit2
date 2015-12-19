@@ -56,7 +56,7 @@ switch ($_GET["op"]){
 			} else die(json_encode(array("status" => "ERROR", "msg" => "El email ya se encuentra registrado")));
 		} else die(json_encode(array("status" => "ERROR", "msg" => "El email introducido no es valido")));
 	break;
-	case "recpass":
+	case "change_email":
 		if (!$user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
 		$cambios = false;
 		//TODO LO QUE REQUIERA TOCAR LA TABLA DE USUARIOS DE MYSQL HAZLO EN EL ARCHIVO users.class.php de la carpeta class
@@ -64,14 +64,21 @@ switch ($_GET["op"]){
 			//Consulta SQL cambia email
 			//si se cambia correctamente $cambios = true;
 		}
+	break;
+	case "change_pass":
+		if (!$user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
 		if (isset($_POST["password"]) && strlen($_POST["password"]) >= 6) {
 			if ($_POST["password"] == $_POST["repassword"]){
 				//Cambiar la pass en la bd, cuidado, debes cifrarla
 			}
 		}
+	break;
+	case "change_profile_pic":
+		if (!$user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
 		if (isset($_FILES["image"]) && isset($_FILES["image"]["name"])) {
 			//subir la imagen a la carpeta uploads/users y guardarla en la bD
 		}
+	break;
 	case "logout":
 		session_unset();
 		header("location: index.php");
