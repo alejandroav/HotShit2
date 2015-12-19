@@ -80,30 +80,31 @@
 			if (data.status == "OK"){
 				var container = $(document.createElement("div"));
 				if ('data' in data && data.data.length > 0){
-					for (var i = 0; i<data.data.length; i++){
-						var obj = data.data[i];
-						$.ajax({
-							url: "pages/detalle.html",
-							success: function(res) {
-								res = $(res);
+					$.ajax({
+						url: "pages/detalle.html",
+						success: function(res) {
+							for (var i = 0; i<data.data.length; i++){
+								var obj = data.data[i];
+								var res2 = $(res);
 								date = obj.date.split("-");
 								year = date[0];
 								month = date[1];
 								day = date[2].split("T")[0];
-								res.find(".titulotarjeta").html(obj.title);
-								res.find(".descripciontarjeta").html(obj.description);
-								res.find(".user-dist").html(Math.round(obj.distance)+"km");
-								res.find(".user-price").html(obj.cost);
-								res.find(".user-time").html(day+"/"+month+"/"+year);
-								res.find(".user-assist").html(obj.current+"/"+obj.capacity);
-								container.append(res);
+								res2.find(".titulotarjeta").html(obj.title);
+								res2.find(".descripciontarjeta").html(obj.description);
+								res2.find(".user-dist").html(Math.round(obj.distance)+"km");
+								res2.find(".user-price").html(obj.cost);
+								res2.find(".user-time").html(day+"/"+month+"/"+year);
+								res2.find(".user-assist").html(obj.current+"/"+obj.capacity);
+								container.append(res2);
 							}
-						});
-					}
+							if (data.type == 0) $("#test2").html(container);
+							else if (data.type == 1) $("#test1").html(container);
+							else if (data.type == 2) $("#test3").html(container);
+						}
+					});
+				//console.log(container);
 				} else container.html("No hay eventos disponibles");
-				if (data.type == 0) $("#test2").html(container);
-				else if (data.type == 1) $("#test1").html(container);
-				else if (data.type == 2) $("#test3").html(container);
 			} else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
 			else console.log(data.msg);
 		});
