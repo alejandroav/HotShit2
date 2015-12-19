@@ -101,14 +101,13 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
         public void call(final Object[] args) {
             MapaEventos.this.runOnUiThread(new Runnable() {
                 public void run() {
-                    Toast.makeText(context, "Ha saltado el listener", duration).show();
                     JSONObject data = (JSONObject) args[0];
                     try {
                         msg = data.getString("status");
                         events = data.getJSONArray("data");
                         recuperarEventos(msg,events);
                     } catch (JSONException e) {
-                        Toast.makeText(context, "Error JSON", duration).show();
+                        Toast.makeText(context, "Error: " + e, duration).show();
                         e.printStackTrace();
                         return;
                     }
@@ -121,11 +120,10 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
         // solicitamos mapa eventos al servidor
         try {
             JSONObject solicitud = new JSONObject();
-            solicitud.put("loc_long", new Double(currentLongitude).toString());
-            solicitud.put("loc_lat", new Double(currentLatitude).toString());
-            solicitud.put("radio", new Double(radioMapa).toString());
+            solicitud.put("loc_long", currentLongitude);
+            solicitud.put("loc_lat", currentLatitude);
+            solicitud.put("radio", radioMapa);
             socket.emit("c-event-map", solicitud);
-            Toast.makeText(context, "Buscando eventos...", duration).show();
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(context, "Error al solicitar eventos", duration).show();
@@ -135,15 +133,16 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
     public void recuperarEventos(String msg, JSONArray events) {
         if (currentLatitude != 0 || currentLongitude != 0) {
             try {
-                if (msg == "OK") {
+                if (msg.equals("OK")) {
                     Toast.makeText(context, "El servidor ha respondido", duration).show();
                     // recorremos los datos y vamos colocando los marcadores
                     for (int i = 0; i < events.length(); i++) {
-                        int id = events.getJSONObject(i).getInt("id");
-                        double loc_long = events.getJSONObject(i).getDouble("loc_long");
-                        double loc_lat = events.getJSONObject(i).getDouble("loc_long");
-                        String nombreEvento = events.getJSONObject(i).getString("name");
-                        String descEvento = events.getJSONObject(i).getString("description");
+                        JSONObject item = events.getJSONObject(i);
+                        int id = item.getInt("id");
+                        double loc_long = item.getJSONObject("geom").getDouble("x");
+                        double loc_lat = item.getJSONObject("geom").getDouble("y");
+                        String nombreEvento = item.getString("title");
+                        String descEvento = item.getString("description");
                         LatLng m = new LatLng(loc_long, loc_lat);
                         Marker punto = mMap.addMarker(new MarkerOptions().position(m).title(nombreEvento));
                         punto.setSnippet(descEvento);
@@ -153,13 +152,13 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
                     Toast.makeText(context, text, duration).show();
                 }
 
-                if (msg == "ERROR") {
+                if (msg.equals("ERROR")) {
                     text = "Ha ocurrido un error al solicitar el mapa de eventos.";
                     Toast.makeText(context, text, duration).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(context, "Error parseando JSON", duration).show();
+                Toast.makeText(context, "Error: " + e, duration).show();
             }
         } else {
             text = "Error al recuperar la ubicación";
@@ -180,6 +179,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
+        getCurrentLocation();
     }
 
     @Override
@@ -199,7 +199,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
         //open the map:
         currentLatitude = location.getLatitude();
         currentLongitude = location.getLongitude();
-        //Toast.makeText(MapaEventos.this, "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MapaEventos.this, "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(currentLatitude, currentLongitude)));
         //mMap.clear();
     }
@@ -232,9 +232,8 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
             Location location = locationManager.getLastKnownLocation(bestProvider);
             if (location != null) {
                 Log.e("TAG", "GPS is on");
-                latitude = location.getLatitude();
-                longitude = location.getLongitude();
-                //Toast.makeText(MapaEventos.this, "latitude:" + latitude + " longitude:" + longitude, Toast.LENGTH_SHORT).show();
+                currentLatitude = location.getLatitude();
+                currentLongitude = location.getLongitude();
                 latlng = new LatLng(currentLatitude, currentLongitude);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
                 solicitarEventos();

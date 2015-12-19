@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:id="@+id/imageView2"
+        android:id="@+id/imageList"
         android:background="@drawable/imagen_circular"
         android:src="@mipmap/ic_launcher"
         android:scaleType="center"
@@ -35,7 +35,7 @@
                android:textAppearance="?android:attr/textAppearanceMedium"
                android:text="Viernes por la noche fiesta"
                android:maxLines="1"
-               android:id="@+id/textView2"
+               android:id="@+id/dateList"
                android:layout_gravity="left|bottom"
                android:textColor="#737373" />
 
@@ -46,7 +46,7 @@
                android:textAppearance="?android:attr/textAppearanceMedium"
                android:text="20/240"
                android:maxLines="1"
-               android:id="@+id/textView3"
+               android:id="@+id/peopleList"
                android:layout_gravity="right|bottom"
                android:textColor="#000000"
                android:textAlignment="textEnd" />
@@ -68,7 +68,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="10km"
                 android:maxLines="1"
-                android:id="@+id/textView4"
+                android:id="@+id/distanceList"
                 android:layout_gravity="right|top"
                 android:textColor="#000000" />
             <ImageView
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Project X"
-            android:id="@+id/textView"
+            android:id="@+id/titleList"
             android:maxLines="1"
             android:layout_gravity="left|top"
             android:textColor="#000000"
