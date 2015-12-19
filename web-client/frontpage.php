@@ -33,7 +33,7 @@
 	<div class="navbar-fixed">
 		<nav>
 			<ul id="slide-out" class="side-nav">
-				<li><img class="foto-perfil" style="height:100px;width:100px;margin-left:75px;" src="resources/img/usuario-provisional.jpg"></img></a></li>
+				<li><img class="foto-perfil" style="height:100px;width:100px;margin-left:75px;" src="uploads/users/noimage.jpg"></img></a></li>
 				<li class="buscador">
 					<form style="height:62px;">
 						<input style="color:black;" type="text" value="Buscar..." onfocus="if (this.value == 'Buscar...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Buscar...';}" />
@@ -58,7 +58,7 @@
 				</ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					
-					<li><a style="height:64px;" class='dropdown-button' href="javascript:void(0)" data-beloworigin="true"  data-activates='dropdown1'><img class="foto-perfil" src="resources/img/usuario-provisional.jpg"></img></a></li>
+					<li><a style="height:64px;" class='dropdown-button' href="javascript:void(0)" data-beloworigin="true"  data-activates='dropdown1'><img class="foto-perfil" src="uploads/users/noimage.jpg"></img></a></li>
 					<li class="buscador">
 						<form style="height:62px;">
 							<input type="text" value="Buscar..." onfocus="if (this.value == 'Buscar...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Buscar...';}" />

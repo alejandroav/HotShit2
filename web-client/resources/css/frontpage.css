@@ -1,4 +1,4 @@
-
+/*ARREGLAR ESTO, ESTE CODIGO ESTA FATAL, HORRIPILANTEMENTE MAL*/
 /* -------------------FRONTPAGE ---------------------*/
 /* navegador y tal*/
 
@@ -129,6 +129,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 .data-inside{
 	border-right:2px solid #DDDDDD;
 	border-left:2px solid #DDDDDD;
+	min-height: 45px;
 }
 @media only screen and (min-width: 993px) {
 	#data-large{
@@ -834,6 +835,9 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 /* ----------------- --------------------------------------- ------------*/
 /* ----------------- --------------------------------------- ------------*/
 @media only screen and (max-width: 603px) and (min-width:500px) {
+	.boton-crear{
+		margin-right: 2%;
+	}
 	.inicio-title{
 		font-family: 'Roboto',sans-serif;
 		font-size:8vw;
@@ -1057,6 +1061,9 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 /* ----------------- --------------------------------------- ------------*/
 /* ----------------- --------------------------------------- ------------*/
 @media only screen and (max-width: 499px) {
+	.boton-crear{
+		margin-right: 2%;
+	}
 	.inicio-title{
 		font-family: 'Roboto',sans-serif;
 		font-size:8vw;
@@ -1215,12 +1222,6 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		overflow: hidden;
 		text-overflow: ellipsis;
 	    white-space: nowrap;
-	}
-	.boton-crear{
-		z-index:2;
-		float:right;
-		position:relative;
-		margin-right:10%;
 	}
 	.imagen-perfil-interior{
 		width:150px;

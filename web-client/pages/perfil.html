@@ -1,72 +1,111 @@
 <div class="row center-align">
 	<div class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 zona-imagen">
-		<img src="resources/img/usuario-provisional.jpg" class="imagen-perfil">
+		<img src="uploads/users/noimage.jpg" class="imagen-perfil">
 	</div>
 </div>
-<div class="row center-align">
-	<div class="col s12 m12 l9 offset-s1 offset-m3 offset-l3" id="data-large">
-	  <ul class="center-align" id="data-perfil">
-        <li class="col s3 m2 l2  offset-s2 offset-m2 offset-l2 data-inside" id="event-assisted">Eventos asistidos<br> 3</li>
-        <li class="col s3 m2 l2 data-inside" id="suscribers">Suscriptores<br><br> 5</li>
-        <li class="col s3 m2 l2 data-inside" id="goals-done">Eventos creados<br> 100</li>
-      </ul>
-	</div>
+<div class="row center-align" id="data-perfil">
+        <div class="col s3 m3 l2 offset-l2 data-inside">Eventos asistidos <div id="event-assisted"></div></div>
+        <div class="col s3 m3 l2 data-inside">Suscriptores <div id="suscribers"></div></div>
+        <div class="col s3 m3 l2 data-inside">Suscripciones <div id="suscribed"></div></div>
+        <div class="col s3 m3 l2 data-inside">Eventos creados <div id="goals-done"></div></div>
 </div>
   <div class="row center-align">
     <div class="col s12 m12 l8 offset-l2">
       <ul class="tabs" id="tabla2">
-        <li class="tab col s12 col-gen"><a href="#test1">General</a></li>
-        <li class="tab col s12 col-sus"><a class="active" href="#test2">Suscripciones</a></li>
+        <li class="tab col s12 col-sus"><a href="#test1">Suscripciones</a></li>
+        <li class="tab col s12 col-gen"><a class="active" href="#test2">General</a></li>
         <li class="tab col s12 col-amig"><a href="#test3">Tus amigos van a...</a></li>
       </ul>
     </div>
-    <div id="test1" class="col s12 m12 l6 offset-l3">a</div>
-    <div id="test2" class="col s12 m12 l6 offset-l3">
+    <div id="test1" class="col s12 m12 l6 offset-l3">
 		<div class="preloader-wrapper big active" style="margin-top: 20px;">
-		<div class="spinner-layer spinner-blue">
-			<div class="circle-clipper left">
-				<div class="circle"></div>
-			</div>
-			<div class="gap-patch">
-				<div class="circle"></div>
-			</div>
-			<div class="circle-clipper right">
-				<div class="circle"></div>
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="gap-patch">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
 			</div>
 		</div>
 	</div>
-    <div id="test3" class="col s12 m12 l6 offset-l3">c</div>
-  </div>
+    <div id="test2" class="col s12 m12 l6 offset-l3">
+		<div class="preloader-wrapper big active" style="margin-top: 20px;">
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="gap-patch">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div id="test3" class="col s12 m12 l6 offset-l3">
+		<div class="preloader-wrapper big active" style="margin-top: 20px;">
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="gap-patch">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
+	</div>
   <script>
 	$(document).ready(function(){
-		socket.emit('c-event-list', {loc_long: 0, loc_lat: 0, radio: 1000});
+		$('#tabla2').tabs();
+		socket.emit('c-event-statistics');
+		socket.emit('c-event-list', {loc_long: 0, loc_lat: 0, radio: 1000, type: 0});
+		socket.emit('c-event-list', {loc_long: 0, loc_lat: 0, radio: 1000, type: 1});
+		socket.emit('c-event-list', {loc_long: 0, loc_lat: 0, radio: 1000, type: 2});
+		socket.on('s-event-statistics', function (data){
+			if (data.status == "OK");
+			$("#event-assisted").html(data.data.goevents);
+			$("#suscribers").html(data.data.followed);
+			$("#suscribed").html(data.data.followers);
+			$("#goals-done").html(data.data.myevents);
+		});
 		socket.on('s-event-list', function(data) {
 			if (data.status == "OK"){
-				console.log("EY");
 				var container = $(document.createElement("div"));
-				for (var i = 0; i<data.data.length; i++){
-					var obj = data.data[i];
-					$.ajax({
-						url: "pages/detalle.html",
-						success: function(res) {
-							res = $(res);
-							date = obj.date.split("-");
-							year = date[0];
-							month = date[1];
-							day = date[2].split("T")[0];
-							res.find(".titulotarjeta").html(obj.title);
-							res.find(".descripciontarjeta").html(obj.description);
-							res.find(".user-dist").html(Math.round(obj.distance)+"km");
-							res.find(".user-price").html(obj.cost);
-							res.find(".user-time").html(day+"/"+month+"/"+year);
-							res.find(".user-assist").html(obj.current+"/"+obj.capacity);
-							container.append(res);
-						}
-					});
-				}
-				$("#test2").html(container);
-			} else Materialize.toast("Error: "+data.msg, 3000);
+				if ('data' in data && data.data.length > 0){
+					for (var i = 0; i<data.data.length; i++){
+						var obj = data.data[i];
+						$.ajax({
+							url: "pages/detalle.html",
+							success: function(res) {
+								res = $(res);
+								date = obj.date.split("-");
+								year = date[0];
+								month = date[1];
+								day = date[2].split("T")[0];
+								res.find(".titulotarjeta").html(obj.title);
+								res.find(".descripciontarjeta").html(obj.description);
+								res.find(".user-dist").html(Math.round(obj.distance)+"km");
+								res.find(".user-price").html(obj.cost);
+								res.find(".user-time").html(day+"/"+month+"/"+year);
+								res.find(".user-assist").html(obj.current+"/"+obj.capacity);
+								container.append(res);
+							}
+						});
+					}
+				} else container.html("No hay eventos disponibles");
+				if (data.type == 0) $("#test2").html(container);
+				else if (data.type == 1) $("#test1").html(container);
+				else if (data.type == 2) $("#test3").html(container);
+			} else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
+			else console.log(data.msg);
 		});
-		$('#tabla2').tabs();
 	});
   </script>

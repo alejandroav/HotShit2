@@ -42,7 +42,7 @@ switch ($_GET["op"]){
 	break;
 	case "recpass":
 		if ($user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
-		if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+		if (isset($_POST["email"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
 			$newpass = recoverPassword($email);
 			if ($newpass) {
 				$mail = new PHPMailer;
@@ -56,6 +56,22 @@ switch ($_GET["op"]){
 			} else die(json_encode(array("status" => "ERROR", "msg" => "El email ya se encuentra registrado")));
 		} else die(json_encode(array("status" => "ERROR", "msg" => "El email introducido no es valido")));
 	break;
+	case "recpass":
+		if (!$user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
+		$cambios = false;
+		//TODO LO QUE REQUIERA TOCAR LA TABLA DE USUARIOS DE MYSQL HAZLO EN EL ARCHIVO users.class.php de la carpeta class
+		if (isset($_POST["email"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+			//Consulta SQL cambia email
+			//si se cambia correctamente $cambios = true;
+		}
+		if (isset($_POST["password"]) && strlen($_POST["password"]) >= 6) {
+			if ($_POST["password"] == $_POST["repassword"]){
+				//Cambiar la pass en la bd, cuidado, debes cifrarla
+			}
+		}
+		if (isset($_FILES["image"]) && isset($_FILES["image"]["name"])) {
+			//subir la imagen a la carpeta uploads/users y guardarla en la bD
+		}
 	case "logout":
 		session_unset();
 		header("location: index.php");
