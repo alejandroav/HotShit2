@@ -16,10 +16,26 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			}
 			var map = new google.maps.Map(mapCanvas, mapOptions);
+			socket.emit('c-event-map', {loc_long: 0, loc_lat: 0, radio: 1000});
 			var marker = new google.maps.Marker({
 				position: {lat: lat, lng: lon},
 				map: map,
 				title: 'Tu localizacion'
+			});
+			socket.on('s-event-map', function(data) {
+				if (data.status == "OK"){
+					if ('data' in data && data.data.length > 0){
+						for (var i = 0; i<data.data.length; i++){
+							var obj = data.data[i];
+							var marker = new google.maps.Marker({
+								position: {lat: obj.geom.x, lng: obj.geom.y},
+								map: map,
+								title: obj.title
+							});
+						}
+					}
+				} else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
+				else console.log(data.msg);
 			});
 		}, 
 		function(objPositionError) {
