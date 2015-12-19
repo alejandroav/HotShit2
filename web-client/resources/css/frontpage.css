@@ -109,7 +109,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 .imagen-perfil{
 	width:150px;
 	height:150px;
-	margin-top:5%;
+	margin-top:0.5%;
 	
 	border:6px solid orange;
 	border-radius:100%;
@@ -138,6 +138,13 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	clear:both;
 	margin-bottom:-15px;
 	background-color:#ffc107;
+}
+.chip-usuario-front{
+	position:relative;
+	background-color:#ffc107;
+	margin:0 auto;
+	margin-bottom:-10%;
+	margin-top:5%;
 }
 
 @media only screen and (min-width: 993px) {
