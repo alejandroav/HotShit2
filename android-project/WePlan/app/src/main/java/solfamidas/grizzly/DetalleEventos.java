@@ -1,3 +1,4 @@
+
 package solfamidas.grizzly;
 
 import android.support.v7.app.AppCompatActivity;
@@ -88,20 +89,33 @@ public class DetalleEventos extends AppCompatActivity {
         TextView Titulo = (TextView)findViewById(R.id.nombre_evento);
         Titulo.setText(evento.getTitle());
         TextView Distancia = (TextView)findViewById(R.id.distancia);
-        Distancia.setText("A "+evento.getDistance()+" Km");
+        Distancia.setText("A "+evento.getDistance()+" km");
         TextView Fecha = (TextView)findViewById(R.id.fecha);
         Fecha.setText("El "+evento.getDate());
         TextView Gente = (TextView)findViewById(R.id.gente);
         Gente.setText(evento.getCurrent()+"/"+evento.getCapacity());
         TextView Descipcion = (TextView)findViewById(R.id.descripcion);
         Descipcion.setText(evento.getDesc());
+        ImageView imageView = (ImageView) findViewById(R.id.imagenPerfil);
+        imageView.setImageDrawable(LoadImageFromWebOperations(evento.getImage()));
     }
+
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is,null);
+            return d;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
     private Emitter.Listener ListenerDetails = new Emitter.Listener(){
         public void call(final Object[] args) {
             DetalleEventos.this.runOnUiThread(new Runnable() {
                 public void run() {
-                 JSONObject data = (JSONObject) args[0];
+                    JSONObject data = (JSONObject) args[0];
                     try{
                         msg = data.getString("status");
                         if (msg.equals("OK")) {
