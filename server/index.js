@@ -50,14 +50,15 @@ io.on('connection', function (socket) {
 					extra += " AND cost >= "+data.min_cost+" AND cost <= "+data.max_cost;
 				}
 				if (('min_date' in data && typeof data.min_date == "string") && ('max_date' in data && typeof data.max_date == "string")){
-					extra += " AND date >= '"+mysql.escape(data.min_date)+"' AND date <= '"+mysql.escape(data.max_date)+"'";
+					extra += " AND date >= "+mysql.escape(data.min_date)+" AND date <= "+mysql.escape(data.max_date);
 				}
 				if ('min_radio' in data && !isNaN(data.min_radio)){
-					extra += " AND ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) >= "+data.radio*1000;
+					extra += " AND ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) >= "+data.min_radio*1000;
 				}
-				connection.query("SELECT id, title, description, geom, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, "+
+				var query = "SELECT id, title, description, geom, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, "+
 					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name, ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom)/1000 as distance FROM events "+
-					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) <= "+data.radio*1000+" "+extra+" ORDER BY distance ASC LIMIT 30", function(err, rows, fields) {
+					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) <= "+data.radio*1000+" "+extra+" ORDER BY distance ASC LIMIT 30";
+				connection.query(query, function(err, rows, fields) {
 					if (err) socket.emit('s-event-list', {status: 'ERROR', msg: err});
 					socket.emit('s-event-list', {status: 'OK', data: rows, type: data.type});
 				});
@@ -162,7 +163,7 @@ io.on('connection', function (socket) {
 			} else socket.emit('s-event-desubscribe', {status: 'ERROR', msg: 'Error en el objeto JSON'});
 		} else socket.emit('s-event-desubscribe', {status: 'ERROR', msg: 'Usuario no valido'});
 	});
-	/*Evento para suscribirse a eventos*/
+	/*Evento para suscribirse a usuarios*/
 	socket.on('c-user-follow', function (data) {
 		if (socket.valid){
 			if ('followed' in data && !isNaN(data.followed)){
@@ -172,5 +173,16 @@ io.on('connection', function (socket) {
 				});
 			} else socket.emit('s-user-follow', {status: 'ERROR', msg: 'Error en el objeto JSON'});
 		} else socket.emit('s-user-follow', {status: 'ERROR', msg: 'Usuario no valido'});
+	});
+	/*Evento para suscribirse a usuarios*/
+	socket.on('c-user-unfollow', function (data) {
+		if (socket.valid){
+			if ('followed' in data && !isNaN(data.followed)){
+				connection.query('DELETE FROM follows where follower ='+socket.uid+" AND followed="+data.followed, function(err, rows, fields) {
+					if (err) socket.emit('s-user-unfollow', {status: 'ERROR', msg: err});
+					socket.emit('s-user-unfollow', {status: 'OK'});
+				});
+			} else socket.emit('s-user-unfollow', {status: 'ERROR', msg: 'Error en el objeto JSON'});
+		} else socket.emit('s-user-unfollow', {status: 'ERROR', msg: 'Usuario no valido'});
 	});
 });
