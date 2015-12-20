@@ -56,22 +56,27 @@ switch ($_GET["op"]){
 			} else die(json_encode(array("status" => "ERROR", "msg" => "El email ya se encuentra registrado")));
 		} else die(json_encode(array("status" => "ERROR", "msg" => "El email introducido no es valido")));
 	break;
+	//TODO ESTO ES MI DESTROZO, POR SI CAGADITA
 	case "change_email":
 		if (!$user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
-		$cambios = false;
 		//TODO LO QUE REQUIERA TOCAR LA TABLA DE USUARIOS DE MYSQL HAZLO EN EL ARCHIVO users.class.php de la carpeta class
 		if (isset($_POST["email"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+			if($user->updateEmail(htmlspecialchars($_POST["email"], ENT_QUOTES, 'UTF-8'))){
+				die(json_encode(array("status" => "OK")));
+			}else die(json_encode(array("status" => "ERROR", "msg" => "Error en la base de datos, intentelo mas tarde")));
 			//Consulta SQL cambia email
 			//si se cambia correctamente $cambios = true;
-		}
+		}else die(json_encode(array("status" => "ERROR", "msg" => "Introduzca un email correcto")));
 	break;
 	case "change_pass":
 		if (!$user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
 		if (isset($_POST["password"]) && strlen($_POST["password"]) >= 6) {
 			if ($_POST["password"] == $_POST["repassword"]){
-				//Cambiar la pass en la bd, cuidado, debes cifrarla
-			}
-		}
+				if($user->updatePassword(htmlspecialchars($_POST["password"], ENT_QUOTES, 'UTF-8'))){
+					die(json_encode(array("status" => "OK")));
+				}else die(json_encode(array("status" => "ERROR", "msg" => "Fallo en la base de datos, intentelo mas tarde")));
+			}else die(json_encode(array("status" => "ERROR", "msg" => "Repita correctamente la contraseña")));
+		}else die(json_encode(array("status" => "ERROR", "msg" => "Introduzca una contraseña mayor de 6 caracteres")));
 	break;
 	case "change_profile_pic":
 		if (!$user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));

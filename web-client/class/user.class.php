@@ -46,6 +46,17 @@ class User {
 			return implode($pass);
 		} else return "";
 	}
+	//HICE ESTO, POR SI CAGADITA LO COMENTo
+	function updatePassword($newpasswd){
+		$this->uid;
+		if{$this->db->query("UPDATE users SET password = '".hash('sha512',$newpasswd)."' WHERE id='".$uid."'")}
+		else return false;
+	}
+	function updatePassword($email){
+		$this->uid;
+		if{$this->db->query("UPDATE users SET email = '".$email."' WHERE id='".$uid."'")}
+		else return false;
+	}
 	function getUID(){
 		return $this->uid;
 	}

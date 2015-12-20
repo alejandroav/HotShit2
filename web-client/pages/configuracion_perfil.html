@@ -16,6 +16,10 @@
           <input id="password" type="password" class="validate">
           <label for="password">Nueva contrase&ntilde;a</label>
         </div>
+		<div class="input-field col s12">
+          <input id="repassword" type="password" class="validate">
+          <label for="repassword">Repite la nueva contrase&ntilde;a</label>
+        </div>
 		<button class="btn waves-effect waves-light" onclick="sendNewPass()" type="submit" name="send-new-pass">Enviar
 			<i class="material-icons right">send</i>
 		</button>
@@ -25,7 +29,7 @@
 	   <div class="file-field input-field center-align" style="margin-top:15%;">
 		  <div class="btn">
 			<span>Nueva imagen de perfil</span>
-			<input type="file">
+			<input id="file" type="file">
 		  </div>
 		  <div class="file-path-wrapper">
 			<input class="file-path validate" type="text">
