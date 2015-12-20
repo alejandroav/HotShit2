@@ -82,7 +82,7 @@ switch ($_GET["op"]){
 		if (!$user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
 		if (isset($_FILES["image"]) && isset($_FILES["image"]["name"])) {
 			//subir la imagen a la carpeta uploads/users y guardarla en la bD
-		}
+		}else die(json_encode(array("status" => "ERROR", "msg" => "Coloque un archivo imagen, por favor")));
 	break;
 	case "logout":
 		session_unset();
