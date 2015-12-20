@@ -34,5 +34,6 @@ class DB {
 	function query($query){
 		$res = $this->db->query($query);
 		if (!$res) die($this->db->error);
+		return $res;
 	}
 }

@@ -48,13 +48,11 @@ class User {
 	}
 	//HICE ESTO, POR SI CAGADITA LO COMENTo
 	function updatePassword($newpasswd){
-		$this->uid;
-		if{$this->db->query("UPDATE users SET password = '".hash('sha512',$newpasswd)."' WHERE id='".$uid."'")}
+		if($this->db->query("UPDATE users SET password = '".hash('sha512',$newpasswd)."' WHERE id=".$this->uid)) return true;
 		else return false;
 	}
-	function updatePassword($email){
-		$this->uid;
-		if{$this->db->query("UPDATE users SET email = '".$email."' WHERE id='".$uid."'")}
+	function updateEmail($email){
+		if($this->db->query("UPDATE users SET email = '".$email."' WHERE id=".$this->uid)) return true;
 		else return false;
 	}
 	function getUID(){
