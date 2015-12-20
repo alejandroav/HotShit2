@@ -63,7 +63,7 @@
                 android:layout_marginLeft="16dp"
                 android:textColor="#464646"
                 android:layout_gravity="left|top"
-                android:id="@+id/textView12" />
+                android:id="@+id/distancia" />
         </FrameLayout>
 
     </FrameLayout>
