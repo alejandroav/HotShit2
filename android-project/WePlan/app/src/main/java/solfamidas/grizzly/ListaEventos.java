@@ -79,9 +79,11 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked,
                                     int position, long id) {
-
                 Evento clickedEvent = eventos.get(position);
                 // llamar a detalle evento con el evento como mensaje!
+                Intent i = new Intent(this,DetalleEventos.class);
+                i.putExtra("id",clickedEvent.getId());
+                startActivity(i);
             }
         });
 
