@@ -79,19 +79,6 @@
 		<script type="text/javascript" src="resources/js/nouislider.min.js"></script>
 		<script>
 			var prevPage = "";
-			function changeContent(page){
-				if (prevPage != page){
-					$.ajax({
-						url: "pages/"+page+".html",
-						success: function(res) {
-							$("#"+prevPage+"-but").parent().removeClass("active");
-							$("#"+page+"-but").parent().addClass("active");
-							prevPage = page;
-							$("#formcontent").html(res);
-						}
-					});
-				}
-			}
 			$(document).ready(function(){
 				$('.button-collapse').sideNav({
 					menuWidth: 300, // Default is 240
@@ -117,6 +104,48 @@
 					}
 				});
 				changeContent("perfil");
+				socket.on('s-event-details', function(data){
+					prevPage = 'details';
+					if (data.status == "OK"){
+						var container = $(document.createElement("div"));
+						if ('data' in data){
+							$.ajax({
+								url: "pages/interior.html",
+								success: function(res) {
+										var obj = data.data;
+										console.log(obj);
+										var res2 = $(res);
+										date = obj.date.split("-");
+										year = date[0];
+										month = date[1];
+										day = date[2].split("T")[0];
+										res2.find(".nombre-evento").html(obj.title);
+										res2.find(".descripcion-interior").html(obj.description);
+										res2.find(".boton-interior").attr('onclick', "eventSuscribe("+obj.id+")");
+										/*res2.find(".user-dist").html(Math.round(obj.distance)+"km");
+										res2.find(".nombre-usuario").html(obj.creator_name);
+										res2.find(".suscribir-button").attr('id', obj.creator_id);
+										res2.find(".user-price").html(obj.cost);
+										res2.find(".user-time").html(day+"/"+month+"/"+year);
+										res2.find(".user-assist").html(obj.current+"/"+obj.capacity);*/
+										container.append(res2);
+									}
+							});
+						} else container.html("No hay eventos disponibles");
+						$("#formcontent").html(container);
+					} else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
+					else console.log(data.msg);
+				});
+				socket.on('s-user-follow', function(data){
+					if (data.status == "OK") Materialize.toast("Te has suscrito a este usuario", 3000);
+					else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
+					else console.log(data.msg);
+				});
+				socket.on('s-event-subscribe', function(data){
+					if (data.status == "OK") Materialize.toast("Te has suscrito a este evento", 3000);
+					else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
+					else console.log(data.msg);
+				});
 				$('#perfil-but').click(function(){
 					changeContent("perfil");
 				});

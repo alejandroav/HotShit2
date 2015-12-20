@@ -35,14 +35,9 @@
 	<div class="inicio-title-2" id="planes-contenido"></div>
   </div>
 </div>
-<script type="text/javascript" src="resources/js/frontpage.js"></script>
+<script type="text/javascript" src="resources/js/plans.js"></script>
 <script>
-var lat=0, lon=0;
-	function obtenerLista(){
-		socket.emit('c-event-list', 
-			{loc_long: lon, loc_lat: lat, radio: $("#input-number3").val(), type: 0, min_cost:$("#input-number2").val(), max_cost: $("#input-number1").val(), 
-			min_date: $("#fecha-ini").val(), max_date: $("#fecha-fin").val(), min_radio: $("#input-number4").val()});
-	}
+	var lat=0, lon=0;
 	if (navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(function(objPosition){
 			lat = objPosition.coords.latitude;
@@ -86,10 +81,11 @@ var lat=0, lon=0;
 							year = date[0];
 							month = date[1];
 							day = date[2].split("T")[0];
-							res2.find(".titulotarjeta").html(obj.title);
-							res2.find(".descripciontarjeta").html(obj.description);
+							res2.find(".nombre-evento").html(obj.title);
+							res2.find(".descripcion-interior").html(obj.description);
 							res2.find(".nombre-usuario").html(obj.creator_name);
-							res2.find(".suscribir-button").attr('id', obj.creator_id);
+							res2.find(".suscribir-button").attr('onclick', "followUser("+obj.creator_id+")");
+							res2.find(".boton-go").attr('onclick', "getDetails("+obj.id+")");
 							res2.find(".user-dist").html(Math.round(obj.distance)+"km");
 							res2.find(".user-price").html(obj.cost);
 							res2.find(".user-time").html(day+"/"+month+"/"+year);

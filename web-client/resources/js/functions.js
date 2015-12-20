@@ -61,7 +61,35 @@ function changeLRLayer(type){
 		});
 	} else Materialize.toast('No tienes permitido hacer eso', 3000);
 }
-/*INNER FUNCTIONS*/
+/*INNER FUNCTIONS*/	
+function changeContent(page, extra){
+	if (typeof extra != "string") extra = "";
+	if (prevPage != page){
+		$.ajax({
+			url: "pages/"+page+".html"+extra,
+			success: function(res) {
+				$("#"+prevPage+"-but").parent().removeClass("active");
+				$("#"+page+"-but").parent().addClass("active");
+				prevPage = page;
+				$("#formcontent").html(res);
+			}
+		});
+	}
+}
+function obtenerLista(){
+	socket.emit('c-event-list', 
+		{loc_long: lon, loc_lat: lat, radio: $("#input-number3").val(), type: 0, min_cost:$("#input-number2").val(), max_cost: $("#input-number1").val(), 
+		min_date: $("#fecha-ini").val(), max_date: $("#fecha-fin").val(), min_radio: $("#input-number4").val()});
+}
+function getDetails(id){
+	socket.emit('c-event-details', {event_id: id});
+}
+function followUser(id){
+	socket.emit('c-user-follow', {followed: id});
+}
+function eventSuscribe(id){
+	socket.emit('c-event-subscribe', {event_id: id});
+}
 function loadModal(type){
 	if (type == "createroom"){
 		changeLayer("#modal", 'pages/createroom.html', 'change', function(){
