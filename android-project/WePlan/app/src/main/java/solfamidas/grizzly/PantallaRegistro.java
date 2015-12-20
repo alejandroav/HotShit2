@@ -1,4 +1,8 @@
-package solfamidas.weplan;
+package solfamidas.grizzly;
+/**
+ * Creado por Alejandro Alarcón Villena, 2015
+ * Como proyecto para la asignatura Sistemas Multimedia
+ * */
 
 import android.app.ProgressDialog;
 import android.content.Intent;

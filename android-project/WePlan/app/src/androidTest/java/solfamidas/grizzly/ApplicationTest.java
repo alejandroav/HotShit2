@@ -1,4 +1,4 @@
-package solfamidas.weplan;
+package solfamidas.grizzly;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="solfamidas.weplan" >
+    package="solfamidas.grizzly" >
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -36,11 +36,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapaEventos"
+            android:name="solfamidas.grizzly.MapaEventos"
             android:label="@string/title_activity_mapa_eventos" >
         </activity>
         <activity
-            android:name=".ListaEventos"
+            android:name="solfamidas.grizzly.ListaEventos"
             android:label="@string/title_activity_lista_eventos"
             android:theme="@style/AppTheme" >
             <intent-filter>
@@ -50,11 +50,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PantallaLogin"
+            android:name="solfamidas.grizzly.PantallaLogin"
             android:label="@string/title_activity_pantalla_login" >
         </activity>
         <activity
-            android:name=".PantallaRegistro"
+            android:name="solfamidas.grizzly.PantallaRegistro"
             android:label="@string/title_activity_pantalla_registro"
             android:theme="@style/AppTheme" >
         </activity>

@@ -1,22 +1,21 @@
-package solfamidas.weplan;
+package solfamidas.grizzly;
 
+/**
+ * Creado por Alejandro Alarcón Villena, 2015
+ * Como proyecto para la asignatura Sistemas Multimedia
+ * * */
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,9 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,8 +41,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
@@ -60,7 +55,7 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
     private Socket socket;
     private String msg;
     private JSONArray events;
-    private double radioMapa = 50000000;
+    private double radioMapa = 100;
     private String error;
     private String LOGIN_URL = "http://grizzly.pw/operations.php?op=login";
     private ListView lv;
@@ -227,7 +222,6 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
                     }
 
                     adapter.notifyDataSetChanged();
-                    Toast.makeText(this, "Actualizado", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -343,30 +337,27 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            // Make sure we have a view to work with (may have been given null)
             View itemView = convertView;
             if (itemView == null) {
                 itemView = getLayoutInflater().inflate(R.layout.planes, parent, false);
             }
 
-            // Find the car to work with.
             Evento evento = eventos.get(position);
 
-            // Fill the view
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imageList);
-            //imageView.setImageResource(evento.getImage());
+            imageView.setImageDrawable(LoadImageFromWebOperations(evento.getImage()));
 
-            // Make:
             TextView title = (TextView) itemView.findViewById(R.id.titleList);
             title.setText(evento.getTitle());
 
-            // Year:
             TextView date = (TextView) itemView.findViewById(R.id.dateList);
             date.setText(evento.getDate());
 
-            // Condition:
             TextView people = (TextView) itemView.findViewById(R.id.peopleList);
             people.setText(evento.getCurrentPeople());
+
+            TextView distance = (TextView) itemView.findViewById(R.id.distanceList);
+            distance.setText(evento.getDistance() + " km");
 
             return itemView;
         }

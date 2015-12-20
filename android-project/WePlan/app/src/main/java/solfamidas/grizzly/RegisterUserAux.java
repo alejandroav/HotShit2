@@ -1,4 +1,8 @@
-package solfamidas.weplan;
+package solfamidas.grizzly;
+/**
+ * Creado por Alejandro Alarcón, 2015
+ * Como proyecto para la asignatura Sistemas Multimedia
+ * */
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

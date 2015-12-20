@@ -1,5 +1,8 @@
-package solfamidas.weplan;
-
+package solfamidas.grizzly;
+/**
+ * Creado por Alejandro Alarcón Villena, 2015
+ * Como proyecto para la asignatura Sistemas Multimedia
+ * */
 import android.Manifest;
 import android.content.Context;
 import android.content.IntentSender;
@@ -55,7 +58,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
     private Location mLastLocation;
     private double currentLatitude = 0;
     private double currentLongitude = 0;
-    private double radioMapa = 500000;
+    private double radioMapa = 100;
     private android.location.LocationListener locationListener;
 
     // variables para prueba stackoverflow
@@ -134,7 +137,6 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
         if (currentLatitude != 0 || currentLongitude != 0) {
             try {
                 if (msg.equals("OK")) {
-                    Toast.makeText(context, "El servidor ha respondido", duration).show();
                     // recorremos los datos y vamos colocando los marcadores
                     for (int i = 0; i < events.length(); i++) {
                         JSONObject item = events.getJSONObject(i);
@@ -147,9 +149,6 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
                         Marker punto = mMap.addMarker(new MarkerOptions().position(m).title(nombreEvento));
                         punto.setSnippet(descEvento);
                     }
-
-                    text = "Mapa de eventos recuperado";
-                    Toast.makeText(context, text, duration).show();
                 }
 
                 if (msg.equals("ERROR")) {
@@ -235,7 +234,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
                 currentLatitude = location.getLatitude();
                 currentLongitude = location.getLongitude();
                 latlng = new LatLng(currentLatitude, currentLongitude);
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,10));
                 solicitarEventos();
                 return latlng;
             } else {

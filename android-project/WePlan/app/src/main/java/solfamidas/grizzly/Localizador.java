@@ -1,4 +1,4 @@
-package solfamidas.weplan;
+package solfamidas.grizzly;
 
 import android.content.Context;
 import android.location.Criteria;
@@ -10,8 +10,9 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
 
 /**
- * Created by Usuario on 17/12/2015.
- */
+ * Creado por Alejandro Alarcón Villena 2015
+ * Como proyecto para la asignatura Sistemas Multimedia
+ * */
 public class Localizador {
     static LocationManager locationManager;
     static String bestProvider;

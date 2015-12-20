@@ -1,4 +1,4 @@
-package solfamidas.weplan;
+package solfamidas.grizzly;
 
 import org.junit.Test;
 

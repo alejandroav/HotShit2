@@ -6,7 +6,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.weplan.MapaEventos"/>
+        className = "solfamidas.grizzly.MapaEventos"/>
       <point      
         x = "1112"      
         y = "100"/>
@@ -14,7 +14,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.weplan.ListaEventos"/>
+        className = "solfamidas.grizzly.ListaEventos"/>
       <point      
         x = "372"      
         y = "100"/>
@@ -22,7 +22,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.weplan.LoginActivity"/>
+        className = "solfamidas.grizzly.LoginActivity"/>
       <point      
         x = "1280"      
         y = "0"/>
@@ -30,7 +30,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.weplan.Login"/>
+        className = "solfamidas.grizzly.Login"/>
       <point      
         x = "632"      
         y = "440"/>

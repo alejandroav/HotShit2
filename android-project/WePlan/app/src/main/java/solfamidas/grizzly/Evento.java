@@ -1,8 +1,9 @@
-package solfamidas.weplan;
+package solfamidas.grizzly;
 
 /**
- * Created by HP on 19/12/2015.
- */
+ * Creado por Alejandro Alarcón Villena, 2015
+ * Como proyecto para la asignatura Sistemas Multimedia
+ * */
 public class Evento {
     int id, capacity, current;
     String title, desc, image;
@@ -53,7 +54,7 @@ public class Evento {
     }
 
     public double getDistance() {
-        return distance;
+        return Math.round(distance);
     }
 
     public void setId(int id) {

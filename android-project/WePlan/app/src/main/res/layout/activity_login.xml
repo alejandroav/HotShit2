@@ -5,7 +5,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="solfamidas.weplan.LoginActivity"
+    tools:context="solfamidas.grizzly.LoginActivity"
     android:weightSum="1"
     android:background="#795548">
 
@@ -37,7 +37,7 @@
             android:background="#4E342E"
             style="@style/caja_login">
 
-            <AutoCompleteTextView android:id="@+id/email"
+            <AutoCompleteTextView android:id="@+id/user"
                 android:layout_marginTop="20dp"
                 android:hint="@string/prompt_user"
                 android:inputType="textEmailAddress"

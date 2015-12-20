@@ -1,4 +1,4 @@
-package solfamidas.weplan;
+package solfamidas.grizzly;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -31,8 +31,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import solfamidas.weplan.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
