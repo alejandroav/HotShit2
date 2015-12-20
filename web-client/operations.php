@@ -81,6 +81,13 @@ switch ($_GET["op"]){
 	case "change_profile_pic":
 		if (!$user->getUID()) die(json_encode(array("status" => "ERROR", "msg" => "No tienes permitido hacer eso")));
 		if (isset($_FILES["image"]) && isset($_FILES["image"]["name"])) {
+			$dir_subida="/uploads/users/";
+			$fichero_subido = $dir_subida . basename($_FILES['image']['name']);
+			if(move_uploaded_file($_FILES['image']['tmp_name'], $fichero_subido)){
+				if($user->updateProfilePic(htmlspecialchars($fichero_subido, ENT_QUOTES, 'UTF-8'))){
+					die(json_encode(array("status" => "OK")));
+				}else die(json_encode(array("status" => "ERROR", "msg" => "No se ha podido insertar en la base de datos, intentelo mas tarde")));
+			}else die(json_encode(array("status" => "ERROR", "msg" => "No se ha podido subir el fichero correctamente")));
 			//subir la imagen a la carpeta uploads/users y guardarla en la bD
 		}else die(json_encode(array("status" => "ERROR", "msg" => "Coloque un archivo imagen, por favor")));
 	break;

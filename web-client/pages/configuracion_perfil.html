@@ -25,11 +25,11 @@
 		</a>
       </div>
 	</form>
-	<form id="newPic" action="operations.php?op=change_profile_pic" class="col s12 m6 l6 offset-m3 offset-l3">
+	<form enctype="multipart/form-data" id="newPic" action="operations.php?op=change_profile_pic" class="col s12 m6 l6 offset-m3 offset-l3">
 	   <div class="file-field input-field  center-align" style="margin-top:15%;">
 		  <div class="btn orange">
 			<span>Nueva imagen de perfil</span>
-			<input id="file" type="file">
+			<input id="file" type="file" name="image">
 		  </div>
 		  <div class="file-path-wrapper">
 			<input class="file-path validate" type="text">

@@ -55,6 +55,10 @@ class User {
 		if($this->db->query("UPDATE users SET email = '".$email."' WHERE id=".$this->uid)) return true;
 		else return false;
 	}
+	function updateProfilePic($image){
+		if($this->db->query("UPDATE users SET image = '".$image."' WHERE id=".$this->uid)) return true;
+		else return false;
+	}
 	function getUID(){
 		return $this->uid;
 	}
