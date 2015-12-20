@@ -75,6 +75,7 @@ public class DetalleEventos extends AppCompatActivity {
         }
         //Me conecto con el servidor
         socket.on("s-event-subscribe", ListenerSuscripcion);
+        socket.on("s-event-unsubscribe", ListenerUnsubscribe);
         socket.on("s-event-details", ListenerDetails);
         socket.connect();
         //Solicito los datos del evento
@@ -93,9 +94,15 @@ public class DetalleEventos extends AppCompatActivity {
             @Override
            public void onClick(View view){
                 try{
+
                     JSONObject solicitud = new JSONObject();
                     solicitud.put("event_id", id);
-                    socket.emit("c-event-subscribe");
+                    if(((Button) findViewById(R.id.suscripcion)).getText().equals("SUSCRIBIRSE")){
+                        socket.emit("c-event-subscribe", solicitud);
+                    }
+                    else{
+                        socket.emit("c-event-unsubscribe", solicitud);
+                    }
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -132,6 +139,32 @@ public class DetalleEventos extends AppCompatActivity {
         }
     }
 
+    private Emitter.Listener ListenerUnsubscribe = new Emitter.Listener(){
+        public void call(final Object[] args){
+            DetalleEventos.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    JSONObject data = (JSONObject) args[0];
+                    try{
+                        msg = data.getString("status");
+                        if(msg.equals("OK")){
+                            Button BSuscripcion = (Button)findViewById(R.id.suscripcion);
+                            BSuscripcion.setText("SUSCRIBIRSE");
+                        }
+                        else{
+                            Toast.makeText(DetalleEventos.this, "Error al desuscribirse: " + data, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    catch(JSONException e){
+                        Toast.makeText(DetalleEventos.this, "Error JSON: " + data, Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                        return;
+                    }
+                }
+            });
+        }
+    };
+
     private Emitter.Listener ListenerSuscripcion = new Emitter.Listener(){
         public void call(final Object[] args){
             DetalleEventos.this.runOnUiThread(new Runnable() {
@@ -141,7 +174,7 @@ public class DetalleEventos extends AppCompatActivity {
                         msg = data.getString("status");
                         if(msg.equals("OK")){
                             Button BSuscripcion = (Button)findViewById(R.id.suscripcion);
-                            BSuscripcion.setText("Cancelar Suscripcion");
+                            BSuscripcion.setText("CANCELAR SUSCRIPCION");
                         }
                         else{Toast.makeText(DetalleEventos.this, "Error al suscribirse: " + data, Toast.LENGTH_SHORT).show();}
                     }
