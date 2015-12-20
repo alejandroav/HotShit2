@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -73,6 +74,7 @@ public class DetalleEventos extends AppCompatActivity {
             e.printStackTrace();
         }
         //Me conecto con el servidor
+        socket.on("s-event-subscribe", ListenerSuscripcion);
         socket.on("s-event-details", ListenerDetails);
         socket.connect();
         //Solicito los datos del evento
@@ -85,7 +87,27 @@ public class DetalleEventos extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this, "Error al solicitar eventos", Toast.LENGTH_SHORT).show();
         }
-        //Cambio el titulo
+        AlterarValores();
+        Button Suscripcion = (Button)findViewById(R.id.suscripcion);
+        Suscripcion.setOnClickListener(new View.OnClickListener() {
+            @Override
+           public void onClick(View view){
+                try{
+                    JSONObject solicitud = new JSONObject();
+                    solicitud.put("event_id", id);
+                    socket.emit("c-event-subscribe");
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                    Toast.makeText(DetalleEventos.this, "Error al solicitar eventos", Toast.LENGTH_SHORT).show();
+                }
+           }
+        });
+
+    }
+
+
+    public void AlterarValores(){
         TextView Titulo = (TextView)findViewById(R.id.nombre_evento);
         Titulo.setText(evento.getTitle());
         TextView Distancia = (TextView)findViewById(R.id.distancia);
@@ -110,6 +132,28 @@ public class DetalleEventos extends AppCompatActivity {
         }
     }
 
+    private Emitter.Listener ListenerSuscripcion = new Emitter.Listener(){
+        public void call(final Object[] args){
+            DetalleEventos.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    JSONObject data = (JSONObject) args[0];
+                    try{
+                        msg = data.getString("status");
+                        if(msg.equals("OK")){
+                            Button BSuscripcion = (Button)findViewById(R.id.suscripcion);
+                            BSuscripcion.setText("Cancelar Suscripcion");
+                        }
+                        else{Toast.makeText(DetalleEventos.this, "Error al suscribirse: " + data, Toast.LENGTH_SHORT).show();}
+                    }
+                    catch(JSONException e){
+                        Toast.makeText(DetalleEventos.this, "Error JSON: " + data, Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                        return;
+                    }
+                }
+            });
+        }
+    };
 
     private Emitter.Listener ListenerDetails = new Emitter.Listener(){
         public void call(final Object[] args) {
