@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="solfamidas.grizzly.LoginActivity"
     android:weightSum="1"
-    android:background="#795548">
+    android:background="#fb8c00">
 
 
     <ProgressBar android:id="@+id/login_progress"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="5dp"
-            android:background="#4E342E"
+            android:background="@color/colorPrimaryDark"
             style="@style/caja_login">
 
             <AutoCompleteTextView android:id="@+id/user"
