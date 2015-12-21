@@ -48,7 +48,8 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 /**
- * Created by Àngel on 20/12/2015.
+ * Created by Àngel Navarro y Alejandro Alarcón on 20/12/2015.
+ * Para el proyecto de la asignatura Sistemas Multimedia
  */
 
 public class DetalleEventos extends AppCompatActivity {
@@ -62,11 +63,9 @@ public class DetalleEventos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.plan_detallado_sinsuscribir);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
-        setSupportActionBar(toolbar);
         //Recojo el valor de la id
         b = getIntent().getExtras();
-        id = b.getInt("key");
+        id = b.getInt("id");
         //Declaro el socket del server
         try {
             socket = IO.socket("http://grizzly.pw:8080");
@@ -81,14 +80,13 @@ public class DetalleEventos extends AppCompatActivity {
         //Solicito los datos del evento
         try{
             JSONObject solicitud = new JSONObject();
-            solicitud.put("event-id", id);
+            solicitud.put("event_id", id);
             socket.emit("c-event-details", solicitud);
         }
         catch (JSONException e){
             e.printStackTrace();
             Toast.makeText(this, "Error al solicitar eventos", Toast.LENGTH_SHORT).show();
         }
-        AlterarValores();
         Button Suscripcion = (Button)findViewById(R.id.suscripcion);
         Suscripcion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,7 +194,7 @@ public class DetalleEventos extends AppCompatActivity {
                     try{
                         msg = data.getString("status");
                         if (msg.equals("OK")) {
-                            eventsdetails = data.getJSONArray("data");
+                            JSONObject eventsdetails = data.getJSONObject("data");
                             crearEvento(msg, eventsdetails);
                         } else Toast.makeText(DetalleEventos.this, "Error al recibir eventos: " + data, Toast.LENGTH_SHORT).show();
                     }
@@ -210,11 +208,15 @@ public class DetalleEventos extends AppCompatActivity {
         }
     };
 
-    private void crearEvento(String msg, JSONArray details){
+    private void crearEvento(String msg, JSONObject item){
         try{
             if(msg.equals("OK")){
-                JSONObject item = details.getJSONObject(0);
-                evento = new Evento(id, item.getString("title"), item.getString("description"), item.getDouble("distance"), item.getInt("capacity"), item.getInt("current"), item.getString("image"),item.getString("date"));
+                evento = new Evento(id, item.getString("title"), item.getString("description"),
+                        0, item.getInt("capacity"), item.getInt("current"), item.getString("image"),item.getString("date"));
+
+                //item.getDouble("distance"),
+
+                AlterarValores();
             }
         }
         catch ( JSONException e){
