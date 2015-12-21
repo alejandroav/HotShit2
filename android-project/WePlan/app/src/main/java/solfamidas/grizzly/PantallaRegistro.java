@@ -29,6 +29,12 @@ public class PantallaRegistro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        findViewById(R.id.textView9).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PantallaRegistro.this, PantallaLogin.class));
+            }
+        });
     }
 
     public void validarRegistro(View view) {

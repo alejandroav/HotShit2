@@ -77,8 +77,7 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
                 Evento clickedEvent = eventos.get(position);
                 // llamar a detalle evento con el evento como mensaje!
                 Intent i = new Intent(ListaEventos.this, DetalleEventos.class);
@@ -86,7 +85,6 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
                 startActivity(i);
             }
         });
-
         // comprobar permisos
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -125,8 +123,8 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
 
         // obtenemos localizacion actual
         LatLng latlng = Localizador.getCurrentLocation(this);
-        currentLatitude = latlng.latitude;
-        currentLongitude = latlng.longitude;
+            currentLatitude = latlng.latitude;
+            currentLongitude = latlng.longitude;
 
         try {
             login(user, pass);

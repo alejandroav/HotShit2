@@ -16,16 +16,16 @@
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
         className = "solfamidas.grizzly.MapaEventos"/>
       <point      
-        x = "2348"      
-        y = "8"/>
+        x = "1600"      
+        y = "16"/>
     </statePointEntry>
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
         className = "solfamidas.grizzly.PantallaRegistro"/>
       <point      
-        x = "20"      
-        y = "4"/>
+        x = "48"      
+        y = "8"/>
     </statePointEntry>
     <statePointEntry>
       <state      
@@ -40,24 +40,24 @@
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
         className = "solfamidas.grizzly.ListaEventos"/>
       <point      
-        x = "1584"      
-        y = "4"/>
+        x = "3336"      
+        y = "48"/>
     </statePointEntry>
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
         className = "solfamidas.grizzly.PantallaLogin"/>
       <point      
-        x = "808"      
-        y = "8"/>
+        x = "820"      
+        y = "12"/>
     </statePointEntry>
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
         className = "solfamidas.grizzly.DetalleEventos"/>
       <point      
-        x = "3112"      
-        y = "12"/>
+        x = "2400"      
+        y = "32"/>
     </statePointEntry>
   </locations>
 </navigationModel>

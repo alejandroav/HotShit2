@@ -90,6 +90,12 @@ public class PantallaLogin extends AppCompatActivity implements LoaderCallbacks<
                 attemptLogin();
             }
         });
+        findViewById(R.id.textView9).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PantallaLogin.this, PantallaRegistro.class));
+            }
+        });
 
 
     }
