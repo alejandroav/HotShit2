@@ -483,8 +483,8 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	}
 	.chip-usuario{
 		position:relative;
-		margin-bottom:-110px;
-		margin-left:-110px;
+		margin-bottom:-15px;
+		margin-left:2px;
 	}
 	.suscribir-button{
 		position:relative;
@@ -718,8 +718,8 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	}
 	.chip-usuario{
 		position:relative;
-		margin-bottom:-100px;
-		margin-left:-100px;
+		margin-bottom:-20px;
+		margin-left:2px;
 	}
 	.suscribir-button{
 		position:relative;
@@ -879,7 +879,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 /* ----------------- --------------------------------------- ------------*/
 /* ----------------- --------------------------------------- ------------*/
 /* ----------------- --------------------------------------- ------------*/
-@media only screen and (max-width: 603px) and (min-width:500px) {
+@media only screen and (max-width: 602px) and (min-width:500px) {
 	.boton-crear{
 		margin-right: 2%;
 	}
@@ -955,8 +955,8 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	}
 	.chip-usuario{
 		position:relative;
-		margin-bottom:-90px;
-		margin-left:-90px;
+		margin-bottom:-20px;
+		margin-left:0px;
 	}
 	.suscribir-button{
 		position:relative;
@@ -1193,7 +1193,6 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	.chip-usuario{
 		position:relative;
 		margin-bottom:-60px;
-		margin-left:-60px;
 	}
 	.nombre-usuario{
 		position:absolute;

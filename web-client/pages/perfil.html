@@ -133,6 +133,7 @@
 							res2.find(".user-price").html(obj.cost);
 							res2.find(".user-time").html(day+"/"+month+"/"+year);
 							res2.find(".user-assist").html(obj.current+"/"+obj.capacity);
+			res2.find('.tooltipped').tooltip({delay: 50});
 							container.append(res2);
 						}
 					}
