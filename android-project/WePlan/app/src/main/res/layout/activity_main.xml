@@ -27,11 +27,11 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        android:background="#d4d4d4"
+        android:background="#fff"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
-        app:itemTextColor="#434343"
-        app:itemIconTint="#000"/>
+        app:itemTextColor="#ff8800"
+        app:itemIconTint="#ff8800"/>
 
 </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

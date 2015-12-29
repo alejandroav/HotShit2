@@ -347,11 +347,12 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imageList);
             imageView.setImageDrawable(LoadImageFromWebOperations(evento.getImage()));
 
+
             TextView title = (TextView) itemView.findViewById(R.id.titleList);
             title.setText(evento.getTitle());
 
-            TextView date = (TextView) itemView.findViewById(R.id.dateList);
-            date.setText(evento.getDate());
+            TextView desc = (TextView) itemView.findViewById(R.id.descList);
+            desc.setText(evento.getDesc());
 
             TextView people = (TextView) itemView.findViewById(R.id.peopleList);
             people.setText(evento.getCurrentPeople());

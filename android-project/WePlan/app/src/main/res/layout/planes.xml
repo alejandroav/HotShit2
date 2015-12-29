@@ -7,15 +7,14 @@
     android:layout_height="72dp"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
-    android:background="#ffffff">
+    android:background="#ffc232">
     <ImageView
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:id="@+id/imageList"
-        android:background="@drawable/imagen_circular"
+        android:background="#FFF"
         android:src="@mipmap/ic_launcher"
         android:scaleType="center"
-        android:layout_marginLeft="8dp"
         android:layout_gravity="center" />
     <FrameLayout
         android:layout_width="match_parent"
@@ -31,20 +30,20 @@
            <TextView
                android:layout_width="0dp"
                android:layout_height="wrap_content"
-               android:layout_weight="3"
+               android:layout_weight="10"
                android:textAppearance="?android:attr/textAppearanceMedium"
                android:text="Viernes por la noche fiesta"
                android:maxLines="1"
-               android:id="@+id/dateList"
+               android:id="@+id/descList"
                android:layout_gravity="left|bottom"
-               android:textColor="#737373" />
+               android:textColor="#000" />
 
            <TextView
                android:layout_width="0dp"
                android:layout_height="wrap_content"
-               android:layout_weight="4"
+               android:layout_weight="5"
                android:textAppearance="?android:attr/textAppearanceMedium"
-               android:text="20/240"
+               android:text="20/1240"
                android:maxLines="1"
                android:id="@+id/peopleList"
                android:layout_gravity="right|bottom"
@@ -63,31 +62,29 @@
             android:layout_height="match_parent"
             android:gravity="right">
             <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Project XXXX"
+                android:id="@+id/titleList"
+                android:maxLines="1"
+                android:textColor="#E65100"
+                android:textStyle="bold"/>
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="10km"
                 android:maxLines="1"
                 android:id="@+id/distanceList"
-                android:layout_gravity="right|top"
                 android:textColor="#000000" />
             <ImageView
+                android:layout_marginTop="4dp"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginLeft="6dp"
-                android:layout_gravity="right|top"
                 android:src="@drawable/carretera"/>
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Project X"
-            android:id="@+id/titleList"
-            android:maxLines="1"
-            android:layout_gravity="left|top"
-            android:textColor="#000000"
-            android:textSize="24sp" />
     </FrameLayout>
 </LinearLayout>
