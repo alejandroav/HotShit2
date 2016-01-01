@@ -14,7 +14,9 @@
 			<a href="javascript:void(0)" onclick="changeLRLayer('register')" class="waves-effect waves-light btn orange white-text"><i class="material-icons left">add_box</i>Registrate!</a>
 		</div>
 		<div class="row center-align" style="margin: 0px;">
-			<div class="col s8 m6 l4 offset-s2 offset-m3 offset-l4">
+			<div class="col s6 m6 l6 hide-on-down">
+			</div>
+			<div class="col s8 m6 l3 offset-s4 offset-m6 offset-l9">
 
 				<div id="logo-index">
 					<div id="logo-index-fondo">

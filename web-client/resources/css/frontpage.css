@@ -175,7 +175,6 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 /* ----------------- --------------------------------------- ------------*/
 /* ----------------- --------------------------------------- ------------*/
 /* ----------------- --------------------------------------- ------------*/
-@media only screen and (min-width:1420px) {
 	.inicio-title{
 		font-family: 'Roboto',sans-serif;
 		font-size:2.5vw;
@@ -394,7 +393,7 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		background-position: 0% 50%; 
 		background-repeat: no-repeat;
 	}
-}
+
 /* ----------------- --------------------------------------- ------------*/
 /* ----------------- --------------------------------------- ------------*/
 /* ----------------- --------------------------------------- ------------*/
