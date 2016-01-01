@@ -5,7 +5,7 @@
 		<title>Grizzly.pw</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="resources/css/materialize.min.css"	media="screen,projection"/>
-		<link type="text/css" rel="stylesheet" href="css/materialize.clockpicker.css" media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="resources/css/materialize.clockpicker.css" media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="resources/css/frontpage.css"	media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="resources/css/nouislider.min.css"	media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="resources/css/nouislider.pips.css"	media="screen,projection"/>
@@ -74,7 +74,7 @@
 		<div id="formcontent"></div>
 		<script type="text/javascript" src="resources/js/jquery.form.min.js"></script>
 		<script type="text/javascript" src="resources/js/materialize.min.js"></script>
-		<script type="text/javascript" src="js/materialize.clockpicker.js"></script>
+		<script type="text/javascript" src="resources/js/materialize.clockpicker.js"></script>
 		<script type="text/javascript" src="resources/js/functions.js"></script>
 		<script type="text/javascript" src="resources/js/nouislider.min.js"></script>
 		<script type="text/javascript" src="//cdn.tinymce.com/4/tinymce.min.js"></script>
