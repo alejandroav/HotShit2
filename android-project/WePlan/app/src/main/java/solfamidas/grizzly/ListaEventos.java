@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -72,6 +73,7 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
         setContentView(R.layout.activity_list_planes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);
+
         lv = (ListView) findViewById(R.id.list);
         adapter = new MyListAdapter();
         lv.setAdapter(adapter);
@@ -364,6 +366,11 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
         }
     }
 
+    private void perfil(){
+        Intent intent = new Intent(this,NavPerfil.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -381,6 +388,10 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
         //noinspection SimplifiableIfStatement
         if (id == R.id.abrirMapa) {
             iniciarMapa();
+            return true;
+        }
+        else if(id == R.id.perfil){
+            perfil();
             return true;
         }
 

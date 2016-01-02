@@ -2,6 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+        <item
+        android:id="@+id/perfil"
+        android:orderInCategory="400"
+        android:title="perfil"
+        android:icon="@drawable/ic_menu_black_24dp"
+        app:showAsAction="ifRoom"
+        >
+    </item>
+
     <item
         android:id="@+id/abrirMapa"
         android:orderInCategory="300"
