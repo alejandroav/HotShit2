@@ -14,9 +14,16 @@
 			<a href="javascript:void(0)" onclick="changeLRLayer('register')" class="waves-effect waves-light btn orange white-text"><i class="material-icons left">add_box</i>Registrate!</a>
 		</div>
 		<div class="row center-align" style="margin: 0px;">
-			<div class="col s6 m6 l6 hide-on-down">
+			<div class="hide-on-small-only col m4 l4 offset-m1 offset-l2 intro-text">
+				<span class="intro-text-title">Experimenta con Grizzly</span>
+				<br>
+				<br>
+				Participa en cientos de eventos que se crean cerca o lejos de ti. Asiste a inolvidables experiencias a la vuelta de la esquina o en cualquier ciudad.
+				Descubre nuevas personas y maneras de vivir la vida, con eventos alocados. ¿Qué hacer hoy con tus amigos?
+				¿Degustación de insectos, carrera de sacos o participar en una competición de autos locos?
+				Todo ello, descúbrelo, con Grizz.ly
 			</div>
-			<div class="col s8 m6 l3 offset-s4 offset-m6 offset-l9">
+			<div class="col s12 m6 l3 offset-m6 offset-l7">
 
 				<div id="logo-index">
 					<div id="logo-index-fondo">

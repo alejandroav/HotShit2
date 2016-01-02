@@ -199,3 +199,51 @@ input:-ms-input-placeholder {
         transform: rotateZ(0deg);
     }
 }
+.intro-text{
+	border-radius:20px;
+	background-color:rgba(21,21,21,.6);
+	position:absolute;
+	margin-top:12%;
+	
+	font-family: 'Roboto', sans-serif;
+	font-size:1.4vw;
+	text-align:justify;
+	letter-spacing:3px;
+	font-weight:bold;
+	color:#FFCC55;
+	
+	animation-name: dropHeader;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.8s;
+}
+.intro-text-title{
+	float:left;
+	margin-left:25px;
+	
+	font-size:40px;
+	text-align:left;
+	color:#FFBB00;
+}
+@media only screen and  (max-width: 1420px) and (min-width:993px) {
+	
+	.intro-text{
+		font-size:17px;
+		text-align:left;
+		margin-top:17.5%;
+	}
+	.intro-text-title{
+		font-size:27.5px;
+	}
+}
+@media only screen and (max-width: 993px) and (min-width:603px) {
+	.intro-text{
+		font-size:12px;
+		text-align:left;
+		margin-top:32%;
+	}
+	.intro-text-title{
+		font-size:20px;
+	}
+	
+}
