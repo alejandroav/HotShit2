@@ -1,24 +1,9 @@
-<div class="row center-align">
-	<div class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 zona-imagen">
-		<div class="chip chip-usuario-front">
-			<span id="nombre-usuario"></span>
-		</div>
-	</div>
-	<div class="col s8 m8 l8 offset-s2 offset-m2 offset-l2 zona-imagen">
-		<img src="uploads/users/noimage.jpg" class="imagen-perfil">
-	</div>
-</div>
-<div class="row center-align" id="data-perfil">
-        <div class="col s3 m3 l2 offset-l2 data-inside">Eventos asistidos <div id="event-assisted"></div></div>
-        <div class="col s3 m3 l2 data-inside">Suscriptores <div id="suscribers"></div></div>
-        <div class="col s3 m3 l2 data-inside">Suscripciones <div id="suscribed"></div></div>
-        <div class="col s3 m3 l2 data-inside">Eventos creados <div id="goals-done"></div></div>
-</div>
+
 <div class="row center-align">
     <div class="col s12 m12 l8 offset-l2">
       <ul class="tabs" id="tabla2">
-        <li class="tab col s12 col-sus"><a href="#test1">Suscripciones</a></li>
-        <li class="tab col s12 col-gen"><a class="active" href="#test2">General</a></li>
+        <li class="tab col s12 col-sus"><a href="#test1">De tus creadores favoritos...</a></li>
+        <li class="tab col s12 col-gen"><a class="active" href="#test2">Eventos cercanos</a></li>
         <li class="tab col s12 col-amig"><a href="#test3">Tus amigos van a...</a></li>
       </ul>
     </div>
@@ -69,9 +54,7 @@
 	</div>
 </div>
 <script>
-	$("#nombre-usuario").html(username);
 	$('#tabla2').tabs();
-	socket.emit('c-event-statistics');	
 	if (navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(function(objPosition){
 			var lat = objPosition.coords.latitude;
@@ -103,13 +86,6 @@
 	} else {
 		Materialize.toast("Su navegador no soporta la API de geolocalizaci&oacute;n.", 5000);
 	}
-	socket.on('s-event-statistics', function (data){
-		if (data.status == "OK");
-		$("#event-assisted").html(data.data.goevents);
-		$("#suscribers").html(data.data.followed);
-		$("#suscribed").html(data.data.followers);
-		$("#goals-done").html(data.data.myevents);
-	});
 	socket.on('s-event-list', function(data) {
 		if (data.status == "OK"){
 			var container = $(document.createElement("div"));
