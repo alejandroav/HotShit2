@@ -26,6 +26,8 @@
 	</head>
 	<body>
 		<ul id="dropdown1" class="dropdown-content">
+			<li><a href="javaScript:changeContent('perfil-usuario')">Perfil</a></li>
+			<li class="divider"></li>
 			<li><a href="javaScript:changeContent('configuracion_perfil')">Configuraci&oacute;n</a></li>
 			<li class="divider"></li>
 			<li><a href="operations.php?op=logout">Cerrar sesi&oacute;n</a></li>
@@ -33,7 +35,7 @@
 		<div class="navbar-fixed">
 			<nav>
 				<ul id="slide-out" class="side-nav">
-					<li><img class="foto-perfil" style="height:100px;width:100px;margin-left:75px;" src="uploads/users/noimage.jpg"></img></a></li>
+					<li><a href="javaScript:void(0)" id="prefil-usuario-but"><img class="foto-perfil" style="height:100px;width:100px;margin-left:75px;" src="uploads/users/noimage.jpg"></img></a></li>
 					<li class="buscador">
 						<form style="height:62px;">
 							<input style="color:black;" type="text" value="Buscar..." onfocus="if (this.value == 'Buscar...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Buscar...';}" />
@@ -44,6 +46,7 @@
 					<li><a href="javaScript:changeContent('planes')">Planes</a></li>
 					<!--<li><a href="javaScript:changeContent('retos')">Retos</a></li>-->
 					<li><hr></li>
+					<li><a href="javaScript:changeContent('perfil-usuario')">Perfil</a></li>
 					<li><a href="javaScript:changeContent('configuracion_perfil')">Configuraci&oacute;n</a></li>
 					<li><a href="operations.php?op=logout">Cerrar sesi&oacute;n</a></li>
 				</ul>
@@ -150,6 +153,9 @@
 				});
 				$('#perfil-but').click(function(){
 					changeContent("perfil");
+				});
+				$('#perfil-usuario-but').click(function(){
+					changeContent("perfil-usuario");
 				});
 				$('#mapa-but').click(function(){
 					changeContent("mapa");

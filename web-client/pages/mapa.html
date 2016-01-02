@@ -1,11 +1,11 @@
 <div class="row">
-	<div class="col s12 m8 l8 offset-m1 offset-l1">
+	<div class="col s12 m10 l8 offset-m1 offset-l1">
 		<div id="mapa" style="margin-top: 5vh; width:100%; height:80vh;">Debes permitir la geolocalizaci&oacute;n</div>
 	</div>
-	<div class="col s12 m2 l3 opciones">
+	<div class="col s12 m12 l3 opciones">
 		<div class="inicio-title">Selección
 		</div>
-		<div class="select-text">
+		<div class="select-text-mapa">
 		distancia en .Km
 		</div>
 		<div class="row">
@@ -13,14 +13,14 @@
 			<div class="col s6 m6 l6"><div id="distancia"></div></div>
 			<div class="col s3 m1 l3"><input id="input-number1" type="number"/> </div>
 		</div>
-		<div class="select-text">
+		<div class="select-text-mapa">
 		Fecha del evento
 		</div>
 		<div class="row">
-			<div class="col s4 m2 l3 offset-s1 offset-m3 offset-l1"><input type="date" class="datepicker" id="fecha-ini"></div>
-			<div class="col s4 m2 l3 offset-s2 offset-m2 offset-l2"><input type="date" class="datepicker" id="fecha-fin"></div>
+			<div class="col s3 m2 l3 offset-m2 offset-l1"><input type="date" class="datepicker" id="fecha-ini"></div>
+			<div class="col s3 m2 l3 offset-s4 offset-m2 offset-l2"><input type="date" class="datepicker" id="fecha-fin"></div>
 		</div>
-		<div class="select-text">
+		<div class="select-text-mapa">
 		Precio
 		</div>
 		<div class="row">
@@ -29,8 +29,8 @@
 			<div class="col s3 m1 l3"><input id="input-number3" type="number"/> </div>
 		</div>
 		<div class="row">
-			<div class="col s12 m12 l12 offset-s6 offset-m3 offset-l6 ">
-				<button class="btn waves-effect orange" onclick="obtenerLista()">Filtrar</button>
+			<div class="col s12">
+				<button class="btn waves-effect orange  button-filter" onclick="obtenerLista()">Filtrar</button>
 			</div>
 		</div>
 	</div>

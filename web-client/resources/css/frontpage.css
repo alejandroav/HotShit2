@@ -210,6 +210,16 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	margin-top:5%;
 	margin-bottom:-5%;
 }
+.select-text-mapa{
+	font-family: 'Roboto',sans-serif;
+	font-size:2vw;
+	text-align:center;
+	font-weight:bold;
+	color:#FFB444;
+	
+	margin-top:5%;
+	margin-bottom:-5%;
+}
 .opciones{
 	height:100%;
 	margin-top:5%;
@@ -467,7 +477,11 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		border-top:2px solid #FFB400;
 	}
 	.select-text{
-		margin-bottom:5%;
+		margin-bottom:6%;
+	}
+	.select-text-mapa{
+		font-size: 4vw;
+		margin-bottom:1%;
 	}
 
 	#distancia{
@@ -541,6 +555,9 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 	}
 	.select-text{
 		font-size:5vw;
+	}
+	.select-text-mapa{
+		font-size:8vw;
 	}
 
 	#distancia{
@@ -628,6 +645,11 @@ filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', end
 		font-size:5vw;
 		margin-bottom:-5%;
 	}
+	.select-text-mapa{
+		font-size:5vw;
+		margin-bottom:-5%;
+	}
+	
 
 	#distancia{
 		margin-top:13%;
