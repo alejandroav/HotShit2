@@ -220,6 +220,7 @@ input:-ms-input-placeholder {
 .intro-text-title{
 	float:left;
 	margin-left:25px;
+	margin-top:10px;
 	
 	font-size:40px;
 	text-align:left;
