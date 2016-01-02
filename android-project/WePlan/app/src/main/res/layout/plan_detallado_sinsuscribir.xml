@@ -54,18 +54,6 @@
                         android:layout_gravity="left|center_vertical">
 
                         <TextView
-                            android:id="@+id/nombre_evento"
-                            android:layout_marginStart="24dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ASALTO ZOMBIE"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="#E65100"
-                            android:textStyle="bold"
-                            android:layout_marginLeft="16dp"
-                            android:layout_gravity="left|center_vertical" />
-
-                        <TextView
                             android:id="@+id/fecha"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -73,7 +61,21 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:layout_marginLeft="16dp"
                             android:textColor="#000"
-                            android:layout_gravity="left|bottom" />
+                            android:layout_gravity="left|bottom"
+                            android:maxLines="1"/>
+
+                        <TextView
+                            android:id="@+id/nombre_evento"
+                            android:layout_marginStart="24dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ASALTO ZOMBIE"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+
+                            android:textColor="#E65100"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="16dp"
+                            android:layout_gravity="left|top" />
                     </FrameLayout>
 
                 </FrameLayout>
