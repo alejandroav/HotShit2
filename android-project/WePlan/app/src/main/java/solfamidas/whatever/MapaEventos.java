@@ -321,6 +321,7 @@ public class MapaEventos extends FragmentActivity implements OnMapReadyCallback,
             }
         }
         locationManager.removeUpdates(this);
+        finish();
     }
 
     protected void onStart() {

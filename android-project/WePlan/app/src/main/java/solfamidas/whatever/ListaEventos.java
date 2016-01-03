@@ -149,11 +149,10 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
                     JSONObject data = (JSONObject) args[0];
                     try {
                         msg = data.getString("status");
-                        if (msg.equals("OK")) {
-                            // exito con login
-
+                        if (msg.equals("OK"))
                             solicitarEventos();
-                        }
+                        else
+                            logout();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -322,6 +321,16 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
         ru.execute(name, password).get();
     }
 
+    private void logout () {
+        if (getSharedPreferences("login",0).edit().putString("user","unset").putString("password","unset").commit()) {
+            Intent intent = new Intent(ListaEventos.this,PantallaLogin.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+        }
+    }
+
     public static Drawable LoadImageFromWebOperations(String url) {
         try {
             InputStream is = (InputStream) new URL(url).getContent();
@@ -390,8 +399,8 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
             iniciarMapa();
             return true;
         }
-        else if(id == R.id.perfil){
-            perfil();
+        else if(id == R.id.logout){
+            logout();
             return true;
         }
 
