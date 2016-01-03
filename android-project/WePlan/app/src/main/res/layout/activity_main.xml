@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="solfamidas.grizzly.LoginActivity"
+    tools:context="solfamidas.whatever.LoginActivity"
     android:weightSum="1"
     android:background="#795548">
 

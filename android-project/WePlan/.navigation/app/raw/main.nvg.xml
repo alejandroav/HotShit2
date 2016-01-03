@@ -6,7 +6,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.grizzly.LoginActivity"/>
+        className = "solfamidas.whatever.LoginActivity"/>
       <point      
         x = "1280"      
         y = "0"/>
@@ -14,7 +14,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.grizzly.MapaEventos"/>
+        className = "solfamidas.whatever.MapaEventos"/>
       <point      
         x = "1600"      
         y = "16"/>
@@ -22,7 +22,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.grizzly.PantallaRegistro"/>
+        className = "solfamidas.whatever.PantallaRegistro"/>
       <point      
         x = "48"      
         y = "8"/>
@@ -30,7 +30,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.grizzly.Login"/>
+        className = "solfamidas.whatever.Login"/>
       <point      
         x = "632"      
         y = "440"/>
@@ -38,7 +38,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.grizzly.ListaEventos"/>
+        className = "solfamidas.whatever.ListaEventos"/>
       <point      
         x = "3336"      
         y = "48"/>
@@ -46,7 +46,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.grizzly.PantallaLogin"/>
+        className = "solfamidas.whatever.PantallaLogin"/>
       <point      
         x = "820"      
         y = "12"/>
@@ -54,7 +54,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "solfamidas.grizzly.DetalleEventos"/>
+        className = "solfamidas.whatever.DetalleEventos"/>
       <point      
         x = "2400"      
         y = "32"/>

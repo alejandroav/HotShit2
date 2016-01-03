@@ -1,4 +1,4 @@
-package solfamidas.grizzly;
+package solfamidas.whatever;
 
 /**
  * Creado por Alejandro Alarcón Villena, 2015
@@ -14,7 +14,6 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -87,13 +86,6 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
                 startActivity(i);
             }
         });
-        // comprobar permisos
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0001);
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0002);
-            }
-        }
 
         try {
             socket = IO.socket("http://grizzly.pw:8080"); // declarar el socket del server
@@ -122,11 +114,6 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-
-        // obtenemos localizacion actual
-        LatLng latlng = Localizador.getCurrentLocation(this);
-            currentLatitude = latlng.latitude;
-            currentLongitude = latlng.longitude;
 
         try {
             login(user, pass);
@@ -177,11 +164,17 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
 
     public void solicitarEventos() {
         try {
+            // obtenemos localizacion actual
+            LatLng latlng = Localizador.getCurrentLocation(this);
+            currentLatitude = latlng.latitude;
+            currentLongitude = latlng.longitude;
+
             JSONObject solicitud = new JSONObject();
             solicitud.put("loc_long", currentLongitude);
             solicitud.put("loc_lat", currentLatitude);
             solicitud.put("radio", radioMapa);
             solicitud.put("type",0);
+
             socket.emit("c-event-list", solicitud);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -318,6 +311,13 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
             }
         }
 
+        // comprobar permisos
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0001);
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0002);
+            }
+        }
         Login ru = new Login();
         ru.execute(name, password).get();
     }

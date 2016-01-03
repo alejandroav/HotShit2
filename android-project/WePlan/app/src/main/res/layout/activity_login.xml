@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="solfamidas.grizzly.LoginActivity"
+    tools:context="solfamidas.whatever.PantallaLogin"
     android:weightSum="1"
     android:background="#fb8c00">
 
@@ -19,13 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
-
-    <ImageView
-        android:layout_width="177dp"
-        android:layout_height="177dp"
-        android:id="@+id/imageView"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/logo" />
 
     <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
         android:layout_height="648dp"
@@ -40,6 +33,14 @@
             android:background="@color/colorPrimaryDark"
             style="@style/caja_login">
 
+
+            <ImageView
+                android:layout_width="177dp"
+                android:layout_height="177dp"
+                android:id="@+id/imageView"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/logo" />
+
             <AutoCompleteTextView android:id="@+id/user"
                 android:layout_marginTop="20dp"
                 android:hint="@string/prompt_user"
@@ -48,7 +49,7 @@
                 android:singleLine="true"
                 android:allowUndo="true"
                 style="@style/login"
-                />
+                android:textColor="#000000" />
 
             <EditText android:id="@+id/password"
                 android:hint="@string/prompt_password"
@@ -59,18 +60,20 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:layout_marginTop="12dp"
-                style="@style/login" />
+                style="@style/login"
+                android:textColor="#000000" />
 
             <Button android:id="@+id/email_sign_in_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
+                android:text="@string/action_sign_in_short"
                 android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="#a33400"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:onClick="validarLogin" />
 
             <TextView
                 android:layout_width="wrap_content"

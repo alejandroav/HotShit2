@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Grizzly</string>
+    <string name="app_name">Whatever</string>
     <string name="title_activity_mapa_eventos">Mapa de eventos</string>
-    <string name="title_activity_lista_eventos">Grizzly</string>
+    <string name="title_activity_lista_eventos">Whatever</string>
     <string name="title_activity_user_drawer">UserDrawer</string>
 
     <string name="title_section1">Section 1</string>
@@ -107,6 +107,6 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_pantalla_login">Entra en Grizzly</string>
+    <string name="title_activity_pantalla_login">Entra en Whatever</string>
     <string name="title_activity_pantalla_registro">Registro</string>
 </resources>

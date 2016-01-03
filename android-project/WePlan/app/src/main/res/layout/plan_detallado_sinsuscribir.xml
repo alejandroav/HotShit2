@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blanco"
-    tools:context="solfamidas.grizzly.DetalleEventos">
+    tools:context="solfamidas.whatever.DetalleEventos">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

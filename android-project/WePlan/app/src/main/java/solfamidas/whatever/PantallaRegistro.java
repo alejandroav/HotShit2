@@ -1,4 +1,4 @@
-package solfamidas.grizzly;
+package solfamidas.whatever;
 /**
  * Creado por Alejandro Alarcón Villena, 2015
  * Como proyecto para la asignatura Sistemas Multimedia
@@ -90,7 +90,10 @@ public class PantallaRegistro extends AppCompatActivity {
                             if (getSharedPreferences("login",0).edit().putString("user",username).putString("password",passwordG).commit()) {
                                 Toast.makeText(getApplicationContext(),"Usuario almacenado con éxito",Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(PantallaRegistro.this,ListaEventos.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
+                                finish();
                             }
                         }
                     } catch (JSONException e) {

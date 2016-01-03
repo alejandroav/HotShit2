@@ -1,4 +1,4 @@
-package solfamidas.grizzly;
+package solfamidas.whatever;
 /**
  * Creado por Alejandro Alarcón, 2015
  * Como proyecto para la asignatura Sistemas Multimedia

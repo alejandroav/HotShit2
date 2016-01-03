@@ -1,4 +1,4 @@
-package solfamidas.grizzly;
+package solfamidas.whatever;
 
 import android.content.Context;
 import android.location.Criteria;

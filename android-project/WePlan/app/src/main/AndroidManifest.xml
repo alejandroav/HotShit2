@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="solfamidas.grizzly" >
+    package="solfamidas.whatever" >
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -36,11 +36,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="solfamidas.grizzly.MapaEventos"
+            android:name="solfamidas.whatever.MapaEventos"
             android:label="@string/title_activity_mapa_eventos" >
         </activity>
         <activity
-            android:name="solfamidas.grizzly.ListaEventos"
+            android:name="solfamidas.whatever.ListaEventos"
             android:label="@string/title_activity_lista_eventos"
             android:theme="@style/AppTheme" >
             <intent-filter>
@@ -50,20 +50,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="solfamidas.grizzly.PantallaLogin"
-            android:label="@string/title_activity_pantalla_login" >
+            android:name="solfamidas.whatever.PantallaLogin"
+            android:label="@string/title_activity_pantalla_login"
+            android:excludeFromRecents="true" >
         </activity>
         <activity
-            android:name="solfamidas.grizzly.PantallaRegistro"
+            android:name="solfamidas.whatever.PantallaRegistro"
             android:label="@string/title_activity_pantalla_registro"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme"
+            android:excludeFromRecents="true" >
         </activity>
         <activity
-            android:name="solfamidas.grizzly.DetalleEventos"
+            android:name="solfamidas.whatever.DetalleEventos"
             android:label="@string/title_activity_detalle_evento"
             android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name="solfamidas.grizzly.NavPerfil"
+        <activity android:name="solfamidas.whatever.NavPerfil"
             android:label="NavPerfil"
             android:theme="@style/AppTheme">
         </activity>
