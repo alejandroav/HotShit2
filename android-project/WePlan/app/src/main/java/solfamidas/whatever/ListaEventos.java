@@ -16,14 +16,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +66,11 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
     private String LOGIN_URL = "http://grizzly.pw/operations.php?op=login";
     private ListView lv;
 
+    private Button test;
+    private PopupWindow popupWindow;
+    private LayoutInflater layoutInflater;
+    private LinearLayout linear;
+
     ArrayList<Evento> eventos = new ArrayList<Evento>();
     ArrayAdapter adapter;
 
@@ -72,6 +83,28 @@ public class ListaEventos extends ActionBarActivity implements GoogleApiClient.C
         setContentView(R.layout.activity_list_planes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);
+
+        test = (Button) findViewById(R.id.opciones);
+        linear = (LinearLayout) findViewById(R.id.linear);
+        test.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.opciones_avanzadas, null);
+
+                popupWindow = new PopupWindow(container, 400, 400, true);
+                popupWindow.showAtLocation(linear, Gravity.NO_GRAVITY, 0, 112);
+
+                container.setOnTouchListener(new View.OnTouchListener(){
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent){
+                        popupWindow.dismiss();
+                        return true;
+                    }
+                });
+            }
+        });
+
 
         lv = (ListView) findViewById(R.id.list);
         adapter = new MyListAdapter();
