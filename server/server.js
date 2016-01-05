@@ -56,7 +56,8 @@ io.on('connection', function (socket) {
 					extra += " AND ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) >= "+data.min_radio*1000;
 				}
 				var query = "SELECT id, title, description, geom, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, "+
-					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name, (SELECT count(*) FROM follow WHERE follower="+socket.uid+" AND followed=creator_id) as creator_followed, (SELECT count(*) FROM attendance WHERE event_id=id and user_id="+socket.uid+") as attendance, ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom)/1000 as distance FROM events "+
+					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name, (SELECT count(*) FROM follow WHERE follower="+socket.uid+" AND followed=creator_id) "+
+					"as creator_followed, (SELECT count(*) FROM attendance WHERE event_id=id and user_id="+socket.uid+") as attendance, ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom)/1000 as distance FROM events "+
 					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) <= "+data.max_radio*1000+" "+extra+" ORDER BY distance ASC LIMIT 30";
 				connection.query(query, function(err, rows, fields) {
 					if (err) socket.emit('s-event-get', {status: 'ERROR', msg: err});
@@ -131,7 +132,9 @@ io.on('connection', function (socket) {
 	/*Estadisticas de eventos*/
 	socket.on('c-event-statistics', function(data){ 
 		if (socket.valid){
-			connection.query('SELECT count(*) as myevents, (SELECT count(*) FROM attendance WHERE user_id='+socket.uid+') as goevents, (SELECT count(*) FROM follows WHERE follower = '+socket.uid+') as followed, (SELECT count(*) FROM follows WHERE followed = '+socket.uid+') as followers FROM events WHERE creator_id='+socket.uid, function(err, rows, fields) {
+			connection.query('SELECT count(*) as myevents, (SELECT count(*) FROM attendance WHERE user_id='+socket.uid+') as goevents, (SELECT count(*) FROM follows '+
+				'WHERE follower = '+socket.uid+') as followed, (SELECT count(*) FROM follows WHERE followed = '+socket.uid+') as followers FROM events WHERE creator_id='+socket.uid, 
+			function(err, rows, fields) {
 				if (err) socket.emit('s-event-statistics', {status: 'ERROR', msg: err});
 				socket.emit('s-event-statistics', {status: 'OK', data: rows[0]});
 			});
