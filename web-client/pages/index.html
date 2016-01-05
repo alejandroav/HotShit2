@@ -58,9 +58,9 @@
 		navigator.geolocation.getCurrentPosition(function(objPosition){
 			var lat = objPosition.coords.latitude;
 			var lon = objPosition.coords.longitude;
-			socket.emit('c-event-get', {loc_long: lon, loc_lat: lat, radio: 1000, type: 0});
-			socket.emit('c-event-get', {loc_long: lon, loc_lat: lat, radio: 1000, type: 1});
-			socket.emit('c-event-get', {loc_long: lon, loc_lat: lat, radio: 1000, type: 2});
+			socket.emit('c-event-get', {loc_long: lon, loc_lat: lat, max_radio: 1000, type: 0});
+			socket.emit('c-event-get', {loc_long: lon, loc_lat: lat, max_radio: 1000, type: 1});
+			socket.emit('c-event-get', {loc_long: lon, loc_lat: lat, max_radio: 1000, type: 2});
 		}, 
 		function(objPositionError) {
 			switch (objPositionError.code) {
