@@ -34,10 +34,10 @@ io.on('connection', function (socket) {
 			});
 		} else socket.emit('s-login', {status: 'ERROR', msg: 'Error en el objeto JSON'});
 	});
-	/*Evento para listas de eventos*/
-	socket.on('c-event-list', function (data) {
+	/*Evento para obtener eventos*/
+	socket.on('c-event-get', function (data) {
 		if (socket.valid){
-			if (('loc_long' in data && !isNaN(data.loc_long)) && ('loc_lat' in data && !isNaN(data.loc_lat)) && ('radio' in data && !isNaN(data.radio)) && ('type' in data && !isNaN(data.type))){
+			if (('loc_long' in data && !isNaN(data.loc_long)) && ('loc_lat' in data && !isNaN(data.loc_lat)) && ('max_radio' in data && !isNaN(data.max_radio)) && ('type' in data && !isNaN(data.type))){
 				var extra;
 				if (data.type == 0){
 					extra = "";
@@ -45,7 +45,7 @@ io.on('connection', function (socket) {
 					extra = " AND id IN (SELECT event_id FROM attendance WHERE user_id="+socket.uid+") ";
 				} else if (data.type == 2){
 					extra = " AND id IN (SELECT event_id FROM attendance WHERE user_id IN (SELECT follower FROM follows WHERE followed ="+socket.uid+")) ";
-				} else socket.emit('s-event-list', {status: 'ERROR', msg: 'Error en el objeto JSON'});
+				} else socket.emit('s-event-get', {status: 'ERROR', msg: 'Error en el objeto JSON'});
 				if (('min_cost' in data && !isNaN(data.min_cost)) && ('max_cost' in data && !isNaN(data.max_cost))){
 					extra += " AND cost >= "+data.min_cost+" AND cost <= "+data.max_cost;
 				}
@@ -57,16 +57,16 @@ io.on('connection', function (socket) {
 				}
 				var query = "SELECT id, title, description, geom, cost, date, (SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, "+
 					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name, ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom)/1000 as distance FROM events "+
-					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) <= "+data.radio*1000+" "+extra+" ORDER BY distance ASC LIMIT 30";
+					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) <= "+data.max_radio*1000+" "+extra+" ORDER BY distance ASC LIMIT 30";
 				connection.query(query, function(err, rows, fields) {
-					if (err) socket.emit('s-event-list', {status: 'ERROR', msg: err});
-					socket.emit('s-event-list', {status: 'OK', data: rows, type: data.type});
+					if (err) socket.emit('s-event-get', {status: 'ERROR', msg: err});
+					socket.emit('s-event-get', {status: 'OK', data: rows, type: data.type});
 				});
-			} else socket.emit('s-event-list', {status: 'ERROR', msg: 'Error en el objeto JSON'});
-		} else socket.emit('s-event-list', {status: 'ERROR', msg: 'Usuario no valido'});
+			} else socket.emit('s-event-get', {status: 'ERROR', msg: 'Error en el objeto JSON'});
+		} else socket.emit('s-event-get', {status: 'ERROR', msg: 'Usuario no valido'});
 	});
 	/*Evento para mapa de eventos*/
-	socket.on('c-event-map', function (data) {
+	/*socket.on('c-event-map', function (data) {
 		if (socket.valid){
 			if (('loc_long' in data && !isNaN(data.loc_long)) && ('loc_lat' in data && !isNaN(data.loc_lat)) && ('radio' in data && !isNaN(data.radio))){
 				connection.query("SELECT id, title, description, geom, date FROM events WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) < "+data.radio*1000, function(err, rows, fields) {
@@ -75,7 +75,7 @@ io.on('connection', function (socket) {
 				});
 			} else socket.emit('s-event-map', {status: 'ERROR', msg: 'Error en el objeto JSON'});
 		} else socket.emit('s-event-map', {status: 'ERROR', msg: 'Usuario no valido'});
-	});
+	});*/
 	/*Evento para crear eventos*/
 	socket.on('c-event-create', function (data) {
 		if (socket.valid){
