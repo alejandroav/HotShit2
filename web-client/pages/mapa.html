@@ -54,7 +54,7 @@
 				map: map,
 				title: 'Tu localizacion'
 			});
-			socket.on('s-event-map', function(data) {
+			socket.on('s-event-get', function(data) {
 				if (data.status == "OK"){
 					if ('data' in data && data.data.length > 0){
 						for (var i = 0; i<data.data.length; i++){

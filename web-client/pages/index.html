@@ -1,4 +1,3 @@
-
 <div class="row center-align">
     <div class="col s12 m12 l8 offset-l2">
       <ul class="tabs" id="tabla2">
@@ -59,9 +58,9 @@
 		navigator.geolocation.getCurrentPosition(function(objPosition){
 			var lat = objPosition.coords.latitude;
 			var lon = objPosition.coords.longitude;
-			socket.emit('c-event-list', {loc_long: lon, loc_lat: lat, radio: 1000, type: 0});
-			socket.emit('c-event-list', {loc_long: lon, loc_lat: lat, radio: 1000, type: 1});
-			socket.emit('c-event-list', {loc_long: lon, loc_lat: lat, radio: 1000, type: 2});
+			socket.emit('c-event-get', {loc_long: lon, loc_lat: lat, radio: 1000, type: 0});
+			socket.emit('c-event-get', {loc_long: lon, loc_lat: lat, radio: 1000, type: 1});
+			socket.emit('c-event-get', {loc_long: lon, loc_lat: lat, radio: 1000, type: 2});
 		}, 
 		function(objPositionError) {
 			switch (objPositionError.code) {
@@ -86,7 +85,7 @@
 	} else {
 		Materialize.toast("Su navegador no soporta la API de geolocalizaci&oacute;n.", 5000);
 	}
-	socket.on('s-event-list', function(data) {
+	socket.on('s-event-get', function(data) {
 		if (data.status == "OK"){
 			var container = $(document.createElement("div"));
 			if ('data' in data && data.data.length > 0){
@@ -109,7 +108,7 @@
 							res2.find(".user-price").html(obj.cost);
 							res2.find(".user-time").html(day+"/"+month+"/"+year);
 							res2.find(".user-assist").html(obj.current+"/"+obj.capacity);
-			res2.find('.tooltipped').tooltip({delay: 50});
+							res2.find('.tooltipped').tooltip({delay: 50});
 							container.append(res2);
 						}
 					}

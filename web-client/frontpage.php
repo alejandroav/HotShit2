@@ -41,7 +41,7 @@
 							<input style="color:black;" type="text" value="Buscar..." onfocus="if (this.value == 'Buscar...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Buscar...';}" />
 						</form>
 					</li>
-					<li><a href="javaScript:changeContent('perfil')">Inicio</a></li>
+					<li><a href="javaScript:changeContent('index')">Inicio</a></li>
 					<li><a href="javaScript:changeContent('mapa')">Mapa</a></li>
 					<li><a href="javaScript:changeContent('planes')">Planes</a></li>
 					<!--<li><a href="javaScript:changeContent('retos')">Retos</a></li>-->
@@ -54,7 +54,7 @@
 				<div class="nav-wrapper">
 					<a href="#" class="brand-logo center"><img class="logo-central" src="resources/img/logo-2-negativo.png"></a>
 					<ul id="nav-mobile" class="left hide-on-med-and-down">
-						<li class="active"><a href="javaScript:void(0)" id="perfil-but">Inicio</a></li>
+						<li class="active"><a href="javaScript:void(0)" id="index-but">Inicio</a></li>
 						<li><a href="javaScript:void(0)" id="mapa-but">Mapa</a></li>
 						<li><a href="javaScript:void(0)" id="planes-but">Planes</a></li>
 						<!--<li><a href="javaScript:void(0)" id="retos-but">Retos</a></li>-->
@@ -108,7 +108,7 @@
 						$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 					}
 				});
-				changeContent("perfil");
+				changeContent("index");
 				socket.on('s-event-details', function(data){
 					prevPage = 'details';
 					if (data.status == "OK"){
@@ -151,8 +151,8 @@
 					else if (typeof data.msg == "string") Materialize.toast("Error: "+data.msg, 3000);
 					else console.log(data.msg);
 				});
-				$('#perfil-but').click(function(){
-					changeContent("perfil");
+				$('#index-but').click(function(){
+					changeContent("index");
 				});
 				$('#perfil-usuario-but').click(function(){
 					changeContent("perfil-usuario");

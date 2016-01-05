@@ -67,7 +67,7 @@
 	} else {
 		Materialize.toast("Su navegador no soporta la API de geolocalizaci&oacute;n.", 5000);
 	}
-	socket.on('s-event-list', function(data) {
+	socket.on('s-event-get', function(data) {
 		if (data.status == "OK"){
 			var container = $(document.createElement("div"));
 			if ('data' in data && data.data.length > 0){
