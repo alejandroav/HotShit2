@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS `weplan` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+
 USE `weplan`;
 
 DROP TABLE IF EXISTS `attendance`;
@@ -42,12 +43,11 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(130) NOT NULL,
-  `imagen` varchar(255) NOT NULL DEFAULT '',
+  `image` varchar(255) NOT NULL DEFAULT '',
   `nivelorganizador` decimal(12,2) NOT NULL DEFAULT '0.00',
   `nivelparticipante` decimal(12,2) NOT NULL DEFAULT '0.00',
   `session_id` varchar(100) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-
 
 ALTER TABLE `attendance`
   ADD PRIMARY KEY (`user_id`,`event_id`);
@@ -64,8 +64,8 @@ ALTER TABLE `follows`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
-
 ALTER TABLE `events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
