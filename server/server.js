@@ -41,7 +41,7 @@ io.on('connection', function (socket) {
 			if (('loc_long' in data && !isNaN(data.loc_long)) && ('loc_lat' in data && !isNaN(data.loc_lat)) && ('max_radio' in data && !isNaN(data.max_radio)) && ('type' in data && !isNaN(data.type))){
 				var extraparams = "";
 				var extradata = ",(SELECT count(*) FROM attendance WHERE event_id = id) as current, capacity, image, "+
-					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name, (SELECT count(*) FROM follow WHERE follower="+socket.uid+" AND followed=creator_id) "+
+					"creator_id, (SELECT username FROM users WHERE id = creator_id) as creator_name, (SELECT count(*) FROM follows WHERE follower="+socket.uid+" AND followed=creator_id) "+
 					"as creator_followed, (SELECT count(*) FROM attendance WHERE event_id=id and user_id="+socket.uid+") as attendance, "+
 					"ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom)/1000 as distance";
 				/*Get params by type*/
@@ -72,7 +72,7 @@ io.on('connection', function (socket) {
 				}
 				/*query*/
 				var query = "SELECT id, title, description, geom, date, cost "+extradata+" FROM events "+
-					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) <= "+data.max_radio*1000+" "+extra+" ORDER BY distance ASC LIMIT 30";
+					"WHERE ST_Distance_Sphere(ST_GeomFromText('POINT("+data.loc_lat+" "+data.loc_long+")'), geom) <= "+data.max_radio*1000+" "+extraparams+" ORDER BY distance ASC LIMIT 30";
 				connection.query(query, function(err, rows, fields) {
 					if (err) socket.emit('s-event-get', {status: 'ERROR', msg: err, query: query});
 					socket.emit('s-event-get', {status: 'OK', data: rows, type: data.type});
