@@ -1,7 +1,7 @@
 
 <div class="inicio-title"> Creador de eventos</div>
 
-<div class="inicio-title-3">Mapa del lugar</div>
+<div class="inicio-title-3 s12 m12 offset-l1 l10">Mapa del lugar</div>
 <div id="mapa" style="width:100%; height:400px;"></div>
 <div class="inicio-title-3">T&iacute;tulo</div>
 <div class="row">
@@ -10,7 +10,7 @@
         <label for="last_name">T&iacute;tulo</label>
     </div>
 </div>
-<div class="inicio-title-3">Descripci&oacute;n</div>
+<div class="inicio-title-3 s12 m12 offset-l1 l10">Descripci&oacute;n</div>
 <textarea id="wysiwyg"></textarea>
 <div class="row">
 	<div class="input-field col s3 m3 l2 ">
@@ -34,6 +34,21 @@
 <script>tinymce.init({ selector:'#wysiwyg' });</script>
 <script>
 var lat, lon;
+function placeMarkerAndPanTo(latLng, map) {
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map,
+	animation: google.maps.Animation.DROP
+  });
+  map.panTo(latLng);
+}
+function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
 function createEvent(){
 	socket.emit('c-event-create', {title: $("last_name").val(), description: $("wysiwyg").val(), loc_long: lon, loc_lat: lat, date: $("date").val(), cost: $("cost").val(), capacity: $("people").val()});
 }
@@ -59,6 +74,10 @@ function createEvent(){
 				map: map,
 				title: 'Tu localizacion'
 			});
+			 map.addListener('dragend', function(e) {
+				placeMarkerAndPanTo(e.latLng, map);
+			 });
+			 marker.addListener('click', toggleBounce);
 		}, 
 		function(objPositionError) {
 			switch (objPositionError.code) {
